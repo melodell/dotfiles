@@ -1,0 +1,9 @@
+# Global .gitignore
+
+# Mac
+.DS_Store
+
+# Emacs
+*~
+\#*\#
+.\#*

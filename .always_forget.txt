@@ -1,0 +1,179 @@
+# .always_forget.txt
+#
+# Melina O'Dell <melodell@umich.edu>
+
+
+## KEYBOARD SHORTCUTS
+
+# Text editing
+CMD + Delete			# Delete an entire line
+OPTION + Delete 		# Delete an entire word
+OPTION + L/R			# Move between entire words
+OPTION + U/D                    # Move between sequential lines
+OPTION + U/D Arrow              # Move between paragraphs
+CMD + L/R                       # Move between front/back of lines
+CMD + U/D                       # Move between top/bottom of entire page/text
+CMD + OPTION + L/R              # Move between single characters
+FN + U/D Arrow                  # Move up/down one page
+CMD + Shift + Arrow		# Select ALL text L/R/U/D
+OPTION + Shift + Arrow		# Select text L/R in current word
+
+# Bash
+CTRL + U                        # Delete entire line
+CTRL + L                        # Clear terminal
+CTRL + C                        # Cancel running program
+CTRL + D                        # End file/stream (EECS484: Exit SQL*Plus) 
+
+# MacOS
+CMD + N				# Open new window (for current application)
+CMD + W                         # Close current window (Not the same as quitting the application with CMD + Q)
+CMD + Tab			# Scroll through open applications
+CMD + Tab, Tab + OPTION		# Select and unminimized an open application
+CMD + M				# Minimize current application
+CTRL + Arrow			# Move L/R between desktop views
+FN + F                          # Make current window fullscreen (new desktop)
+
+# Emacs
+e <filename>                    # Open file in Emacs (aliased)
+e -nw <filename>                # Open Emacs in text-only (no window) mode
+
+C-n + C-p                       # Move between sequential lines
+C-f + C-b                       # Move between characters
+C-a + C-e                       # Move between front/back of lines
+M-{ / }                         # Move between paragraphs
+M-< / >                         # Move between top/bottom of entire page/text
+C-d                             # Delete character to the right
+M-d                             # Delete word to the right
+C-SHIFT-DELETE                  # Delete an entire line
+C-DELETE                        # Delete an entire word
+C-k                             # Clear an entire line
+C-o                             # Insert a newline below
+C-i                             # Move to start of line (from left ONLY)
+C-s                             # Incremental search (C-s again for next result; RETURN to stop)
+C-SPACE                         # Set mark (move cursor to select)
+
+C-x C-c                         # Close Emacs
+C-x C-f                         # Open another file in a new buffer
+C-x C-b                         # Open list of open buffers (for switching)
+C-x 2                           # Split the screen into two windows
+C-x o                           # Switch to other window
+C-x 0                           # Bring the screen back into one window
+C-x k                           # Kill current buffer
+C-x C-;                         # Comment out current line
+M-;                             # Insert comment (at end) of line
+M-; (with selection)            # Comment out selected block
+C-q <tab>                       # Insert REAL tab character (in Text mode)
+M-w                             # Copy selection
+C-w                             # Cut selection
+C-y                             # Paste selection
+C-g                             # Exit current command chain
+C-x x g                         # Revert all unsaved changes (read from previous file version)
+C-x TAB                         # Indent current line
+C-/                             # Undo
+C-g C-/                         # Redo (immediately after an undo; undo implemented with a stack)
+
+# Browser
+CMD + T 			# New tab
+CMD + R				# Refresh tab
+CMD + Shift + R			# Hard Refresh tab
+CMD + OPTION + I		# Open Developer Tools
+CMD + OPTION + U                # View Source (in new tab)
+CMD + OPTION + Arrow		# Move L/R between tabs in browser
+CMD + W				# Close current tab
+CMD + L				# Move cursor to URL bar
+CMD + Arrow			# Move back/forward through search history (back button)
+FN + Arrow			# Move between first and last search results in dropdown predictions
+
+
+## COMMANDS
+
+# Git
+git restore .                   # Discard all unstaged changes
+git fetch --prune               # Fetch all changes + clean up deleted remote tracking branches
+git reset --hard <commit>       # Move HEAD to <commit> and discard all local changes (including commits)
+git reset --soft <commit>       # Move HEAD to <commit> without discarding unstaged changes
+git reset HEAD^                 # Revert last commit and keep changes (move them back to unstaged)
+git checkout -b <branch_name>   # Create and checkout new branch
+git branch -d                   # Delete branch
+git branch -D                   # Delete branch (even if remote hasn't cleaned it up yet)
+
+# Unix
+wc                              # Word count
+wc -l                           # Line count
+
+# ls
+ls -a                           # Show all (hidden) files and directories
+ls -l                           # (Verbose) Show all (hidden) files and directories
+ 
+# Tar
+tar -xvzf <tarball>		# Extract files from <tarball>.tar.gz (verbose) (aliased to tarx)
+tar -cvzf <tarball>		# Compress files into <tarball>.tar.gz (verbose)
+
+# Zip
+zip -r <filename>.zip <directory>  # Zip directory
+
+# grep
+grep <something> <filename>	# Find matches with <something> in <filename>
+grep -i ...			# Case-insensitive search
+grep -A <num> ...               # Find matches and display <num> trailing lines
+
+# Python
+which python                    # Print active Python interpreter location
+python3 -m http.server 8000     # Start server from PWD on localhost:8000
+python3 -m venv env             # Initialize virtual environment (inside env/)
+source env/bin/activate         # Activate virtual environment
+deactivate                      # Deactivate virtual environment
+
+# Processes
+pgrep <pattern>                 # List all (matching) running processes
+pkill <pattern>                 # Kill all (matching) running processes
+
+
+## AWS (EC2)
+
+# SSH Connection
+ssh -i <Path to Auth Key File> ubuntu@<Public DNS from Connect Page>
+
+## SYNC FILES (-r for directories) (rsync?)
+
+# Move Files to AWS Instance From Local
+scp -i <Path to Auth Key File> [-r] <Path to Files on Local> ubuntu@<Public DNS from Connect Page>:<Destination Path in EC2 instance>
+
+# Move Files to Local from AWS Instance
+scp -i <Path to Auth Key File> [-r] ubuntu@<Public DNS from Connect Page>:<Path to Files on AWS Instance> <Destination Path on Local>
+
+## SQL
+
+# Oracle/SQL*Plus (EECS 484)
+rlwrap sqlplus                         # Launch SQL*Plus (484 melodell:eecspw)
+
+TODO
+
+## Curl
+
+TODO
+
+
+
+#################################
+#
+# Command line fun (Stolen from awdeorio)
+#
+cowthink                               # ascii art of a fow w/ thought bubble
+cowsay STRING                          # ascii art of a cow w/ speech bubble
+cowsay -f tux                          # ^^^ penguin
+cowsay -l                              # list characters
+fortune                                # print a random adage
+fortune | cowsay                       # ascii art + random adage
+sl                                     # steam locomotive
+asciiquarium                           # ascii art animated aquarium
+telnet towel.blinkenlights.nl          # ascii animated Start Wars C-] to quit
+rig                                    # generate random fake identities
+rev <<< "go hang a salami im a lasagna hog" # palindrome
+figlet STRING                          # print ascii bubble text
+lolcat                                 # rainbow colors (brew install lolcat)
+curl http://wttr.in/ann_arbor          # ascii weather report
+curl wttr.in/:help                     # ascii weather report help
+curl wttr.in?0                         # ascii weather report, only current
+curl wttr.in?n                         # ascii weather report, narrow width
+curl parrot.live                       # dancing ASCII parrot

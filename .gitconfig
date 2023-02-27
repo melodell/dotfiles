@@ -1,0 +1,31 @@
+[user]
+	name = Melina O'Dell
+	email = melinaodell48@gmail.com
+	signingkey = /Users/melinaodell/.ssh/id_rsa.pub
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+        
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+        
+[init]
+	defaultBranch = main
+        
+[pull]
+	rebase = false
+        
+[core]
+	editor = emacs
+	excludesfile = /Users/melinaodell/.gitignore_global
+        
+[gpg]
+	format = ssh
+        
+[commit]
+	gpgsign = true
