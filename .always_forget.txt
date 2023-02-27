@@ -145,7 +145,7 @@ scp -i <Path to Auth Key File> [-r] ubuntu@<Public DNS from Connect Page>:<Path 
 ## SQL
 
 # Oracle/SQL*Plus (EECS 484)
-rlwrap sqlplus                         # Launch SQL*Plus (484 melodell:eecspw)
+rlwrap sqlplus                         # Launch SQL*Plus
 
 TODO
 
@@ -159,19 +159,17 @@ TODO
 #
 # Command line fun (Stolen from awdeorio)
 #
-cowthink                               # ascii art of a fow w/ thought bubble
+cowthink                               # ascii art of a cow w/ thought bubble
 cowsay STRING                          # ascii art of a cow w/ speech bubble
 cowsay -f tux                          # ^^^ penguin
-cowsay -l                              # list characters
+cowsay -l                              # list available characters
 fortune                                # print a random adage
 fortune | cowsay                       # ascii art + random adage
 sl                                     # steam locomotive
 asciiquarium                           # ascii art animated aquarium
-telnet towel.blinkenlights.nl          # ascii animated Start Wars C-] to quit
-rig                                    # generate random fake identities
-rev <<< "go hang a salami im a lasagna hog" # palindrome
+telnet towel.blinkenlights.nl          # ascii animated Star Wars, C-] to quit
 figlet STRING                          # print ascii bubble text
-lolcat                                 # rainbow colors (brew install lolcat)
+lolcat                                 # rainbow colors
 curl http://wttr.in/ann_arbor          # ascii weather report
 curl wttr.in/:help                     # ascii weather report help
 curl wttr.in?0                         # ascii weather report, only current
