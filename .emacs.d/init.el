@@ -5,6 +5,16 @@
 ;;;
 ;;; Melina O'Dell <melodell@umich.edu>
 
+
+;; Relocate automatically modified files.  These are lines added to
+;; the file when you use the customise system. They're generated when
+;; you use customize-*. By default, the customisation options are
+;; stored in the init.el (or .emacs) file. You don't usually edit
+;; these by hand.
+;; https://stackoverflow.com/questions/5052088/what-is-custom-set-variables-and-faces-in-my-emacs
+(setq custom-file "~/.emacs.d/custom.el")
+(unless (file-exists-p custom-file) (write-region "" nil custom-file))
+
 ;; Modified keyboard shortcuts
 (global-set-key "\C-x\C-b" 'electric-buffer-list)  ; easier buffer switching
 
@@ -215,17 +225,3 @@
 
 ;; Disable backup files
 (setq make-backup-files nil)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(spacemacs-theme use-package undo-tree realgud-lldb flycheck company)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
