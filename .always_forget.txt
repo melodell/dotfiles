@@ -49,7 +49,7 @@ C-DELETE                        # Delete an entire word
 C-k                             # Clear an entire line
 C-o                             # Insert a newline below
 C-i                             # Move to start of line (from left ONLY)
-C-s                             # Incremental search (C-s again for next result; RETURN to stop)
+C-s                             # Incremental search (C-s again for next result; C-r for prev result; RETURN to stop)
 C-SPACE                         # Set mark (move cursor to select)
 
 C-x C-c                         # Close Emacs
