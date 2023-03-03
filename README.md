@@ -14,7 +14,14 @@ rm -rf dotfiles/
 git add -f <filename>
 ```
 
-## Install Homebrew packages
+## Homebrew package management
+Update package list.
+
+```
+brew list > homebrew.txt
+```
+
+Install.
 
 ```
 cat homebrew.txt | xargs brew install
