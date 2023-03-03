@@ -5,6 +5,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
+# Suppress default shell warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Aliases
 
 # Temp
