@@ -194,6 +194,7 @@ rlwrap sqlplus                         # Launch SQL*Plus
 #
 # Command line fun (Stolen from awdeorio)
 #
+
 cowthink                               # ascii art of a cow w/ thought bubble
 cowsay STRING                          # ascii art of a cow w/ speech bubble
 cowsay -f tux                          # ^^^ penguin
