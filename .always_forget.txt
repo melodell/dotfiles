@@ -1,24 +1,26 @@
 # .always_forget.txt
 #
-# Melina O'Dell <melodell@umich.edu>
+# Melina O'Dell
 
 
-## KEYBOARD SHORTCUTS
+########################################
+#
+# Keyboard Shortcuts
+#
 
 # Text editing
 CMD + Delete			# Delete an entire line
 OPTION + Delete 		# Delete an entire word
-OPTION + L/R			# Move between entire words
-OPTION + U/D                    # Move between sequential lines
+OPTION + L/R Arrow              # Move between entire words
 OPTION + U/D Arrow              # Move between paragraphs
-CMD + L/R                       # Move between front/back of lines
-CMD + U/D                       # Move between top/bottom of entire page/text
-CMD + OPTION + L/R              # Move between single characters
+CMD + L/R Arrow                 # Move between front/back of lines
+CMD + U/D Arrow                 # Move between top/bottom of entire page/text
+CMD + OPTION + L/R Arrow        # Move between single characters
 FN + U/D Arrow                  # Move up/down one page
 CMD + Shift + Arrow		# Select ALL text L/R/U/D
 OPTION + Shift + Arrow		# Select text L/R in current word
 
-# Bash
+# Unix
 CTRL + U                        # Delete entire line
 CTRL + L                        # Clear terminal
 CTRL + C                        # Cancel running program
@@ -26,15 +28,35 @@ CTRL + D                        # End file/stream (EECS484: Exit SQL*Plus)
 
 # MacOS
 CMD + N				# Open new window (for current application)
-CMD + W                         # Close current window (Not the same as quitting the application with CMD + Q)
+CMD + W                         # Close current window
+CMD + Q                         # Quit application
 CMD + Tab			# Scroll through open applications
-CMD + Tab, Tab + OPTION		# Select and unminimized an open application
+CMD + Tab, Tab + OPTION		# Select and unminimize an open application
 CMD + M				# Minimize current application
 CTRL + Arrow			# Move L/R between desktop views
-FN + F                          # Make current window fullscreen (new desktop)
+FN + F                          # Make current window fullscreen (creates new desktop)
 CMD + CTRL + Q                  # Lock screen
+CMD + SHIFT + 3                 # Take screenshot of entire screen
+CMD + SHIFT + 4                 # Take screenshot of selected portion
 
+# Browser
+CMD + T 			# New tab
+CMD + R				# Refresh tab
+CMD + Shift + R			# Hard Refresh tab
+CMD + OPTION + I		# Open Developer Tools
+CMD + OPTION + U                # View Source (in new tab)
+CMD + OPTION + Arrow		# Move L/R between tabs in browser
+CMD + W				# Close current tab
+CMD + L				# Move cursor to URL bar
+CMD + Arrow			# Move back/forward through search history (back button)
+FN + Arrow			# Move between first and last search results in dropdown predictions
+
+
+########################################
+#
 # Emacs
+#
+
 e <filename>                    # Open file in Emacs (aliased)
 e -nw <filename>                # Open Emacs in text-only (no window) mode
 
@@ -72,22 +94,13 @@ C-g                             # Exit current command chain
 C-x x g                         # Revert all unsaved changes (read from previous file version)
 C-x TAB                         # Indent current line
 C-/                             # Undo
-C-g C-/                         # Redo (immediately after an undo; undo implemented with a stack)
-
-# Browser
-CMD + T 			# New tab
-CMD + R				# Refresh tab
-CMD + Shift + R			# Hard Refresh tab
-CMD + OPTION + I		# Open Developer Tools
-CMD + OPTION + U                # View Source (in new tab)
-CMD + OPTION + Arrow		# Move L/R between tabs in browser
-CMD + W				# Close current tab
-CMD + L				# Move cursor to URL bar
-CMD + Arrow			# Move back/forward through search history (back button)
-FN + Arrow			# Move between first and last search results in dropdown predictions
+C-g C-/                         # Redo (undo is implemented with a stack)
 
 
-## COMMANDS
+########################################
+#
+# Commands
+#
 
 # Git
 git restore .                   # Discard all unstaged changes
@@ -100,19 +113,32 @@ git branch -d                   # Delete branch
 git branch -D                   # Delete branch (even if remote hasn't cleaned it up yet)
 
 # Unix
-wc                              # Word count
-wc -l                           # Line count
-
-# ls
+pwd                             # Print working directory
+cd                              # Change to home directory
+cd ..                           # Change to directory up
+cd DIR                          # Change to directory
+ls                              # Print all files in pwd
 ls -a                           # Show all (hidden) files and directories
 ls -l                           # (Verbose) Show all (hidden) files and directories
+wc                              # Word count
+wc -l                           # Line count
+touch FILE                      # Create empty file called FILE
+rm FILE                         # Delete FILE
+rm -r DIR                       # Delete directory
+mv FILE NEW_FILE                # Move/rename FILE
+cp FILE NEW_FILE                # Copy FILE to NEW_FILE (will overwrite)
+cp -r DIR NEW_DIR               # Copy directory DIR to NEW_DIR
+file FILE                       # Print type of FILE 
+
+# Scripting
+chmod +x SCRIPT                 # Give SCRIPT executable permissions
  
 # Tar
 tar -xvzf <tarball>		# Extract files from <tarball>.tar.gz (verbose) (aliased to tarx)
-tar -cvzf <tarball>		# Compress files into <tarball>.tar.gz (verbose)
+tar -cvzf <tarball>		# Compress listed files into <tarball>.tar.gz (verbose)
 
 # Zip
-zip -r <filename>.zip <directory>  # Zip directory
+zip -r <filename>.zip <directory>       # Zip directory
 
 # grep
 grep <something> <filename>	# Find matches with <something> in <filename>
@@ -120,44 +146,51 @@ grep -i ...			# Case-insensitive search
 grep -A <num> ...               # Find matches and display <num> trailing lines
 
 # Python
-which python                    # Print active Python interpreter location
-python3 -m http.server 8000     # Start server from PWD on localhost:8000
-python3 -m venv env             # Initialize virtual environment (inside env/)
-source env/bin/activate         # Activate virtual environment
-deactivate                      # Deactivate virtual environment
+which python                            # Print active Python interpreter location
+python3 -m http.server 8000             # Start server from PWD on localhost:8000
+python3 -m venv env                     # Initialize virtual environment (called "env")
+source env/bin/activate                 # Activate virtual environment
+deactivate                              # Deactivate virtual environment
+pip install <package>                   # Install Python package
+pip install -r requirements.txt         # Install packages from requirements file
 
 # Processes
 pgrep <pattern>                 # List all (matching) running processes
 pkill <pattern>                 # Kill all (matching) running processes
 
+# Curl
+TODO
 
-## AWS (EC2)
+# SSH
+ssh <uniqname>@login.engin.umich.edu                                     # SSH into CAEN Linux
+ssh -i <Path to Auth Key File> ubuntu@<Public DNS from Connect Page>     # SSH to AWS EC2 instance
 
-# SSH Connection
-ssh -i <Path to Auth Key File> ubuntu@<Public DNS from Connect Page>
+# Syncing files
+scp FILE DEST                   # Copy file to remote host over SSH
+scp -r DIR DEST                 # Copy directories
+scp -i <path to auth key file>  # Specify key file (AWS)
+rsync FILE DEST                 # Copy file to destination
+rsync -r DIR DEST               # Copy directories
+rsync --exclude '.git*'         # don't copy git metadata
+________________________________________
 
-## SYNC FILES (-r for directories) (rsync?)
+  EC2 Examples:
 
-# Move Files to AWS Instance From Local
-scp -i <Path to Auth Key File> [-r] <Path to Files on Local> ubuntu@<Public DNS from Connect Page>:<Destination Path in EC2 instance>
+# Move files to AWS instance from local with scp
+scp -i <path to auth key file> [-r] <path to files on local> ubuntu@<public DNS from "Connect" page>:<destination path in EC2 instance>
 
-# Move Files to Local from AWS Instance
-scp -i <Path to Auth Key File> [-r] ubuntu@<Public DNS from Connect Page>:<Path to Files on AWS Instance> <Destination Path on Local>
+# Move files to local from AWS instance with scp
+scp -i <path to auth key file> [-r] ubuntu@<public DNS from "Connect" page>:<path to files on AWS instance> <destination path on local>
+________________________________________
 
-## SQL
+
+# SQL
 
 # Oracle/SQL*Plus (EECS 484)
 rlwrap sqlplus                         # Launch SQL*Plus
 
-TODO
 
-## Curl
-
-TODO
-
-
-
-#################################
+########################################
 #
 # Command line fun (Stolen from awdeorio)
 #
