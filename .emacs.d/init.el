@@ -137,23 +137,47 @@
   :defer t                              ; lazy loading
   )
 
-;; Python backend for autocomplete
-;; https://github.com/syohex/emacs-company-jedi
-;; You may need to:
-;; $ pip install virtualenv
-;; Only works on Emacs 24.4 +
-;; (unless (version< emacs-version "24.4")
-;; (use-package company-jedi
-;;    :after company                        ; lazy loading
-;;    :init
-;;    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
-;;    :ensure t
-;;    )
-;; )
+;; Intellisense syntax checking
+;; http://www.flycheck.org/en/latest/
+(use-package flycheck
+  :config
+
+  ;; enable in all modes
+  (global-flycheck-mode)
+
+  ;; disable jshint since we prefer eslint checking
+  ;; http://codewinds.com/blog/2015-04-02-emacs-flycheck-eslint-jsx.html
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+
+  ;; use eslint with web-mode for jsx files
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+
+  ;; use local eslint from node_modules before global
+  ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+  (defun my/use-eslint-from-node-modules ()
+    (let* ((root (locate-dominating-file
+                  (or (buffer-file-name) default-directory)
+                  "node_modules"))
+           (eslint (and root
+                        (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                          root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flycheck-javascript-eslint-executable eslint))))
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+  ;; C++11
+  (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+  :ensure t
+  :defer 1  ; lazy loading
+)
 
 ;; Python
 (use-package elpy
   :ensure t
+  :defer t
   :init
   (elpy-enable))
 
@@ -216,7 +240,7 @@
 (setq use-dialog-box nil)
 
 ;; Default window size
-(add-to-list 'default-frame-alist '(width . 117))
+(add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 60))
 
 ;; macOS modifier keys
