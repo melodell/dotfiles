@@ -1,53 +1,66 @@
-# Homebrew for ARM
+# .bash_profile
+#
+# Melina O'Dell
+
+
+### Homebrew for ARM
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Exports
+
+### PATHS ###
+# Curl
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+# Java
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-# Suppress default shell warning
-export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Aliases
+### ALIASES ###
 
-# Temp
-# W23 src directory shortcuts
-function cd484 { cd /Users/melinaodell/src/eecs484/; }
-function cd486 { cd /Users/melinaodell/src/eecs486/; }
+### ls
+# Use GNU ls (from coreutils)
+alias ls='gls --color=auto --human-readable'
+alias la='ls -a'
+alias ll='ls -l'
 
-# ssh into CAEN Linux
-alias caen='ssh melodell@login.engin.umich.edu'
+### grep (colors)
+alias grep='grep --color=auto'
 
-# Git
+### tar
+# Extract
+function tarx { echo "+ tar -xzvf $1"; tar -xzvf $1; }
+
+### Git
 alias gs='git status'
 alias gd='git diff'
 alias gr='git rebase'
 alias gf='git fetch -p'
 alias gb='git branch'
 
-# Brave Browser
+### ssh
+# CAEN Linux
+alias caen='ssh melodell@login.engin.umich.edu'
+
+### Emacs
+function e { emacs "$@" & }
+
+### Python
+# Start live HTTP server on port 8000
+alias phs='python3 -m http.server 8000'
+
+# Activate virtual env
+function a { source "$@"/bin/activate; }
+
+### Brave
 alias brave='open -a "Brave Browser.app" -n --args --new-window'
 alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
-# GNU ls (coreutils)
-alias ls='gls --color=auto --human-readable'
+### Navigation
 
-# Grep
-alias grep='grep --color=auto'
-
-# tar
-function tarx ()
-{
-    echo "+ tar -xzvf $1"
-    tar -xzvf $1
-}
-
-# Python
-alias phs='python3 -m http.server 8000'
-function a { source "$@"/bin/activate; }
-
-# Emacs
-function e { emacs "$@" & }
+### TEMP ###
+# W23 src directory shortcuts
+function cd484 { cd /Users/melinaodell/src/eecs484/; }
+function cd486 { cd /Users/melinaodell/src/eecs486/; }
 
 # Shortcut to eecs485staff projects
 function cd485 ()
@@ -81,6 +94,15 @@ function cd485 ()
     esac
     cd /Users/melinaodell/src/eecs485staff/$PROJECT
 }
+
+
+### PROMPT ###
+
+# Suppress default shell warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+
+### UTILS ###
 
 # Git autocompletion
 [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ] \
