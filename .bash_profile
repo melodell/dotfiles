@@ -10,13 +10,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ### PATHS ###
 # Curl
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-
 # Java
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 
 ### ALIASES ###
-
 ### ls
 # Use GNU ls (from coreutils)
 alias ls='gls --color=auto --human-readable'
@@ -47,7 +45,6 @@ function e { emacs "$@" & }
 ### Python
 # Start live HTTP server on port 8000
 alias phs='python3 -m http.server 8000'
-
 # Activate virtual env
 function a { source "$@"/bin/activate; }
 
