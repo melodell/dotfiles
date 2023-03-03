@@ -45,18 +45,6 @@
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 
-;; VS Code dark mode
-;; (use-package vscode-dark-plus-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'vscode-dark-plus t))
-
-;; Spacemacs dark mode
-(use-package spacemacs-common
-    :ensure spacemacs-theme
-    :config (load-theme 'spacemacs-dark t)
-    )
-
 ;; Package Management.  Configure the built-in emacs package manager to use
 ;; several publicly available repositories.
 (require 'package)
@@ -93,6 +81,18 @@
   :ensure t
   :defer t
   )
+
+;; VS Code dark mode
+;; (use-package vscode-dark-plus-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'vscode-dark-plus t))
+
+;; Spacemacs dark mode
+(use-package spacemacs-common
+    :ensure spacemacs-theme
+    :config (load-theme 'spacemacs-dark t)
+    )
 
 ;; Disable mouse
 ;; https://github.com/purcell/disable-mouse
