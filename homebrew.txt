@@ -1,11 +1,17 @@
+asciiquarium
+berkeley-db
 brotli
 c-ares
 ca-certificates
 cairo
 coreutils
+cowsay
 curl
+figlet
 fontconfig
+fortune
 freetype
+gdbm
 gettext
 giflib
 git
@@ -32,9 +38,11 @@ libxdmcp
 libxext
 libxrender
 little-cms2
+lolcat
 lz4
 lzo
 mpdecimal
+ncurses
 nettle
 node
 openjdk
@@ -43,6 +51,7 @@ openssl@1.1
 openssl@3
 p11-kit
 pcre2
+perl
 pixman
 pygments
 python@3.11
