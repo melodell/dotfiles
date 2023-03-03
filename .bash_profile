@@ -94,13 +94,11 @@ function cd485 ()
 
 
 ### PROMPT ###
-
 # Suppress default shell warning
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 
 ### UTILS ###
-
 # Git autocompletion
 [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ] \
     && . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
