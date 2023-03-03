@@ -32,6 +32,7 @@ CMD + Tab, Tab + OPTION		# Select and unminimized an open application
 CMD + M				# Minimize current application
 CTRL + Arrow			# Move L/R between desktop views
 FN + F                          # Make current window fullscreen (new desktop)
+CMD + CTRL + Q                  # Lock screen
 
 # Emacs
 e <filename>                    # Open file in Emacs (aliased)
