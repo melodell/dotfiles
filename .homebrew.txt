@@ -13,6 +13,7 @@ fortune
 freetype
 gdbm
 gettext
+gh
 giflib
 git
 glib
