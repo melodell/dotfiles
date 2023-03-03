@@ -60,7 +60,7 @@ function cd484 { cd /Users/melinaodell/src/eecs484/; }
 function cd486 { cd /Users/melinaodell/src/eecs486/; }
 
 # Shortcut to eecs485staff projects
-function cd485 ()
+function cd485()
 {
     PROJECT_NUM="$1"
     case $PROJECT_NUM in
