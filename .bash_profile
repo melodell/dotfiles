@@ -94,8 +94,68 @@ function cd485 ()
 
 
 ### PROMPT ###
-# Suppress default shell warning
-export BASH_SILENCE_DEPRECATION_WARNING=1
+set -o emacs                              # Emacs CL mode
+export HISTCONTROL="ignoredups"           # Ignore dup cmds
+export BASH_SILENCE_DEPRECATION_WARNING=1 # Suppress default shell warning
+
+# Git context
+# Based on https://github.com/awdeorio/dotfiles/blob/main/.bashrc
+# ...which is based on https://github.com/jimeh/git-aware-prompt
+function set_git_context() {
+  # Branch
+  local BRANCH
+  local GIT_BRANCH
+  if BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+      if [[ "$branch" == "HEAD" ]]; then
+          BRANCH="detached*"
+      fi
+      GIT_BRANCH="$BRANCH"
+  else
+      GIT_BRANCH=""
+  fi
+
+  # '*' for dirty
+  local STATUS=$(git status --porcelain 2> /dev/null);
+  local GIT_DIRTY
+  local COLOR
+  if [[ "$STATUS" != "" ]]; then
+      GIT_DIRTY='*'
+      COLOR=${txtred}
+  else
+      GIT_DIRTY=''
+      COLOR=${txtgrn}
+  fi
+
+  # Concatenate
+  local GIT_CONTEXT="${GIT_BRANCH}${GIT_DIRTY}"
+  GIT_PROMPT="$COLOR(${GIT_CONTEXT}) "
+}
+
+# Venv context
+# Based on https://gist.github.com/insin/1425703/f22c4231a7b28b8f420d79158b5229e5ebd3fcd9
+function set_venv_context() {
+    # Only display if venv is active
+    if test -z "$VIRTUAL_ENV" ; then
+        VENV_PROMPT=""
+    else
+        VIRTUAL_ENV_BASE=`basename "$VIRTUAL_ENV"`
+        VENV_PROMPT="${txtcyn}($VIRTUAL_ENV_BASE) "
+    fi
+}
+
+# Set full bash prompt
+# Mainly inspired by https://github.com/awdeorio/dotfiles/blob/main/.bashrc
+function set_prompt() {
+    set_git_context
+    set_venv_context
+    export PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+}
+
+# Colors!
+source ~/.bash_colors
+
+# Execute prompt function before displaying
+PROMPT_COMMAND=set_prompt
 
 
 ### UTILS ###
