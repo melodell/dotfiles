@@ -1,7 +1,9 @@
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
+# Homebrew for ARM
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Exports
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # Aliases
 
