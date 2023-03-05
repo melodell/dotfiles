@@ -18,12 +18,12 @@ git add -f <filename>
 Update package list.
 
 ```
-brew list > homebrew.txt
+brew list > .homebrew.txt
 ```
 
 Install.
 
 ```
-cat homebrew.txt | xargs brew install
+cat .homebrew.txt | xargs brew install
 ```
 
