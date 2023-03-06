@@ -3,8 +3,16 @@
 # Melina O'Dell
 
 
-### Homebrew for ARM
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew configuration for x86_64 and arm64
+if [ -e /opt/homebrew ]; then
+  export HOMEBREW_PREFIX=/opt/homebrew
+elif [ -e /usr/local/Homebrew ]; then
+  export HOMEBREW_PREFIX=/usr/local
+fi
+if [ -e ${HOMEBREW_PREFIX}/bin/brew ]; then
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  eval $(${HOMEBREW_PREFIX}/bin/brew shellenv)
+fi
 
 
 ### PATHS ###
