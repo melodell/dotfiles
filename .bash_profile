@@ -154,8 +154,10 @@ function set_prompt() {
 # Colors!
 source ~/.bash_colors
 
-# Execute prompt function before displaying
-PROMPT_COMMAND=set_prompt
+# Execute function before displaying prompt
+# But don't break the prompt by replacing previous behavior
+# https://apple.stackexchange.com/questions/128998/how-to-open-a-new-terminal-tab-in-current-working-directory
+PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
 
 
 ### UTILS ###
