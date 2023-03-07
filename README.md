@@ -21,6 +21,8 @@ Update package list.
 brew list > .homebrew.txt
 ```
 
+NOTE: Emacs and Docker are installed as GUI applications with `brew install --cask`.
+
 Install.
 
 ```
