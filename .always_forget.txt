@@ -79,7 +79,8 @@ C-SPACE                         # Set mark (move cursor to select)
 C-x C-c                         # Close Emacs
 C-x C-f                         # Open another file in a new buffer
 C-x C-b                         # Open list of open buffers (for switching)
-C-x 2                           # Split the screen into two windows
+C-x 2                           # Split into two windows (VERTICALLY)
+C-x 3                           # Split into two windows (HORIZONTALLY)
 C-x o                           # Switch to other window
 C-x 0                           # Bring the screen back into one window
 C-x k                           # Kill current buffer
