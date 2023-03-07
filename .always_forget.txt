@@ -97,6 +97,9 @@ C-x TAB                         # Indent current line
 C-/                             # Undo
 C-g C-/                         # Redo (undo is implemented with a stack)
 
+# Flycheck
+C-c ! l                         # Open error list (M-x flycheck-list-errors)
+
 
 ########################################
 #
