@@ -127,19 +127,15 @@ function set_git_context() {
 
   # '*' for dirty
   local STATUS=$(git status --porcelain 2> /dev/null);
-  local GIT_DIRTY
-  local COLOR
   if [[ "$STATUS" != "" ]]; then
       GIT_DIRTY='*'
-      COLOR=${txtred}
   else
       GIT_DIRTY=''
-      COLOR=${txtgrn}
   fi
 
   # Concatenate
   local GIT_CONTEXT="${GIT_BRANCH}${GIT_DIRTY}"
-  GIT_PROMPT="$COLOR(${GIT_CONTEXT}) "
+  GIT_PROMPT="(${GIT_CONTEXT}) "
 }
 
 # Venv context
@@ -150,7 +146,7 @@ function set_venv_context() {
         VENV_PROMPT=""
     else
         VIRTUAL_ENV_BASE=`basename "$VIRTUAL_ENV"`
-        VENV_PROMPT="${txtcyn}($VIRTUAL_ENV_BASE) "
+        VENV_PROMPT="($VIRTUAL_ENV_BASE) "
     fi
 }
 
@@ -159,7 +155,14 @@ function set_venv_context() {
 function set_prompt() {
     set_git_context
     set_venv_context
-    export PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+    
+    # Special colors for dirty/clean
+    if [[ "$GIT_DIRTY" != "" ]]; then
+        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtred}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+    else
+        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtgrn}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+    fi
+    export PS1
 }
 
 # Colors!
