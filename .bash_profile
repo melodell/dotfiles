@@ -90,6 +90,9 @@ function cd485()
         madoop)
             PROJECT='madoop'
             ;;
+        ag)
+            PROJECT='ag-docker-images'
+            ;;
         site)
             PROJECT='eecs485.org'
             ;;
