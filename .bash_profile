@@ -160,10 +160,9 @@ function set_prompt() {
     BEHIND=$(git status -sb 2> /dev/null | grep behind);
     if [[ "$BEHIND" != "" ]]; then
         PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtylw}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
-    fi
-        
+
     # Special colors for dirty/clean
-    if [[ "$GIT_DIRTY" != "" ]]; then
+    elif [[ "$GIT_DIRTY" != "" ]]; then
         PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtred}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
     else
         PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtgrn}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
