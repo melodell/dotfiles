@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Install brew utilities
+#
+# Melina O'Dell
+
+# Stop on errors, print commands
+set -Eeuo pipefail
+
+# Install cask applications
+CASKAPPS=(
+    "emacs"
+    "docker"
+)
+
+for i in "${CASKAPPS[@]}"
+do
+    echo "+ brew install --cask $i"
+    brew install --cask $i
+done
+
+# Make sure we're in home directory
+cd
+
+# Install other utilities from package list
+echo "+ cat .homebrew.txt | xargs brew install"
+cat .homebrew.txt | xargs brew install
