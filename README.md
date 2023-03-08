@@ -21,11 +21,15 @@ Update package list.
 brew list > .homebrew.txt
 ```
 
-NOTE: Emacs and Docker are installed as GUI applications with `brew install --cask`.
+NOTE: GUI applications (like Emacs and Docker) are installed with `brew install --cask`.
+`./bin/brewinstall` keeps a list of cask applications.
 
 Install.
 
 ```
-cat .homebrew.txt | xargs brew install
+./bin/brewinstall
++ brew install --cask emacs
+...
++ cat .homebrew.txt | xargs brew install
 ```
 
