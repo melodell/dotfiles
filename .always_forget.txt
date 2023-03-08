@@ -60,6 +60,7 @@ FN + Arrow			# Move between first and last search results in dropdown prediction
 e <filename>                    # Open file in Emacs (aliased)
 e -nw <filename>                # Open Emacs in text-only (no window) mode
 
+# Text editing and navigation
 C-n + C-p                       # Move between sequential lines
 C-f + C-b                       # Move between characters
 C-a + C-e                       # Move between front/back of lines
@@ -73,9 +74,21 @@ C-DELETE                        # Delete an entire word
 C-k                             # Clear an entire line
 C-o                             # Insert a newline below
 C-i                             # Move to start of line (from left ONLY)
-C-s                             # Incremental search (C-s again for next result; C-r for prev result; RETURN to stop)
 C-SPACE                         # Set mark (move cursor to select)
+C-s                             # Incremental search (C-s again for next result; C-r for prev result; RETURN to stop)
+M-%                             # Find and replace (y for one, n for skip, ! for all at once)
+C-x C-;                         # Comment out current line
+M-;                             # Insert comment (at end) of line
+M-; (with selection)            # Comment out selected block
+C-q <tab>                       # Insert REAL tab character (in Text mode)
+M-w                             # Copy selection
+C-w                             # Cut selection
+C-y                             # Paste selection
+C-x TAB                         # Indent current line
+C-/                             # Undo
+C-g C-/                         # Redo (undo is implemented with a stack)
 
+# Display
 C-x C-c                         # Close Emacs
 C-x C-f                         # Open another file in a new buffer
 C-x C-b                         # Open list of open buffers (for switching)
@@ -84,18 +97,8 @@ C-x 3                           # Split into two windows (HORIZONTALLY)
 C-x o                           # Switch to other window
 C-x 0                           # Bring the screen back into one window
 C-x k                           # Kill current buffer
-C-x C-;                         # Comment out current line
-M-;                             # Insert comment (at end) of line
-M-; (with selection)            # Comment out selected block
-C-q <tab>                       # Insert REAL tab character (in Text mode)
-M-w                             # Copy selection
-C-w                             # Cut selection
-C-y                             # Paste selection
 C-g                             # Exit current command chain
 C-x x g                         # Revert all unsaved changes (read from previous file version)
-C-x TAB                         # Indent current line
-C-/                             # Undo
-C-g C-/                         # Redo (undo is implemented with a stack)
 
 # Flycheck
 C-c ! l                         # Open error list (M-x flycheck-list-errors)
