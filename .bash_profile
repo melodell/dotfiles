@@ -117,7 +117,7 @@ function set_git_context() {
   local BRANCH
   local GIT_BRANCH
   if BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
-      if [[ "$branch" == "HEAD" ]]; then
+      if [[ "$BRANCH" == "HEAD" ]]; then
           BRANCH="detached*"
       fi
       GIT_BRANCH="$BRANCH"
