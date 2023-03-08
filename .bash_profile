@@ -3,7 +3,7 @@
 # Melina O'Dell
 
 
-# Homebrew configuration for x86_64 and arm64
+# Homebrew configuration for x86_64 and arm64 MacOS
 if [ -e /opt/homebrew ]; then
   export HOMEBREW_PREFIX=/opt/homebrew
 elif [ -e /usr/local/Homebrew ]; then
@@ -46,6 +46,16 @@ alias gb='git branch'
 ### ssh
 # CAEN Linux
 alias caen='ssh melodell@login.engin.umich.edu'
+
+# CAEN-specific aliases
+if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
+    ## EECS484
+    # SQLPlus alias
+    alias sq='rlwrap sqlplus'
+    # Load modules
+    module load eecs484
+    module load mongodb
+fi
 
 ### Emacs
 function e { emacs "$@" & }
