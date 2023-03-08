@@ -26,8 +26,8 @@ NOTE: GUI applications (like Emacs and Docker) are installed with `brew install 
 
 Install.
 
-```
-./bin/brewinstall
+```console
+$ ./bin/brewinstall
 + brew install --cask emacs
 ...
 + cat .homebrew.txt | xargs brew install
