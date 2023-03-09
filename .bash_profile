@@ -24,10 +24,14 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 ### ALIASES ###
 ### ls
-# Use GNU ls (from coreutils)
-alias ls='gls --color=auto --human-readable'
-alias la='ls -a'
-alias ll='ls -l'
+LS=ls
+if which gls &> /dev/null; then
+  # Use GNU ls (coreutils) on MacOS
+  LS='gls --color=auto --human-readable'
+fi
+alias ls='${LS}'
+alias la='${LS} -a'
+alias ll='${LS} -l'
 
 ### grep (colors)
 alias grep='grep --color=auto'
