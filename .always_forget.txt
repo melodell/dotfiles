@@ -51,6 +51,9 @@ CMD + L				# Move cursor to URL bar
 CMD + Arrow			# Move back/forward through search history (back button)
 FN + Arrow			# Move between first and last search results in dropdown predictions
 
+# Rectangle (Window Display Utility)
+CTRL + OPTION + L/R             # Snap window to L/R side of desktop
+
 
 ########################################
 #
