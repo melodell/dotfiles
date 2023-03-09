@@ -149,7 +149,11 @@ function set_git_context() {
 
   # Concatenate
   local GIT_CONTEXT="${GIT_BRANCH}${GIT_DIRTY}"
-  GIT_PROMPT="(${GIT_CONTEXT}) "
+  if [[ "$GIT_CONTEXT" != "" ]]; then
+      GIT_PROMPT="(${GIT_CONTEXT}) "
+  else
+      GIT_PROMPT=""
+  fi
 }
 
 # Venv context
