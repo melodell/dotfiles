@@ -169,13 +169,13 @@ function set_prompt() {
     # Special colors for behind
     BEHIND=$(git status -sb 2> /dev/null | grep behind);
     if [[ "$BEHIND" != "" ]]; then
-        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtylw}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtylw}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
 
     # Special colors for dirty/clean
     elif [[ "$GIT_DIRTY" != "" ]]; then
-        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtred}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtred}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
     else
-        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtgrn}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W \$ \[${txtrst}\]'
+        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtgrn}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
     fi
     export PS1
 }
