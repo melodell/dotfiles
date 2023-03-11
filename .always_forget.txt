@@ -63,6 +63,11 @@ CTRL + OPTION + L/R             # Snap window to L/R side of desktop
 e <filename>                    # Open file in Emacs (aliased)
 e -nw <filename>                # Open Emacs in text-only (no window) mode
 
+emacs --batch -l ~/.emacs.d/init.el               # Process init file at the CLI
+emacs --batch -l ~/.emacs.d/init.el \
+  --funcall auto-package-update-now               # Update all packages
+emacs --batch --funcall byte-recompile-directory  # Recompile all .el files
+
 # Text editing and navigation
 C-n + C-p                       # Move between sequential lines
 C-f + C-b                       # Move between characters
