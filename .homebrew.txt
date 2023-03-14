@@ -64,6 +64,7 @@ unbound
 wget
 xorgproto
 xz
+yarn
 zstd
 docker
 emacs
