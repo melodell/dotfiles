@@ -244,8 +244,8 @@
 (add-to-list 'default-frame-alist '(height . 60))
 
 ;; macOS modifier keys
-;;(setq mac-command-modifier 'meta) ; Command == Meta
-;;(setq mac-option-modifier 'super) ; Option == Super
+(setq mac-command-modifier 'meta) ; Command == Meta
+(setq mac-option-modifier 'super) ; Option == Super
 
 ;; Disable backup files
 (setq make-backup-files nil)
