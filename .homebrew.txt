@@ -51,6 +51,7 @@ openldap
 openssl@1.1
 openssl@3
 p11-kit
+pcre
 pcre2
 perl
 pixman
@@ -59,6 +60,7 @@ python@3.11
 readline
 rtmpdump
 sqlite
+the_silver_searcher
 tree
 unbound
 wget
