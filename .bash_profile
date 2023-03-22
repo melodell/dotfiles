@@ -52,14 +52,21 @@ alias gb='git branch'
 # CAEN Linux
 alias caen='ssh melodell@login.engin.umich.edu'
 
-# CAEN-specific aliases
+# Sync dotfiles to CAEN
+function dotsync()
+{
+    rsync -rtv .bash_profile .bash_colors melodell@login.engin.umich.edu:
+    rsync -rtv .emacs.d/init.el melodell@login.engin.umich.edu:.emacs.d
+}
+
+# Caen-specific aliases
 if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
     ## EECS484
     # SQLPlus alias
     alias sq='rlwrap sqlplus'
     # Load modules
     module load eecs484
-    module load mongodb
+    module load mongodb    
 fi
 
 ### Emacs
@@ -77,10 +84,16 @@ alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
 ### Navigation
 
-### TEMP ###
+### Temp ###
 # W23 src directory shortcuts
 function cd484 { cd /Users/melinaodell/src/eecs484/; }
 function cd486 { cd /Users/melinaodell/src/eecs486/; }
+
+if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
+    function cd484 { cd /home/melodell/src/eecs484/; }
+    function cd486 { cd /home/melodell/src/eecs486/; }
+fi
+## End Temp ###
 
 # Shortcut to eecs485staff projects
 function cd485()
