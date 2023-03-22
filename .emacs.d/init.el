@@ -179,7 +179,7 @@
   :ensure t
   :defer t
   :init
-  (elpy-enable))
+  (advice-add 'python-mode :before 'elpy-enable))
 
 ;; C and C++ programming.  Build with C-c m.  Rebuild with C-c c.  Put
 ;; this in c-mode-base-map because c-mode-map, c++-mode-map, and so
