@@ -144,7 +144,9 @@ rm -r DIR                       # Delete directory
 mv FILE NEW_FILE                # Move/rename FILE
 cp FILE NEW_FILE                # Copy FILE to NEW_FILE (will overwrite)
 cp -r DIR NEW_DIR               # Copy directory DIR to NEW_DIR
-file FILE                       # Print type of FILE 
+file FILE                       # Print type of FILE
+diff FILE1 FILE2                # Find differences between FILE1 and FILE2
+diff FILE1 FILE2 | colordiff    # diff but colorful
 
 # Scripting
 chmod +x SCRIPT                 # Give SCRIPT executable permissions
