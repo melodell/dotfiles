@@ -74,6 +74,7 @@ C-f + C-b                       # Move between characters
 C-a + C-e                       # Move between front/back of lines
 M-{ / }                         # Move between paragraphs
 M-< / >                         # Move between top/bottom of entire page/text
+S-r                             # Move between top/middle/bottom of window
 M-g g                           # Jump to line by number
 C-d                             # Delete character to the right
 M-d                             # Delete word to the right
