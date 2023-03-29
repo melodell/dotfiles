@@ -112,6 +112,10 @@ C-x x g                         # Revert all unsaved changes (read from previous
 # Flycheck
 C-c ! l                         # Open error list (M-x flycheck-list-errors)
 
+# Tramp mode
+/sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
+                                # https://github.com/syl20bnr/spacemacs/issues/10918                             
+
 
 ########################################
 #
@@ -182,7 +186,7 @@ pkill <pattern>                 # Kill all (matching) running processes
 TODO
 
 # SSH
-ssh <uniqname>@login.engin.umich.edu                                     # SSH into CAEN Linux
+ssh melodell@login.engin.umich.edu                                       # SSH into CAEN Linux
 ssh -i <Path to Auth Key File> ubuntu@<Public DNS from Connect Page>     # SSH to AWS EC2 instance
 
 # Syncing files
