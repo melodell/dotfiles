@@ -174,6 +174,22 @@
   :defer 1  ; lazy loading
 )
 
+;; Remote file editing with TRAMP.  Configure TRAMP to use the same SSH
+;; multiplexing as in ~/.ssh/config.  By default, TRAMP ignores
+;; SSH config's multiplexing configuration, so configure the same settings here.
+;; https://www.emacswiki.org/emacs/TrampMode
+;; https://www.gnu.org/software/emacs/manual/html_node/tramp/Frequently-Asked-Questions.html
+(use-package tramp
+  :config
+  (setq tramp-default-method "ssh")
+  (setq tramp-default-user "melodell")
+  (setq tramp-ssh-controlmaster-options
+        (concat
+         "-o ControlPath=~/.ssh/master-%%r@%%h:%%p "
+         "-o ControlMaster=auto -o ControlPersist=yes"))
+  :defer 1  ; lazy loading
+)
+
 ;; Python
 (use-package elpy
   :ensure t
