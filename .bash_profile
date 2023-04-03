@@ -33,6 +33,7 @@ LSCOLORS=' --color=auto --human-readable'
 alias ls='${LS} ${LSCOLORS}'
 alias la='${LS} -a ${LSCOLORS}'
 alias ll='${LS} -l ${LSCOLORS}'
+alias sl=ls  # I will not be getting steam-locomotive'd
 
 ### grep (colors)
 alias grep='grep --color=auto'
