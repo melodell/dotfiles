@@ -154,7 +154,7 @@ function set_git_context() {
       GIT_BRANCH=""
   fi
 
-  # '*' for dirty
+  # '*' and red for dirty; yellow for behind; green for clean
   local GIT_DIRTY
   local COLOR=${txtgrn}
   local STATUS=$(git status -sb 2> /dev/null);
