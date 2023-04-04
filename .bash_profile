@@ -158,7 +158,7 @@ function set_git_context() {
   local GIT_DIRTY
   local COLOR=${txtgrn}
   local STATUS=$(git status -sb 2> /dev/null);
-  if [[ $(echo "$STATUS" | wc -l) != "1" ]]; then
+  if [[ $(echo "$STATUS" | wc -l | grep 1) == "" ]]; then
       GIT_DIRTY='*'
       COLOR=${txtred}
       if [[ $(echo "$STATUS" 2> /dev/null | grep behind) ]]; then
