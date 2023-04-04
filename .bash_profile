@@ -170,7 +170,7 @@ function set_git_context() {
 
   # Concatenate
   local GIT_CONTEXT="${GIT_BRANCH}${GIT_DIRTY}"
-  if [[ "$GIT_CONTEXT" != "" ]]; then      
+  if [[ "$GIT_CONTEXT" != "" ]]; then
       GIT_PROMPT="$COLOR(${GIT_CONTEXT}) "
   else
       GIT_PROMPT=""
