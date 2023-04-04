@@ -170,19 +170,7 @@ function set_git_context() {
 
   # Concatenate
   local GIT_CONTEXT="${GIT_BRANCH}${GIT_DIRTY}"
-  if [[ "$GIT_CONTEXT" != "" ]]; then
-
-      # Special colors for behind, dirty
-      # local COLOR
-      # local BEHIND=$(git status -sb 2> /dev/null | grep behind);
-      # if [[ "$BEHIND" != "" ]]; then
-      #     COLOR=${txtylw}
-      # elif [[ "$GIT_DIRTY" != "" ]]; then
-      #     COLOR=${txtred}
-      # else
-      #     COLOR=${txtgrn}
-      # fi
-      
+  if [[ "$GIT_CONTEXT" != "" ]]; then      
       GIT_PROMPT="$COLOR(${GIT_CONTEXT}) "
   else
       GIT_PROMPT=""
