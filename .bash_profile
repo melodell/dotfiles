@@ -184,7 +184,7 @@ function set_venv_context() {
     if $(test -z "$VIRTUAL_ENV"); then
         VENV_PROMPT=""
     else
-        VIRTUAL_ENV_BASE=$(basename "$VIRTUAL_ENV")
+        local VIRTUAL_ENV_BASE=$(basename "$VIRTUAL_ENV")
         VENV_PROMPT="${txtcyn}(${VIRTUAL_ENV_BASE}) "
     fi
 }
