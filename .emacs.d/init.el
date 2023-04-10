@@ -82,12 +82,6 @@
   :defer t
   )
 
-;; VS Code dark mode
-;; (use-package vscode-dark-plus-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'vscode-dark-plus t))
-
 ;; Spacemacs dark mode
 (use-package spacemacs-common
     :ensure spacemacs-theme
@@ -116,26 +110,31 @@
   :defer t
   )
 
-;; Color Identifiers
-(use-package color-identifiers-mode
-  :config
-  (setq color-identifiers:timer (run-with-idle-timer 2 t 'color-identifiers:refresh))
-  :ensure t
-  :defer t)
-(use-package rainbow-identifiers
-  :ensure t
-  :defer t)
-
 ;; Autocomplete for code
 ;; Company docs: https://company-mode.github.io/
 ;; Company TNG: https://github.com/company-mode/company-mode/issues/526
 (use-package company
   :config
   (company-tng-configure-default)       ; use default configuration
-  (global-company-mode)
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
   :ensure t
   :defer t                              ; lazy loading
   )
+
+;; Python backend for autocomplete
+;; https://github.com/syohex/emacs-company-jedi
+;; You may need to:
+;; $ pip install virtualenv
+;; Only works on Emacs 24.4 +
+(unless (version< emacs-version "24.4")
+(use-package company-jedi
+  :after company                        ; lazy loading
+  :init
+  (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+  :ensure t
+  )
+)
 
 ;; Intellisense syntax checking
 ;; http://www.flycheck.org/en/latest/
@@ -185,17 +184,19 @@
   (setq tramp-default-user "melodell")
   (setq tramp-ssh-controlmaster-options
         (concat
-         "-o ControlPath=~/.ssh/master-%%r@%%h:%%p "
-         "-o ControlMaster=auto -o ControlPersist=yes"))
+         "-o ControlMaster auto "
+         "-o ControlPath ~/.ssh/socket-%%C "
+         ))
+  (setq tramp-use-ssh-controlmaster-options nil)
   :defer 1  ; lazy loading
 )
 
 ;; Python
-(use-package elpy
-  :ensure t
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
+;; (use-package elpy
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (advice-add 'python-mode :before 'elpy-enable))
 
 ;; C and C++ programming.  Build with C-c m.  Rebuild with C-c c.  Put
 ;; this in c-mode-base-map because c-mode-map, c++-mode-map, and so
@@ -244,6 +245,12 @@
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
+
+;; Dockerfile syntax highlighting
+(use-package dockerfile-mode
+  :mode "Dockerfile\\'"
+  :ensure t
+)
 
 ;; Remove scrollbars, menu bars, and toolbars
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
