@@ -205,7 +205,12 @@
           (lambda () (define-key c-mode-base-map (kbd "C-c m") 'compile)))
 (add-hook 'c-initialization-hook
           (lambda () (define-key c-mode-base-map (kbd "C-c c") 'recompile)))
-(setq-default c-basic-offset tab-width) ; indentation
+
+;; Indentation
+(setq-default c-basic-offset 4
+                  tab-width 4
+                  indent-tabs-mode t)
+
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))  ; assume C++ for .h files
 
 ;; LLDB support
