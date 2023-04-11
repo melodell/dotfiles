@@ -9,16 +9,16 @@
 #
 
 # Text editing
-CMD + Delete			# Delete an entire line
-OPTION + Delete 		# Delete an entire word
+CMD + Delete					# Delete an entire line
+OPTION + Delete 				# Delete an entire word
 OPTION + L/R Arrow              # Move between entire words
 OPTION + U/D Arrow              # Move between paragraphs
 CMD + L/R Arrow                 # Move between front/back of lines
 CMD + U/D Arrow                 # Move between top/bottom of entire page/text
 CMD + OPTION + L/R Arrow        # Move between single characters
 FN + U/D Arrow                  # Move up/down one page
-CMD + Shift + Arrow		# Select ALL text L/R/U/D
-OPTION + Shift + Arrow		# Select text L/R in current word
+CMD + Shift + Arrow				# Select ALL text L/R/U/D
+OPTION + Shift + Arrow			# Select text L/R in current word
 
 # Unix
 CTRL + U                        # Delete entire line
@@ -27,29 +27,29 @@ CTRL + C                        # Cancel running program
 CTRL + D                        # End file/stream (EECS484: Exit SQL*Plus) 
 
 # MacOS
-CMD + N				# Open new window (for current application)
+CMD + N							# Open new window (for current application)
 CMD + W                         # Close current window
 CMD + Q                         # Quit application
-CMD + Tab			# Scroll through open applications
-CMD + Tab, Tab + OPTION		# Select and unminimize an open application
-CMD + M				# Minimize current application
-CTRL + Arrow			# Move L/R between desktop views
+CMD + Tab						# Scroll through open applications
+CMD + Tab, Tab + OPTION			# Select and unminimize an open application
+CMD + M							# Minimize current application
+CTRL + Arrow					# Move L/R between desktop views
 FN + F                          # Make current window fullscreen (creates new desktop)
 CMD + CTRL + Q                  # Lock screen
 CMD + SHIFT + 3                 # Take screenshot of entire screen
 CMD + SHIFT + 4                 # Take screenshot of selected portion
 
 # Browser
-CMD + T 			# New tab
-CMD + R				# Refresh tab
-CMD + Shift + R			# Hard Refresh tab
-CMD + OPTION + I		# Open Developer Tools
+CMD + T							# New tab
+CMD + R							# Refresh tab
+CMD + Shift + R					# Hard Refresh tab
+CMD + OPTION + I				# Open Developer Tools
 CMD + OPTION + U                # View Source (in new tab)
-CMD + OPTION + Arrow		# Move L/R between tabs in browser
-CMD + W				# Close current tab
-CMD + L				# Move cursor to URL bar
-CMD + Arrow			# Move back/forward through search history (back button)
-FN + Arrow			# Move between first and last search results in dropdown predictions
+CMD + OPTION + Arrow			# Move L/R between tabs in browser
+CMD + W							# Close current tab
+CMD + L							# Move cursor to URL bar
+CMD + Arrow						# Move back/forward through search history (back button)
+FN + Arrow						# Move between first and last search results in dropdown predictions
 
 # Rectangle (Window Display Utility)
 CTRL + OPTION + L/R             # Snap window to L/R side of desktop
@@ -75,6 +75,7 @@ C-a + C-e                       # Move between front/back of lines
 M-{ / }                         # Move between paragraphs
 M-< / >                         # Move between top/bottom of entire page/text
 S-r                             # Move between top/middle/bottom of window
+C-M-n							# Move to end of block (when cursor on {})
 M-g g                           # Jump to line by number
 C-d                             # Delete character to the right
 M-d                             # Delete word to the right
