@@ -60,8 +60,9 @@ CTRL + OPTION + L/R             # Snap window to L/R side of desktop
 # Emacs
 #
 
-e <filename>                    # Open file in Emacs (aliased)
-e -nw <filename>                # Open Emacs in text-only (no window) mode
+emacs <filename>                    # Open file in Emacs (aliased to e)
+emacs -nw <filename>                # Open Emacs in text-only (no window) mode
+emacs -Q  							# Open Emacs without loading resources
 
 emacs --batch -l ~/.emacs.d/init.el               # Process init file at the CLI
 emacs --batch -l ~/.emacs.d/init.el \
@@ -72,6 +73,8 @@ emacs --batch --funcall byte-recompile-directory  # Recompile all .el files
 C-n + C-p                       # Move between sequential lines
 C-f + C-b                       # Move between characters
 C-a + C-e                       # Move between front/back of lines
+M-f + M-b						# Move between words
+M-a + M-e						# Move between front/back of paragraphs
 M-{ / }                         # Move between paragraphs
 M-< / >                         # Move between top/bottom of entire page/text
 S-r                             # Move between top/middle/bottom of window
