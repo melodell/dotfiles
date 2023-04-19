@@ -16,7 +16,7 @@
 [pull]
 	rebase = false
 [core]
-	editor = emacs -nw
+	editor = emacs -Q -nw
 	excludesfile = /Users/melinaodell/.gitignore_global
 [gpg]
 	format = ssh
