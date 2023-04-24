@@ -87,13 +87,9 @@ alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
 ### Temp ###
 # W23 src directory shortcuts
-function cd484 { cd /Users/melinaodell/src/eecs484/; }
-function cd486 { cd /Users/melinaodell/src/eecs486/; }
+function cd484 { cd ${HOME}/src/eecs484/; }
+function cd486 { cd ${HOME}/src/eecs486/; }
 
-if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
-    function cd484 { cd /home/melodell/src/eecs484/; }
-    function cd486 { cd /home/melodell/src/eecs486/; }
-fi
 ## End Temp ###
 
 # Shortcut to eecs485staff projects
@@ -129,7 +125,7 @@ function cd485()
             PROJECT=''
             ;;
     esac
-    cd /Users/melinaodell/src/eecs485staff/$PROJECT
+    cd ${HOME}/src/eecs485staff/$PROJECT
 }
 
 
