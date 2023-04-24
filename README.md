@@ -22,7 +22,7 @@ brew list > .homebrew.txt
 ```
 
 NOTE: GUI applications (like Emacs and Docker) are installed with `brew install --cask`.
-`./bin/brewinstall` keeps a list of cask applications.
+`~/bin/brewinstall` keeps a list of cask applications.
 
 Install.
 

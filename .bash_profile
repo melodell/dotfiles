@@ -87,13 +87,9 @@ alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
 ### Temp ###
 # W23 src directory shortcuts
-function cd484 { cd /Users/melinaodell/src/eecs484/; }
-function cd486 { cd /Users/melinaodell/src/eecs486/; }
+function cd484 { cd ${HOME}/src/eecs484/; }
+function cd486 { cd ${HOME}/src/eecs486/; }
 
-if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
-    function cd484 { cd /home/melodell/src/eecs484/; }
-    function cd486 { cd /home/melodell/src/eecs486/; }
-fi
 ## End Temp ###
 
 # Shortcut to eecs485staff projects
@@ -129,7 +125,7 @@ function cd485()
             PROJECT=''
             ;;
     esac
-    cd /Users/melinaodell/src/eecs485staff/$PROJECT
+    cd ${HOME}/src/eecs485staff/$PROJECT
 }
 
 
@@ -137,6 +133,8 @@ function cd485()
 set -o emacs                              # Emacs CL mode
 export HISTCONTROL="ignoredups"           # Ignore dup cmds
 export BASH_SILENCE_DEPRECATION_WARNING=1 # Suppress default shell warning
+export SUDO_EDITOR="emacs -Q -nw"         # Editor used by sudoedit and sudo -e
+export GIT_EDITOR="emacs -Q -nw"          # Editor used by git commit
 
 # Git context
 # Based on https://github.com/awdeorio/dotfiles/blob/main/.bashrc
