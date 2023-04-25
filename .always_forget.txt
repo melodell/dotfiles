@@ -53,6 +53,7 @@ FN + Arrow						# Move between first and last search results in dropdown predict
 
 # Rectangle (Window Display Utility)
 CTRL + OPTION + L/R             # Snap window to L/R side of desktop
+CTRL + CMD + OPTION + L/R		# Move window to other display
 
 
 ########################################
@@ -116,6 +117,10 @@ C-x x g                         # Revert all unsaved changes (read from previous
 
 # Flycheck
 C-c ! l                         # Open error list (M-x flycheck-list-errors)
+
+# Python
+C-c >							# Indent selection by 4 spaces (1 tab)
+C-c <							# Un-indent selection by 4 spaces (1 tab)
 
 # Tramp mode
 /sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
