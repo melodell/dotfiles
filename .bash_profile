@@ -155,7 +155,7 @@ function set_git_context() {
   # '*' and red for dirty; yellow for behind; green for clean
   local GIT_DIRTY
   local COLOR=${txtgrn}
-  STATUS=$(git status -sb 2> /dev/null);
+  local STATUS=$(git status -sb 2> /dev/null);
   if [[ $(echo "$STATUS" | grep M) != "" ]]; then
       GIT_DIRTY='*'
       COLOR=${txtred}
