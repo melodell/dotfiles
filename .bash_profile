@@ -152,18 +152,24 @@ function set_git_context() {
       GIT_BRANCH=""
   fi
 
-  # '*' for dirty
-  local STATUS=$(git status --porcelain 2> /dev/null);
-  if [[ "$STATUS" != "" ]]; then
+  # '*' and red for dirty; yellow for behind; green for clean
+  local GIT_DIRTY
+  local COLOR=${txtgrn}
+  local STATUS=$(git status -sb 2> /dev/null);
+  if [[ $(echo "$STATUS" | grep M) != "" ]]; then
       GIT_DIRTY='*'
+      COLOR=${txtred}
   else
       GIT_DIRTY=''
+  fi
+  if [[ $(echo "$STATUS" 2> /dev/null | grep behind) != "" ]]; then
+	  COLOR=${txtylw}
   fi
 
   # Concatenate
   local GIT_CONTEXT="${GIT_BRANCH}${GIT_DIRTY}"
   if [[ "$GIT_CONTEXT" != "" ]]; then
-      GIT_PROMPT="(${GIT_CONTEXT}) "
+      GIT_PROMPT="$COLOR(${GIT_CONTEXT}) "
   else
       GIT_PROMPT=""
   fi
@@ -173,11 +179,11 @@ function set_git_context() {
 # Based on https://gist.github.com/insin/1425703/f22c4231a7b28b8f420d79158b5229e5ebd3fcd9
 function set_venv_context() {
     # Only display if venv is active
-    if test -z "$VIRTUAL_ENV" ; then
+    if $(test -z "$VIRTUAL_ENV"); then
         VENV_PROMPT=""
     else
-        VIRTUAL_ENV_BASE=`basename "$VIRTUAL_ENV"`
-        VENV_PROMPT="($VIRTUAL_ENV_BASE) "
+        local VIRTUAL_ENV_BASE=$(basename "$VIRTUAL_ENV")
+        VENV_PROMPT="${txtcyn}(${VIRTUAL_ENV_BASE}) "
     fi
 }
 
@@ -187,17 +193,7 @@ function set_prompt() {
     set_git_context
     set_venv_context
 
-    # Special colors for behind
-    BEHIND=$(git status -sb 2> /dev/null | grep behind);
-    if [[ "$BEHIND" != "" ]]; then
-        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtylw}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
-
-    # Special colors for dirty/clean
-    elif [[ "$GIT_DIRTY" != "" ]]; then
-        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtred}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
-    else
-        PS1='\[${txtcyn}\]$VENV_PROMPT\[${txtgrn}\]$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
-    fi
+    PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
     export PS1
 }
 
