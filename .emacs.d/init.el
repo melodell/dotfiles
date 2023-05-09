@@ -72,12 +72,11 @@
 (eval-when-compile
   (require 'use-package))
 
-;; More intuitive undo/redo.  M-_ undo, C-M-_ redo
+;; More intuitive undo/redo.  C-_ undo, C-M-_ redo
 ;; https://www.emacswiki.org/emacs/UndoTree
 (use-package undo-tree
   :config
   (global-undo-tree-mode)
-  (global-set-key "\C-\M-_" 'redo)
   :ensure t
   :defer t
   )
