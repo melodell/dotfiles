@@ -251,6 +251,15 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
 
+;; Preview Markdown
+;; $ pip install grip
+;; M-x grip-mode
+;; C-c C-c g to start/kill preview
+(use-package grip-mode
+  :ensure t
+  :bind (:map markdown-mode-command-map
+			  ("g" . grip-mode)))
+
 ;; Dockerfile syntax highlighting
 (use-package dockerfile-mode
   :mode "Dockerfile\\'"
