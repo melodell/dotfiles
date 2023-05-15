@@ -104,7 +104,7 @@
 ;; Company TNG: https://github.com/company-mode/company-mode/issues/526
 (use-package company
   :config
-  (company-tng-configure-default)       ; use default configuration
+  (company-tng-mode)       ; use default configuration
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :ensure t
