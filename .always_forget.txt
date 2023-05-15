@@ -102,6 +102,8 @@ C-x TAB                         # Indent current line
 C-/                             # Undo
 C-g C-/                         # Redo (undo is implemented with a stack)
 
+M-x delete-trailing-whitespace	# Remove all trailing whitespace from buffer
+
 # Display
 C-x C-c                         # Close Emacs
 C-x C-f                         # Open another file in a new buffer
