@@ -83,9 +83,9 @@
 
 ;; Spacemacs dark mode
 (use-package spacemacs-common
-    :ensure spacemacs-theme
-    :config (load-theme 'spacemacs-dark t)
-    )
+  :ensure spacemacs-theme
+  :config (load-theme 'spacemacs-dark t)
+  )
 
 ;; Intellisense syntax checking
 ;; http://www.flycheck.org/en/latest/
