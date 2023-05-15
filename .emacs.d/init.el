@@ -17,6 +17,7 @@
 
 ;; Modified keyboard shortcuts
 (global-set-key "\C-x\C-b" 'electric-buffer-list)  ; easier buffer switching
+(global-set-key "\M-o" 'other-window)
 
 ;; Don't show a startup message
 (setq inhibit-startup-message t)
