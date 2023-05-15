@@ -193,7 +193,15 @@ function set_prompt() {
     set_git_context
     set_venv_context
 
-    PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
+	# If terminal supports colors
+	case "$TERM" in
+		xterm*|rxvt*|Eterm*|eterm*|screen*)
+			PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
+			;;
+		*)
+			PS1="$ "
+			;;
+	esac
     export PS1
 }
 
