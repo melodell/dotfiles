@@ -87,16 +87,6 @@
     :config (load-theme 'spacemacs-dark t)
     )
 
-;; Disable mouse
-;; https://github.com/purcell/disable-mouse
-;; Warning: Also disables scrolling
-;;
-;; (use-package disable-mouse
-;;   :config
-;;   (global-disable-mouse-mode)
-;;   :ensure t
-;;   )
-
 ;; Intellisense syntax checking
 ;; http://www.flycheck.org/en/latest/
 (use-package flycheck
