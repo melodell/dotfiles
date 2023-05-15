@@ -115,8 +115,16 @@ C-x k                           # Kill current buffer
 C-g                             # Exit current command chain
 C-x x g                         # Revert all unsaved changes (read from previous file version)
 
+# Values
+C-h m							# Show active modes
+C-h v							# Show value of variable
+
 # Flycheck
 C-c ! l                         # Open error list (M-x flycheck-list-errors)
+
+# Flyspell
+M-x ispell						# Interactively correct misspelled words
+M-x ispell-word					# Interactively correct word at point
 
 # Python
 C-c >							# Indent selection by 4 spaces (1 tab)
