@@ -247,13 +247,17 @@
 (use-package grip-mode
   :ensure t
   :bind (:map markdown-mode-command-map
-			  ("g" . grip-mode)))
+			  ("g" . grip-mode))
+  )
 
 ;; Dockerfile syntax highlighting
 (use-package dockerfile-mode
   :mode "Dockerfile\\'"
   :ensure t
-)
+  )
+
+;; Always check spelling in text mode
+(add-hook 'text-mode-hook (lambda () (flyspell-mode 1)))
 
 ;; Remove scrollbars, menu bars, and toolbars
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
