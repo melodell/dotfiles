@@ -72,6 +72,15 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Automatically update packages installed by use-package periodically
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-prompt-before-update t)
+  (setq auto-package-update-delete-old-versions t)
+  :ensure t
+  :defer t
+  )
+
 ;; More intuitive undo/redo.  C-_ undo, C-M-_ redo
 ;; https://www.emacswiki.org/emacs/UndoTree
 (use-package undo-tree
