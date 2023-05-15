@@ -1,5 +1,6 @@
 aom
 asciiquarium
+aspell
 berkeley-db
 brotli
 c-ares
