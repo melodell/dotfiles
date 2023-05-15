@@ -1,10 +1,12 @@
 ;;; init.el
 ;;;
+;;; Commentary:
 ;;; Built on beginner init.el from the Emacs tutorial
 ;;; https://eecs280staff.github.io/tutorials/setup_emacs.html#configure
 ;;;
 ;;; Melina O'Dell <melodell@umich.edu>
 
+;;; Code:
 
 ;; Relocate automatically modified files.  These are lines added to
 ;; the file when you use the customise system. They're generated when
