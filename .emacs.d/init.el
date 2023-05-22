@@ -48,6 +48,27 @@
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 
+;; Remove scrollbars, menu bars, and toolbars
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; Dialog settings.  No more typing the whole yes or no. Just y or n
+;; will do. Disable GUI dialogs and use emacs text interface.
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
+
+;; Default window size
+(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 60))
+
+;; macOS modifier keys
+(setq mac-command-modifier 'meta) ; Command == Meta
+(setq mac-option-modifier 'super) ; Option == Super
+
+;; Disable backup files
+(setq make-backup-files nil)
+
 ;; Package Management.  Configure the built-in emacs package manager to use
 ;; several publicly available repositories.
 (require 'package)
@@ -273,23 +294,15 @@
 ;; Always check spelling in text mode
 (add-hook 'text-mode-hook (lambda () (flyspell-mode 1)))
 
-;; Remove scrollbars, menu bars, and toolbars
-(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;; Org Mode
+(use-package org
+  :config
+  (define-key global-map "\C-cl" 'org-store-link)
+  (define-key global-map "\C-ca" 'org-agenda)
+  (setq org-log-done 't)
 
-;; Dialog settings.  No more typing the whole yes or no. Just y or n
-;; will do. Disable GUI dialogs and use emacs text interface.
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq use-dialog-box nil)
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "|" "DONE(d)")))
 
-;; Default window size
-(add-to-list 'default-frame-alist '(width . 120))
-(add-to-list 'default-frame-alist '(height . 60))
-
-;; macOS modifier keys
-(setq mac-command-modifier 'meta) ; Command == Meta
-(setq mac-option-modifier 'super) ; Option == Super
-
-;; Disable backup files
-(setq make-backup-files nil)
+  (setq org-agenda-files (list "~/org"))
+  )
