@@ -250,7 +250,9 @@
 (use-package markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "multimarkdown")
+  (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1)))  ;; Always check spelling
+  )
 
 ;; Preview Markdown
 ;; $ pip install grip
