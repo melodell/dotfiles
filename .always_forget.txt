@@ -77,7 +77,8 @@ C-a + C-e                       # Move between front/back of lines
 M-f + M-b						# Move between words
 M-a + M-e						# Move between front/back of paragraphs
 M-{ / }                         # Move between paragraphs
-M-< / >                         # Move between top/bottom of entire page/text
+M-v / C-v                       # Move between up/down full page views
+M-< / >                         # Move between top/bottom of entire buffer
 S-r                             # Move between top/middle/bottom of window
 C-M-n							# Move to end of block (when cursor on {})
 M-g g                           # Jump to line by number
