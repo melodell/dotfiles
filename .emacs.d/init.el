@@ -115,9 +115,9 @@
   )
 
 ;; Spacemacs dark mode
-(use-package spacemacs-common
-  :ensure spacemacs-theme
-  :config (load-theme 'spacemacs-dark t)
+(use-package spacemacs-theme
+  :defer t
+  :init (load-theme 'spacemacs-dark t)
   )
 
 ;; Intellisense syntax checking
