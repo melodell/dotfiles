@@ -19,7 +19,8 @@
 
 ;; Modified keyboard shortcuts
 (global-set-key "\C-x\C-b" 'electric-buffer-list)  ; easier buffer switching
-(global-set-key "\M-o" 'other-window)
+(global-set-key "\M-o" 'other-window)  ; easier window switching
+(global-set-key "\C-x\." 'xref-find-definitions-other-window)  ; find definition and open in new window
 
 ;; Don't show a startup message
 (setq inhibit-startup-message t)
@@ -69,6 +70,12 @@
 ;; Disable backup files
 (setq make-backup-files nil)
 
+;; Delete trailing whitespace on save
+(defun remove-trailing-whitespace ()
+  (when (derived-mode-p 'prog-mode)
+    (delete-trailing-whitespace)))
+(add-hook 'before-save-hook 'remove-trailing-whitespace)
+
 ;; Package Management.  Configure the built-in emacs package manager to use
 ;; several publicly available repositories.
 (require 'package)
@@ -90,7 +97,7 @@
 ;;   :ensure t       ; automatically install foo-mode if not present
 ;;   :defer t        ; defer loading for performance (usually the default)
 ;; )
-(unless (package-installed-p 'use-package)
+(when (not (package-installed-p 'use-package))
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
@@ -119,18 +126,6 @@
   :ensure t
   :defer t
   :init (load-theme 'spacemacs-dark t)
-  )
-
-;; Intellisense syntax checking
-;; http://www.flycheck.org/en/latest/
-(use-package flycheck
-  :config
-  ;; enable in all modes
-  (global-flycheck-mode)
-  ;; C++11
-  (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
-  :ensure t
-  :defer t
   )
 
 ;; Autocomplete for code
@@ -173,8 +168,9 @@
                 (append flycheck-disabled-checkers
                         '(javascript-jshint)))
 
-  ;; use eslint with web-mode for jsx files
+  ;; use eslint with web-mode for jsx files and typescript-mode for tsx files
   (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
 
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
@@ -194,7 +190,16 @@
 
   :ensure t
   :defer 1  ; lazy loading
-)
+  )
+
+;; Always display flycheck error list (C-c ! l) at bottom of frame, taking up 1/4 of the height
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Flycheck errors*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . 0.25)))
 
 ;; Remote file editing with TRAMP.  Configure TRAMP to use the same SSH
 ;; multiplexing as in ~/.ssh/config.  By default, TRAMP ignores
@@ -292,11 +297,74 @@
   :ensure t
   )
 
-;; Always check spelling in text mode
-(add-hook 'text-mode-hook (lambda () (flyspell-mode 1)))
+;; Always wrap text and check spelling in text mode
+(add-hook 'text-mode-hook 'visual-line-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
+
+;; ediff
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; Projectile for project navigation
+;; https://github.com/bbatsov/projectile
+(use-package projectile
+  :ensure t
+  :defer t
+  :init
+  (projectile-mode +1)
+
+  :config
+  ;; Cache projects for quicker repeated searches
+  (setq projectile-enable-caching t)
+
+  ;; Use helm-projectile for completion (See helm-projectile below)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+
+  ;; s-p to use projectile search
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+			  ))
+
+;; Integrate Projectile with Helm for improved navigation
+;; https://github.com/bbatsov/helm-projectile
+;; https://tuhdo.github.io/helm-projectile.html
+(use-package helm-projectile
+  :ensure t
+  :defer t
+  )
+
+;; Use ag for finding references. It's faster than the built-in xref-find-references.
+;; https://agel.readthedocs.io/en/latest/configuration.html
+(use-package ag
+  :ensure t
+  :defer t
+  :config
+  (setq ag-highlight-search t)
+  (setq ag-reuse-buffers 't)
+  :init
+  (add-hook 'ag-mode-hook (lambda() (next-error-follow-minor-mode 1)))  ; Always enable following search results
+  )
+(define-key global-map [remap xref-find-references] 'ag-project)  ; Remap M-? to use ag
+;; Always display ag search results at bottom of frame, taking up 1/4 of the height
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*ag search*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . 0.25)))
+
+;; Neotree for viewing project structure
+(use-package neotree
+  :ensure t
+  :config
+  (setq neo-smart-open t)        ;; Jump to current file in tree view
+  :bind ("M-n" . neotree-show))  ;; M-n toggle file tree view, q to close
 
 ;; Org Mode
 (use-package org
+  :ensure t
   :config
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
@@ -304,6 +372,6 @@
 
   (setq org-todo-keywords
         '((sequence "TODO(t)" "|" "DONE(d)")))
-
   (setq org-agenda-files (list "~/org"))
+  (setq org-adapt-indentation t)  ;; Indent content with <TAB>
   )
