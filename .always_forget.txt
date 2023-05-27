@@ -218,9 +218,9 @@ tar -cvzf <tarball>     # Compress listed files into <tarball>.tar.gz (verbose)
 zip -r <filename>.zip <directory>       # Zip directory
 
 # grep
-grep <something> <filename> # Find matches with <something> in <filename>
-grep -i ...         # Case-insensitive search
-grep -A <num> ...               # Find matches and display <num> trailing lines
+grep <something> <filename>             # Find matches with <something> in <filename>
+grep -i ...                             # Case-insensitive search
+grep -A <num> ...                       # Find matches and display <num> trailing lines
 
 # Python
 which python                            # Print active Python interpreter location
