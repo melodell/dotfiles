@@ -168,9 +168,8 @@
                 (append flycheck-disabled-checkers
                         '(javascript-jshint)))
 
-  ;; use eslint with web-mode for jsx files and typescript-mode for tsx files
+  ;; use eslint with web-mode (for jsx and tsx files)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
 
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
@@ -251,6 +250,7 @@
 
 ;; Web Development
 (use-package web-mode
+  :ensure t
   :mode "\\.jsx?\\'"
   :mode "\\.html?\\'"
   :mode "\\.phtml\\'"
@@ -260,6 +260,8 @@
   :mode "\\.erb\\'"
   :mode "\\.mustache\\'"
   :mode "\\.djhtml\\'"
+  :mode "\\.tsx?\\'"
+  :mode "\\.ts?\\'"
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -270,7 +272,63 @@
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
+
+  ;; Use TIDE for TSX files
+  ;; Use Prettier for JSX and TSX files
+  (add-hook 'web-mode-hook (lambda ()
+							 (when (string-equal "tsx" (file-name-extension buffer-file-name))
+							   (add-node-modules-path)
+							   (tide-setup)
+							   (tide-hl-identifier-mode)
+							   (prettier-js-mode)
+							   )
+							 (when (string-equal "jsx" (file-name-extension buffer-file-name))
+							   (add-node-modules-path)
+							   (prettier-js-mode)
+							   )
+							 ))
+  )
+
+;; Add node_modules to PATH
+;; https://github.com/codesuki/add-node-modules-path
+(use-package add-node-modules-path
   :ensure t
+  :defer t
+  )
+
+;; Prettier autoformatting for JS/TS
+;; May require global install
+;; $ npm install -g prettier
+(use-package prettier-js
+  :ensure t
+  :defer t
+  )
+
+;; TIDE for TypeScript autocomplete/backend
+;; https://github.com/ananthakumaran/tide
+(use-package tide
+  :ensure t
+  :config
+  (flycheck-add-next-checker 'typescript-tide 'javascript-eslint)  ; Use eslint
+  (setq tide-sync-request-timeout 10)  ; Increase request timeout from default 2
+  )
+
+;; Build AST with tree-sitter
+;; https://emacs-tree-sitter.github.io/
+;; Emacs < 29
+(use-package tree-sitter
+  :ensure t
+  :config
+  ;; Enable for all (supported) modes
+  (global-tree-sitter-mode)
+  )
+
+;; Language bundle for tree-sitter (required)
+;; https://github.com/emacs-tree-sitter/tree-sitter-langs
+(use-package tree-sitter-langs
+  :ensure t
+  :defer t
+  :after tree-sitter
   )
 
 ;; Markdown
@@ -335,6 +393,7 @@
   )
 
 ;; Use ag for finding references. It's faster than the built-in xref-find-references.
+;; Pitfall: Does straight-up string comparision, ignoring actual usages
 ;; https://agel.readthedocs.io/en/latest/configuration.html
 (use-package ag
   :ensure t
@@ -345,10 +404,19 @@
   :init
   (add-hook 'ag-mode-hook (lambda() (next-error-follow-minor-mode 1)))  ; Always enable following search results
   )
-(define-key global-map [remap xref-find-references] 'ag-project)  ; Remap M-? to use ag
+;; (define-key global-map [remap xref-find-references] 'ag-project)  ; Remap M-? to use ag
 ;; Always display ag search results at bottom of frame, taking up 1/4 of the height
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*ag search*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . 0.25)))
+
+;; Always display xref search results at bottom of frame, taking up 1/4 of the height
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*xref*" eos)
               (display-buffer-reuse-window
                display-buffer-in-side-window)
               (side            . bottom)
