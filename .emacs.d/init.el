@@ -79,7 +79,6 @@
 ;; Package Management.  Configure the built-in emacs package manager to use
 ;; several publicly available repositories.
 (require 'package)
-(setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
