@@ -63,7 +63,7 @@ CTRL + CMD + OPTION + L/R		# Move window to other display
 
 emacs <filename>                    # Open file in Emacs (aliased to e)
 emacs -nw <filename>                # Open Emacs in text-only (no window) mode
-emacs -Q  							# Open Emacs without loading resources
+emacs -Q  							# Open Emacs without loading resources (FAST)
 
 emacs --batch -l ~/.emacs.d/init.el               # Process init file at the CLI
 emacs --batch -l ~/.emacs.d/init.el \
@@ -102,6 +102,7 @@ C-y                             # Paste selection
 C-x TAB                         # Indent current line
 C-/                             # Undo
 C-g C-/                         # Redo (undo is implemented with a stack)
+C-u NUM CHAR 					# Insert NUM CHARs at point
 
 M-x delete-trailing-whitespace	# Remove all trailing whitespace from buffer
 
@@ -122,6 +123,20 @@ C-x x g                         # Revert all unsaved changes (read from previous
 C-h m							# Show active modes
 C-h v							# Show value of variable
 
+# xref
+M-.								# Find definition of identifier
+M-,								# Go back to identifier
+C-x .							# Find definition + open in new window
+C-x 5 . 						# Find definition + open in new frame
+M-?	  							# Find all references for identifier
+
+### Projectile/Helm
+s-p f							# Find file in project
+s-p d							# Find dir in project
+s-p s g							# Grep for text match (M-x ag-project is better)
+s-p ? 							# Find references
+s-p h							# helm-projectile to find files OR buffers
+
 # Flycheck
 C-c ! l                         # Open error list (M-x flycheck-list-errors)
 
@@ -135,7 +150,23 @@ C-c <							# Un-indent selection by 4 spaces (1 tab)
 
 # Tramp mode
 /sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
-                                # https://github.com/syl20bnr/spacemacs/issues/10918                             
+                                # https://github.com/syl20bnr/spacemacs/issues/10918
+
+### Neotree
+n/p								# Next/prev line
+SPC								# Open file or unfold directory
+U								# Go up a directory
+A								# Minimize NeoTree window
+H								# Toggle hidden files
+C-c C-n							# Create file
+C-c C-d				  			# Delete file
+C-c C-r				  			# Rename file
+C-c C-p				  			# Copy file
+
+# Org mode
+## TODO items
+C-c C-t							# Change TODO/DONE state
+C-c C-x C-a         			# Archive task to .org_archive
 
 
 ########################################
