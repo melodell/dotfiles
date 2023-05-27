@@ -48,6 +48,7 @@ alias gd='git diff'
 alias gr='git rebase'
 alias gf='git fetch -p'
 alias gb='git branch'
+alias gco='git checkout'
 
 ### ssh
 # CAEN Linux
@@ -67,7 +68,7 @@ if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
     alias sq='rlwrap sqlplus'
     # Load modules
     module load eecs484
-    module load mongodb    
+    module load mongodb
 fi
 
 ### Emacs
