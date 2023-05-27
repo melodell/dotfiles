@@ -9,16 +9,16 @@
 #
 
 # Text editing
-CMD + Delete					# Delete an entire line
-OPTION + Delete 				# Delete an entire word
+CMD + Delete                    # Delete an entire line
+OPTION + Delete                 # Delete an entire word
 OPTION + L/R Arrow              # Move between entire words
 OPTION + U/D Arrow              # Move between paragraphs
 CMD + L/R Arrow                 # Move between front/back of lines
 CMD + U/D Arrow                 # Move between top/bottom of entire page/text
 CMD + OPTION + L/R Arrow        # Move between single characters
 FN + U/D Arrow                  # Move up/down one page
-CMD + Shift + Arrow				# Select ALL text L/R/U/D
-OPTION + Shift + Arrow			# Select text L/R in current word
+CMD + Shift + Arrow             # Select ALL text L/R/U/D
+OPTION + Shift + Arrow          # Select text L/R in current word
 
 # Unix
 CTRL + U                        # Delete entire line
@@ -27,33 +27,33 @@ CTRL + C                        # Cancel running program
 CTRL + D                        # End file/stream (EECS484: Exit SQL*Plus) 
 
 # MacOS
-CMD + N							# Open new window (for current application)
+CMD + N                         # Open new window (for current application)
 CMD + W                         # Close current window
 CMD + Q                         # Quit application
-CMD + Tab						# Scroll through open applications
-CMD + Tab, Tab + OPTION			# Select and unminimize an open application
-CMD + M							# Minimize current application
-CTRL + Arrow					# Move L/R between desktop views
+CMD + Tab                       # Scroll through open applications
+CMD + Tab, Tab + OPTION         # Select and unminimize an open application
+CMD + M                         # Minimize current application
+CTRL + Arrow                    # Move L/R between desktop views
 FN + F                          # Make current window fullscreen (creates new desktop)
 CMD + CTRL + Q                  # Lock screen
 CMD + SHIFT + 3                 # Take screenshot of entire screen
 CMD + SHIFT + 4                 # Take screenshot of selected portion
 
 # Browser
-CMD + T							# New tab
-CMD + R							# Refresh tab
-CMD + Shift + R					# Hard Refresh tab
-CMD + OPTION + I				# Open Developer Tools
+CMD + T                         # New tab
+CMD + R                         # Refresh tab
+CMD + Shift + R                 # Hard Refresh tab
+CMD + OPTION + I                # Open Developer Tools
 CMD + OPTION + U                # View Source (in new tab)
-CMD + OPTION + Arrow			# Move L/R between tabs in browser
-CMD + W							# Close current tab
-CMD + L							# Move cursor to URL bar
-CMD + Arrow						# Move back/forward through search history (back button)
-FN + Arrow						# Move between first and last search results in dropdown predictions
+CMD + OPTION + Arrow            # Move L/R between tabs in browser
+CMD + W                         # Close current tab
+CMD + L                         # Move cursor to URL bar
+CMD + Arrow                     # Move back/forward through search history (back button)
+FN + Arrow                      # Move between first and last search results in dropdown predictions
 
 # Rectangle (Window Display Utility)
 CTRL + OPTION + L/R             # Snap window to L/R side of desktop
-CTRL + CMD + OPTION + L/R		# Move window to other display
+CTRL + CMD + OPTION + L/R       # Move window to other display
 
 
 ########################################
@@ -63,7 +63,7 @@ CTRL + CMD + OPTION + L/R		# Move window to other display
 
 emacs <filename>                    # Open file in Emacs (aliased to e)
 emacs -nw <filename>                # Open Emacs in text-only (no window) mode
-emacs -Q  							# Open Emacs without loading resources (FAST)
+emacs -Q                            # Open Emacs without loading resources (FAST)
 
 emacs --batch -l ~/.emacs.d/init.el               # Process init file at the CLI
 emacs --batch -l ~/.emacs.d/init.el \
@@ -74,13 +74,13 @@ emacs --batch --funcall byte-recompile-directory  # Recompile all .el files
 C-n + C-p                       # Move between sequential lines
 C-f + C-b                       # Move between characters
 C-a + C-e                       # Move between front/back of lines
-M-f + M-b						# Move between words
-M-a + M-e						# Move between front/back of paragraphs
+M-f + M-b                       # Move between words
+M-a + M-e                       # Move between front/back of paragraphs
 M-{ / }                         # Move between paragraphs
 M-v / C-v                       # Move between up/down full page views
 M-< / >                         # Move between top/bottom of entire buffer
 S-r                             # Move between top/middle/bottom of window
-C-M-n							# Move to end of block (when cursor on {})
+C-M-n                           # Move to end of block (when cursor on {})
 M-g g                           # Jump to line by number
 C-d                             # Delete character to the right
 M-d                             # Delete word to the right
@@ -102,9 +102,9 @@ C-y                             # Paste selection
 C-x TAB                         # Indent current line
 C-/                             # Undo
 C-g C-/                         # Redo (undo is implemented with a stack)
-C-u NUM CHAR 					# Insert NUM CHARs at point
+C-u NUM CHAR                    # Insert NUM CHARs at point
 
-M-x delete-trailing-whitespace	# Remove all trailing whitespace from buffer
+M-x delete-trailing-whitespace  # Remove all trailing whitespace from buffer
 
 # Display
 C-x C-c                         # Close Emacs
@@ -120,53 +120,53 @@ C-g                             # Exit current command chain
 C-x x g                         # Revert all unsaved changes (read from previous file version)
 
 # Values
-C-h m							# Show active modes
-C-h v							# Show value of variable
+C-h m                           # Show active modes
+C-h v                           # Show value of variable
 
 # xref
-M-.								# Find definition of identifier
-M-,								# Go back to identifier
-C-x .							# Find definition + open in new window
-C-x 5 . 						# Find definition + open in new frame
-M-?	  							# Find all references for identifier
+M-.                             # Find definition of identifier
+M-,                             # Go back to identifier
+C-x .                           # Find definition + open in new window
+C-x 5 .                         # Find definition + open in new frame
+M-?                             # Find all references for identifier
 
 ### Projectile/Helm
-s-p f							# Find file in project
-s-p d							# Find dir in project
-s-p s g							# Grep for text match (M-x ag-project is better)
-s-p ? 							# Find references
-s-p h							# helm-projectile to find files OR buffers
+s-p f                           # Find file in project
+s-p d                           # Find dir in project
+s-p s g                         # Grep for text match (M-x ag-project is better)
+s-p ?                           # Find references
+s-p h                           # helm-projectile to find files OR buffers
 
 # Flycheck
 C-c ! l                         # Open error list (M-x flycheck-list-errors)
 
 # Flyspell
-M-x ispell						# Interactively correct misspelled words
-M-x ispell-word					# Interactively correct word at point
+M-x ispell                      # Interactively correct misspelled words
+M-x ispell-word                 # Interactively correct word at point
 
 # Python
-C-c >							# Indent selection by 4 spaces (1 tab)
-C-c <							# Un-indent selection by 4 spaces (1 tab)
+C-c >                           # Indent selection by 4 spaces (1 tab)
+C-c <                           # Un-indent selection by 4 spaces (1 tab)
 
 # Tramp mode
 /sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
                                 # https://github.com/syl20bnr/spacemacs/issues/10918
 
 ### Neotree
-n/p								# Next/prev line
-SPC								# Open file or unfold directory
-U								# Go up a directory
-A								# Minimize NeoTree window
-H								# Toggle hidden files
-C-c C-n							# Create file
-C-c C-d				  			# Delete file
-C-c C-r				  			# Rename file
-C-c C-p				  			# Copy file
+n/p                             # Next/prev line
+SPC                             # Open file or unfold directory
+U                               # Go up a directory
+A                               # Minimize NeoTree window
+H                               # Toggle hidden files
+C-c C-n                         # Create file
+C-c C-d                         # Delete file
+C-c C-r                         # Rename file
+C-c C-p                         # Copy file
 
 # Org mode
 ## TODO items
-C-c C-t							# Change TODO/DONE state
-C-c C-x C-a         			# Archive task to .org_archive
+C-c C-t                         # Change TODO/DONE state
+C-c C-x C-a                     # Archive task to .org_archive
 
 
 ########################################
@@ -209,15 +209,15 @@ diff FILE1 FILE2 | colordiff    # diff but colorful
 chmod +x SCRIPT                 # Give SCRIPT executable permissions
  
 # Tar
-tar -xvzf <tarball>		# Extract files from <tarball>.tar.gz (verbose) (aliased to tarx)
-tar -cvzf <tarball>		# Compress listed files into <tarball>.tar.gz (verbose)
+tar -xvzf <tarball>     # Extract files from <tarball>.tar.gz (verbose) (aliased to tarx)
+tar -cvzf <tarball>     # Compress listed files into <tarball>.tar.gz (verbose)
 
 # Zip
 zip -r <filename>.zip <directory>       # Zip directory
 
 # grep
-grep <something> <filename>	# Find matches with <something> in <filename>
-grep -i ...			# Case-insensitive search
+grep <something> <filename> # Find matches with <something> in <filename>
+grep -i ...         # Case-insensitive search
 grep -A <num> ...               # Find matches and display <num> trailing lines
 
 # Python
