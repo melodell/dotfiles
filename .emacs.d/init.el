@@ -275,18 +275,19 @@
 
   ;; Use TIDE for TSX files
   ;; Use Prettier for JSX and TSX files
-  (add-hook 'web-mode-hook (lambda ()
-							 (when (string-equal "tsx" (file-name-extension buffer-file-name))
-							   (add-node-modules-path)
-							   (tide-setup)
-							   (tide-hl-identifier-mode)
-							   (prettier-js-mode)
-							   )
-							 (when (string-equal "jsx" (file-name-extension buffer-file-name))
-							   (add-node-modules-path)
-							   (prettier-js-mode)
-							   )
-							 ))
+  (defun setup-tide-prettier ()
+	(when (string-equal "tsx" (file-name-extension buffer-file-name))
+	  (add-node-modules-path)
+	  (tide-setup)
+	  (tide-hl-identifier-mode)
+	  (prettier-js-mode)
+	  )
+	(when (string-equal "jsx" (file-name-extension buffer-file-name))
+	  (add-node-modules-path)
+	  (prettier-js-mode)
+	  )
+	)
+  (add-hook 'web-mode-hook 'setup-tide-prettier)
   )
 
 ;; Add node_modules to PATH
