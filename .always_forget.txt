@@ -103,6 +103,7 @@ C-x TAB                         # Indent current line
 C-/                             # Undo
 C-g C-/                         # Redo (undo is implemented with a stack)
 C-u NUM CHAR                    # Insert NUM CHARs at point
+C-x h                           # Select all text
 
 M-x delete-trailing-whitespace  # Remove all trailing whitespace from buffer
 M-x untabify                    # Replace all spaces with tabs (select content first)

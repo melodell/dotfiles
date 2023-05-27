@@ -47,7 +47,7 @@
 
 ;; Tab settings: 2 spaces.  See also: language-specific customizations below.
 (setq-default indent-tabs-mode nil)
-(setq tab-width 2)
+(setq-default tab-width 2)
 
 ;; Remove scrollbars, menu bars, and toolbars
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
