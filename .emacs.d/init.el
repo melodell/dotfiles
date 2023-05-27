@@ -233,10 +233,8 @@
 (add-hook 'c-initialization-hook
           (lambda () (define-key c-mode-base-map (kbd "C-c c") 'recompile)))
 
-;; Indentation
-(setq-default c-basic-offset 4
-                  tab-width 4
-                  indent-tabs-mode t)
+;; C++ Indentation
+(setq-default c-basic-offset tab-width)
 
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))  ; assume C++ for .h files
 
