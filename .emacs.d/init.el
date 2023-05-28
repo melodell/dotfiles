@@ -298,11 +298,13 @@
 (use-package add-node-modules-path
   :ensure t
   :defer t
+  ;; We need to define a custom command to get the path to local executables
+  ;; because "npm bin" (used by this package) is deprecated with npm > 8
+  :custom
+  (add-node-modules-path-command '("echo $(npm root)/.bin"))
   )
 
 ;; Prettier autoformatting for JS/TS
-;; May require global install
-;; $ npm install -g prettier
 (use-package prettier-js
   :ensure t
   :defer t
