@@ -70,6 +70,12 @@
 ;; Disable backup files
 (setq make-backup-files nil)
 
+;; Keep auto-save files in separate directory
+(setq backup-directory-alist
+      `((".*" . "~/.saves/")))
+(setq auto-save-file-name-transforms
+      `((".*" "~/.saves/" t)))
+
 ;; Delete trailing whitespace on save
 (defun remove-trailing-whitespace ()
   (when (derived-mode-p 'prog-mode)
