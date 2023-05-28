@@ -300,6 +300,7 @@
   :defer t
   ;; We need to define a custom command to get the path to local executables
   ;; because "npm bin" (used by this package) is deprecated with npm > 8
+  ;; https://github.com/codesuki/add-node-modules-path/issues/23
   :custom
   (add-node-modules-path-command '("echo $(npm root)/.bin"))
   )
