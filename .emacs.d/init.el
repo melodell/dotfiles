@@ -438,15 +438,84 @@
   :bind ("M-n" . neotree-show))  ;; M-n toggle file tree view, q to close
 
 ;; Org Mode
+;;
+;; Resources:
+;; https://github.com/james-stoup/emacs-org-mode-tutorial
+;; https://systemcrafters.net/emacs-from-scratch/organize-your-life-with-org-mode/
 (use-package org
   :ensure t
   :config
+  ;; Store links, view agenda, open capture
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
+  (define-key global-map "\C-cc" 'org-capture)
+
+  ;; Completed tasks record a timestamp
   (setq org-log-done 't)
 
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "|" "DONE(d)")))
+  ;; Move tags column
+  (setq org-tags-column 50)
+
+    ;; Indent content with <TAB>
+  (setq org-adapt-indentation t)
+
+  ;; Hide markers (ex. bold_text instead of *bold_text*)
+  (setq org-hide-emphasis-markers t)
+
+  ;; .org files => org mode
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+  ;; Look for agenda files in org directory
   (setq org-agenda-files (list "~/org"))
-  (setq org-adapt-indentation t)  ;; Indent content with <TAB>
+
+  ;; TODO keywords and custom colors
+  ;; M-x list-colors-display
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "IN PROGRESS(i)" "ON HOLD(h)" "|" "DONE(d)" "CANCELLED(c)")))
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "red" :weight bold))
+          ("NEXT" . (:foreground "turquoise" :weight bold))
+          ("IN PROGRESS" . (:foreground "yellow" :weight bold))
+          ("ON HOLD" . (:foreground "orange" :weight bold))
+          ("DONE" . (:foreground "green" :weight bold))
+          ("CANCELLED" . (:foreground "dim gray" :weight bold))
+          ))
+
+  ;; Custom font color and size for headers
+  ;; Change header text to default font color
+  (let* (
+         (base-font-color     (face-foreground 'default nil 'default))
+         (headline           `(:inherit default :weight bold :foreground ,base-font-color))
+         )
+    (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline))))
+     `(org-level-7 ((t (,@headline))))
+     `(org-level-6 ((t (,@headline))))
+     `(org-level-5 ((t (,@headline))))
+     `(org-level-4 ((t (,@headline))))
+     `(org-level-3 ((t (,@headline :height 1.2))))
+     `(org-level-2 ((t (,@headline :height 1.3))))
+     `(org-level-1 ((t (,@headline :height 1.4))))
+     ))
+
+  ;; Custom agenda views
+  (setq org-agenda-custom-commands
+        '(
+          ("d" "Dashboard"
+           ((agenda "" ((org-deadline-warning-days 14)))
+            (todo "NEXT" ((org-agenda-overriding-header "Next Tasks"))))
+           )
+
+          ("n" "Next Tasks"
+           ((todo "NEXT" ((org-agenda-overriding-header "Next Tasks"))))
+           )
+
+          ("q" "Quick Tasks" tags-todo "+quick")
+          )
+        )
+
+  ;; Wrap lines and use nicer indentation
+  :hook ((org-mode . visual-line-mode)
+         (org-mode . org-indent-mode))
   )

@@ -76,6 +76,7 @@ C-f + C-b                       # Move between characters
 C-a + C-e                       # Move between front/back of lines
 M-f + M-b                       # Move between words
 M-a + M-e                       # Move between front/back of paragraphs
+C-M-n + C-M-P                   # Move between front/back of code blocks
 M-{ / }                         # Move between paragraphs
 M-v / C-v                       # Move between up/down full page views
 M-< / >                         # Move between top/bottom of entire buffer
@@ -100,9 +101,12 @@ M-w                             # Copy selection
 C-w                             # Cut selection
 C-y                             # Paste selection
 C-x TAB                         # Indent current line
-C-/                             # Undo
-C-g C-/                         # Redo (undo is implemented with a stack)
+C-_                             # Undo (UndoTree)
+C-M-_                           # Redo (UndoTree)
+C-g                             # Exit current command chain
+C-x x g                         # Revert all unsaved changes (read from previous file version)
 C-u NUM CHAR                    # Insert NUM CHARs at point
+C-u NUM ...                     # Repeat command NUM times
 C-x h                           # Select all text
 
 M-x delete-trailing-whitespace  # Remove all trailing whitespace from buffer
@@ -118,8 +122,6 @@ C-x 2                           # Split into two windows (VERTICALLY)
 C-x 3                           # Split into two windows (HORIZONTALLY)
 C-x o                           # Switch to other window
 C-x k                           # Kill current buffer
-C-g                             # Exit current command chain
-C-x x g                         # Revert all unsaved changes (read from previous file version)
 
 # Values
 C-h m                           # Show active modes
@@ -132,7 +134,7 @@ C-x .                           # Find definition + open in new window
 C-x 5 .                         # Find definition + open in new frame
 M-?                             # Find all references for identifier
 
-### Projectile/Helm
+# Projectile/Helm
 s-p f                           # Find file in project
 s-p d                           # Find dir in project
 s-p s g                         # Grep for text match (M-x ag-project is better)
@@ -154,7 +156,7 @@ C-c <                           # Un-indent selection by 4 spaces (1 tab)
 /sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
                                 # https://github.com/syl20bnr/spacemacs/issues/10918
 
-### Neotree
+# Neotree
 n/p                             # Next/prev line
 SPC                             # Open file or unfold directory
 U                               # Go up a directory
@@ -166,9 +168,21 @@ C-c C-r                         # Rename file
 C-c C-p                         # Copy file
 
 # Org mode
+C-c a                           # Open org agenda
+C-c c                           # Open capture buffer
+
 ## TODO items
 C-c C-t                         # Change TODO/DONE state
-C-c C-x C-a                     # Archive task to .org_archive
+C-c C-s                         # Add SCHEDULED date + time
+C-c C-d                         # Add DEADLINE date + time
+C-c C-q                         # Add tags
+C-c ,                           # Add priority
+C-c .                           # Add timestamp
+C-c C-w                         # Refile items to headers in refile target files (need to set variable)
+C-c C-x C-a                     # Archive task to FILENAME.org_archive
+
+## Syntax
+<YYYY-DD-MM +1d>                # Make timestamp event repeat every day (+1w, +1m, +1y for week/month/year)
 
 
 ########################################
