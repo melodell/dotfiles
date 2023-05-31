@@ -468,6 +468,15 @@
   ;; Look for agenda files in org directory
   (setq org-agenda-files (list "~/org"))
 
+  ;; Set refile targets
+  (setq org-refile-targets
+        '(("archive.org" :maxlevel . 3)
+          ("todo.org" :maxlevel . 3))
+        )
+
+  ;; Save Org buffers after refiling
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
   ;; TODO keywords and custom colors
   ;; M-x list-colors-display
   (setq org-todo-keywords
@@ -498,6 +507,30 @@
      `(org-level-2 ((t (,@headline :height 1.3))))
      `(org-level-1 ((t (,@headline :height 1.4))))
      ))
+
+  ;; Capture templates (S23)
+  (setq org-capture-templates
+        '(
+          ("t" "TODO"
+           entry (file+headline "todo.org" "Inbox")
+           "* TODO %?\n  %t\n" :empty-lines 1)
+          ("q" "Quick TODO"
+           entry (file+headline "todo.org" "Quick")
+           "* TODO %?\n  %t\n" :empty-lines 1)
+          ("m" "Meeting Entries")
+          ("mm" "Meeting Notes"
+           entry (file+datetree "meetings.org")
+           "* %? \n** " :empty-lines 1 :tree-type week
+           )
+          ("ms" "Standup Notes"
+           entry (file+datetree "meetings.org")
+           "* Standup \n** Pre-meeting \n*** %? \n** Meeting \n *** " :empty-lines 1 :tree-type week
+           )
+          ("n" "Quick Note"
+           entry (file "notes.org")
+           "* %?\n  %U\n  %a\n" :empty-lines 1)
+          )
+        )
 
   ;; Custom agenda views
   (setq org-agenda-custom-commands
