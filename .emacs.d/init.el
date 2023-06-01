@@ -475,6 +475,8 @@
         )
 
   ;; Save Org buffers after refiling
+  ;; We need this because default behavior doesn't save buffers in the background
+  ;; when you move something to them
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   ;; TODO keywords and custom colors
@@ -483,18 +485,18 @@
         '((sequence "TODO(t)" "NEXT(n)" "IN PROGRESS(i)" "ON HOLD(h)" "|" "DONE(d)" "CANCELLED(c)")))
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "red" :weight bold))
-          ("NEXT" . (:foreground "turquoise" :weight bold))
+          ("NEXT" . (:foreground "light slate blue" :weight bold))
           ("IN PROGRESS" . (:foreground "yellow" :weight bold))
           ("ON HOLD" . (:foreground "orange" :weight bold))
           ("DONE" . (:foreground "green" :weight bold))
           ("CANCELLED" . (:foreground "dim gray" :weight bold))
           ))
 
-  ;; Custom font color and size for headers
-  ;; Change header text to default font color
+  ;; Custom font colors and sizes
   (let* (
          (base-font-color     (face-foreground 'default nil 'default))
-         (headline           `(:inherit default :weight bold :foreground ,base-font-color))
+         (headline-base      `(:inherit default :weight bold :foreground ,base-font-color))
+         (headline           `(:inherit default :weight bold :foreground "SlateGray1"))
          )
     (custom-theme-set-faces
      'user
@@ -506,6 +508,10 @@
      `(org-level-3 ((t (,@headline :height 1.2))))
      `(org-level-2 ((t (,@headline :height 1.3))))
      `(org-level-1 ((t (,@headline :height 1.4))))
+     `(org-date ((t (:foreground "SteelBlue1"))))
+     `(org-special-keyword ((t (:foreground "DodgerBlue1"))))
+     `(org-priority ((t (:foreground "orchid"))))
+     `(org-tag ((t (:foreground "DeepSkyBlue"))))
      ))
 
   ;; Capture templates (S23)
@@ -516,7 +522,7 @@
            "* TODO %?\n  %t\n" :empty-lines 1)
           ("q" "Quick TODO"
            entry (file+headline "todo.org" "Quick")
-           "* TODO %?\n  %t\n" :empty-lines 1)
+           "* TODO %?\n  :quick: %t\n" :empty-lines 1)
           ("m" "Meeting Entries")
           ("mm" "Meeting Notes"
            entry (file+datetree "meetings.org")

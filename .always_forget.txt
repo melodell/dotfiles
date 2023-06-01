@@ -138,7 +138,7 @@ M-?                             # Find all references for identifier
 s-p f                           # Find file in project
 s-p d                           # Find dir in project
 s-p s g                         # Grep for text match (M-x ag-project is better)
-s-p ?                           # Find references
+s-p ?                           # Find references (M-? is better)
 s-p h                           # helm-projectile to find files OR buffers
 
 # Flycheck
