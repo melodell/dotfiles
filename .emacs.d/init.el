@@ -522,15 +522,15 @@
            "* TODO %?\n  %t\n" :empty-lines 1)
           ("q" "Quick TODO"
            entry (file+headline "todo.org" "Quick")
-           "*** NEXT %?\n :quick: %t\n" :empty-lines 1)
+           "*** NEXT %?\n :quick: %u\n" :empty-lines 1)
           ("m" "Meeting Entries")
           ("mm" "Meeting Notes"
            entry (file+datetree "meetings.org")
-           "* %? \n** " :empty-lines 1 :tree-type week
+           "* %? \n** " :empty-lines 1
            )
           ("ms" "Standup Notes"
            entry (file+datetree "meetings.org")
-           "* Standup \n** Pre-meeting \n%? \n** Meeting \n" :empty-lines 1 :tree-type week
+           "* Standup \n** Pre-meeting \n%? \n** Meeting \n" :empty-lines 1
            )
           ("n" "Quick Note"
            entry (file "notes.org")
