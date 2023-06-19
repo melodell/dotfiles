@@ -265,6 +265,7 @@
   :mode "\\.djhtml\\'"
   :mode "\\.tsx?\\'"
   :mode "\\.ts?\\'"
+  :mode "\\.css?\\'"
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -275,6 +276,9 @@
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
+
+  ;; Autocomplete for CSS
+  (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-css)))
 
   ;; Use TIDE for TSX files
   ;; Use Prettier for JSX and TSX files
