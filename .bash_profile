@@ -61,16 +61,6 @@ function dotsync()
     rsync -rtv .emacs.d/init.el melodell@login.engin.umich.edu:.emacs.d
 }
 
-# Caen-specific aliases
-if HOSTNAME=$(hostname 2> /dev/null | grep caen); then
-    ## EECS484
-    # SQLPlus alias
-    alias sq='rlwrap sqlplus'
-    # Load modules
-    module load eecs484
-    module load mongodb
-fi
-
 ### Emacs
 function e { emacs "$@" & }
 
@@ -86,12 +76,8 @@ alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
 ### Navigation
 
-### Temp ###
-# W23 src directory shortcuts
-function cd484 { cd ${HOME}/src/eecs484/; }
-function cd486 { cd ${HOME}/src/eecs486/; }
-
-## End Temp ###
+# beorg iCloud folder
+function cdorg { cd ${HOME}/Library/Mobile\ Documents/iCloud~com~appsonthemove~beorg/Documents/org; }
 
 # Shortcut to eecs485staff projects
 function cd485()
