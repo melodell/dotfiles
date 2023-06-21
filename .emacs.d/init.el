@@ -61,7 +61,7 @@
 
 ;; Default window size
 (add-to-list 'default-frame-alist '(width . 120))
-(add-to-list 'default-frame-alist '(height . 60))
+(add-to-list 'default-frame-alist '(height . 70))
 
 ;; macOS modifier keys
 (setq mac-command-modifier 'meta) ; Command == Meta
@@ -440,6 +440,17 @@
   :config
   (setq neo-smart-open t)        ;; Jump to current file in tree view
   :bind ("M-n" . neotree-show))  ;; M-n toggle file tree view, q to close
+
+;; Highlight symbols at point
+;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
+(use-package idle-highlight-mode
+  :ensure t
+  :defer t
+  :config
+  (setq idle-highlight-idle-time 0.4)
+  :hook
+  (python-mode . idle-highlight-mode)
+  )
 
 ;; Org Mode
 ;;
