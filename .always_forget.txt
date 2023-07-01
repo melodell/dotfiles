@@ -41,6 +41,7 @@ CMD + SHIFT + 4                 # Take screenshot of selected portion
 
 # Browser
 CMD + T                         # New tab
+CMD + Shift + T                 # Reopen closed tab
 CMD + R                         # Refresh tab
 CMD + Shift + R                 # Hard Refresh tab
 CMD + OPTION + I                # Open Developer Tools
