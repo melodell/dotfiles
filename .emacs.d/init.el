@@ -221,14 +221,22 @@
          ))
   (setq tramp-use-ssh-controlmaster-options nil)
   :defer 1  ; lazy loading
-)
+  )
 
 ;; Python
 ;; (use-package elpy
 ;;   :ensure t
 ;;   :defer t
 ;;   :init
-;;   (advice-add 'python-mode :before 'elpy-enable))
+;;   (advice-add 'python-mode :before 'elpy-enable)
+;;   )
+
+(use-package pyvenv
+  :ensure t
+  :defer t
+  :hook
+  (python-mode . pyvenv-mode)
+  )
 
 ;; C and C++ programming.  Build with C-c m.  Rebuild with C-c c.  Put
 ;; this in c-mode-base-map because c-mode-map, c++-mode-map, and so
