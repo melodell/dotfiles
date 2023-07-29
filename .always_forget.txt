@@ -152,6 +152,7 @@ M-x ispell-word                 # Interactively correct word at point
 # Python
 C-c >                           # Indent selection by 4 spaces (1 tab)
 C-c <                           # Un-indent selection by 4 spaces (1 tab)
+M-x pyvenv-activate             # Activate virtual environment within Emacs
 
 # Tramp mode
 /sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
