@@ -77,10 +77,10 @@
       `((".*" "~/.saves/" t)))
 
 ;; Delete trailing whitespace on save
-(defun remove-trailing-whitespace ()
-  (when (derived-mode-p 'prog-mode)
-    (delete-trailing-whitespace)))
-(add-hook 'before-save-hook 'remove-trailing-whitespace)
+;; (defun remove-trailing-whitespace ()
+;;   (when (derived-mode-p 'prog-mode)
+;;     (delete-trailing-whitespace)))
+;; (add-hook 'before-save-hook 'remove-trailing-whitespace)
 
 ;; Package Management.  Configure the built-in emacs package manager to use
 ;; several publicly available repositories.
@@ -230,13 +230,6 @@
 ;;   :init
 ;;   (advice-add 'python-mode :before 'elpy-enable)
 ;;   )
-
-(use-package pyvenv
-  :ensure t
-  :defer t
-  :hook
-  (python-mode . pyvenv-mode)
-  )
 
 ;; C and C++ programming.  Build with C-c m.  Rebuild with C-c c.  Put
 ;; this in c-mode-base-map because c-mode-map, c++-mode-map, and so
