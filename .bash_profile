@@ -76,8 +76,8 @@ alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
 ### Navigation
 
-# beorg iCloud folder
-function cdorg { cd ${HOME}/Library/Mobile\ Documents/iCloud~com~appsonthemove~beorg/Documents/org; }
+# TODO org directory
+function cdtodo { cd "${HOME}/org/todo/"; }
 
 # Shortcut to eecs485staff projects
 function cd485()
