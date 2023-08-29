@@ -188,6 +188,7 @@ C-c C-x C-a                     # Archive task to FILENAME.org_archive
 
 ## Syntax
 <YYYY-DD-MM +1d>                # Make timestamp event repeat every day (+1w, +1m, +1y for week/month/year)
+<YYYY-DD-MM ++1w>               # Make timestamp event repeat every week and guarantee the next occurrence is in the future
 
 
 ########################################
