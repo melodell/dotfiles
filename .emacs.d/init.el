@@ -488,7 +488,7 @@
   (setq org-log-done 't)
 
   ;; Move tags column
-  (setq org-tags-column 50)
+  (setq org-tags-column 70)
 
   ;; Indent content with <TAB>
   (setq org-adapt-indentation t)
@@ -519,8 +519,8 @@
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
-  ;; Hide scheduled items from agenda if marked DONE
-  (setq org-agenda-skip-scheduled-if-done t)
+  ;; Always show group headers
+  (setq org-super-agenda-hide-empty-groups nil)
 
   ;; TODO keywords and custom colors
   ;; M-x list-colors-display
@@ -559,21 +559,37 @@
   ;; Custom agenda views
   (setq org-agenda-custom-commands
         '(("d" "Dashboard"
+           
            ;; Show weekly agenda
            ((agenda "" ((org-agenda-span 'week)))
+            
             ;; Show TODO items scheduled for today
-            (todo "" ((org-agenda-overriding-header "")
+            (todo "" ((org-agenda-overriding-header "Do Today")
                       (org-super-agenda-groups
-                       '((:name "Today"
-                                :scheduled today
-                                )
+                       '((:name "" :scheduled today)
                          ;; Hide "other items" that don't match this grouping
                          ;; https://github.com/alphapapa/org-super-agenda/issues/145
-                         (:discard (:anything)))
+                         (:discard (:anything))
+                         )
                        )
                       ))
+            
+            ;; Show TODO items with deadlines today
+            (todo "" ((org-agenda-overriding-header "Due Today")
+                      (org-super-agenda-groups
+                       '((:name "" :deadline today)
+                         ;; Hide "other items" that don't match this grouping
+                         ;; https://github.com/alphapapa/org-super-agenda/issues/145
+                         (:discard (:anything))
+                         )
+                       )
+                      ))
+            
+            ;; Show TODO items marked as done
+            (todo "DONE" ((org-agenda-overriding-header "Completed")))
+            
             ;; Show all TODO items grouped by tag
-            (todo "" ((org-agenda-overriding-header "")
+            (todo "" ((org-agenda-overriding-header "All Tasks")
                    (org-super-agenda-groups
                     '(
                       (:name "eecs574"
@@ -608,11 +624,10 @@
        (org-archive-subtree)
        (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
      "/DONE" 'file))
-  
+
   ;; Wrap lines and use nicer indentation
   ;; Enable super agenda mode for nicer org agenda views
   :hook ((org-mode . visual-line-mode)
          (org-mode . org-indent-mode)
          (org-mode . org-super-agenda-mode))
   )
-
