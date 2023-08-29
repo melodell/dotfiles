@@ -567,6 +567,7 @@
             (todo "" ((org-agenda-overriding-header "Do Today")
                       (org-super-agenda-groups
                        '((:name "" :scheduled today)
+                         (:name "" :scheduled past)
                          ;; Hide "other items" that don't match this grouping
                          ;; https://github.com/alphapapa/org-super-agenda/issues/145
                          (:discard (:anything))
@@ -578,6 +579,7 @@
             (todo "" ((org-agenda-overriding-header "Due Today")
                       (org-super-agenda-groups
                        '((:name "" :deadline today)
+                         (:name "" :deadline past)
                          ;; Hide "other items" that don't match this grouping
                          ;; https://github.com/alphapapa/org-super-agenda/issues/145
                          (:discard (:anything))
