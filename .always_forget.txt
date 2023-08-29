@@ -172,6 +172,8 @@ C-c C-p                         # Copy file
 # Org mode
 C-c a                           # Open org agenda
 r                               # Refresh agenda
+TAB                             # Go to TODO item from agenda in new window
+SHIFT + TAB                     # Globally cycle through folding
 C-c c                           # Open capture buffer
 C-c C-x C-w                     # Delete subtree
 
