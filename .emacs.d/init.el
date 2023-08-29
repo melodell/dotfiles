@@ -59,9 +59,10 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq use-dialog-box nil)
 
-;; Default window size
+;; Default window size and placement
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 70))
+(add-to-list 'default-frame-alist '(top . 0))
 
 ;; macOS modifier keys
 (setq mac-command-modifier 'meta) ; Command == Meta
@@ -77,10 +78,20 @@
       `((".*" "~/.saves/" t)))
 
 ;; Delete trailing whitespace on save
-;; (defun remove-trailing-whitespace ()
-;;   (when (derived-mode-p 'prog-mode)
-;;     (delete-trailing-whitespace)))
-;; (add-hook 'before-save-hook 'remove-trailing-whitespace)
+;; Make a minor mode to enable/disable so you have control over
+;; accidentally reformatting the entire file :')
+(defun remove-trailing-whitespace ()
+  (when (derived-mode-p 'prog-mode)
+    (delete-trailing-whitespace)))
+(define-minor-mode remove-ws-on-save-mode
+  "Remove trailing whitespace on save."
+  :lighter "RWS"
+  (add-hook 'before-save-hook 'remove-trailing-whitespace)
+
+    (if remove-ws-on-save-mode
+      (message "Removing whitespace on save enabled")
+    (message "Removing whitespace on save disabled"))
+  )
 
 ;; Package Management.  Configure the built-in emacs package manager to use
 ;; several publicly available repositories.
@@ -453,6 +464,13 @@
   (python-mode . idle-highlight-mode)
   )
 
+;; Better org agenda views
+;; https://github.com/alphapapa/org-super-agenda/
+(use-package org-super-agenda
+  :ensure t
+  :defer t
+  )
+
 ;; Org Mode
 ;;
 ;; Resources:
@@ -472,7 +490,7 @@
   ;; Move tags column
   (setq org-tags-column 50)
 
-    ;; Indent content with <TAB>
+  ;; Indent content with <TAB>
   (setq org-adapt-indentation t)
 
   ;; Hide markers (ex. bold_text instead of *bold_text*)
@@ -481,13 +499,16 @@
   ;; .org files => org mode
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-  ;; Look for agenda files in org directory
-  (setq org-agenda-files (list "~/org"))
+  ;; Set org directory
+  (setq org-directory "~/org/todo")
+
+  ;; Look for agenda files in TODO directory
+  (setq org-agenda-files (list "~/org/todo"))
 
   ;; Set refile targets
   (setq org-refile-targets
         '(("archive.org" :maxlevel . 3)
-          ("todo.org" :maxlevel . 3))
+          )
         )
 
   ;; Save Org buffers after refiling
@@ -495,82 +516,103 @@
   ;; when you move something to them
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+  ;; Hide double entires for prewarning if entry is scheduled
+  (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
+
+  ;; Hide scheduled items from agenda if marked DONE
+  (setq org-agenda-skip-scheduled-if-done t)
+
   ;; TODO keywords and custom colors
   ;; M-x list-colors-display
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "IN PROGRESS(i)" "ON HOLD(h)" "|" "DONE(d)" "CANCELLED(c)")))
+        '((sequence "TODO(t)" "IN PROGRESS(i)" "ON HOLD(h)" "|" "DONE(d)" "CANCELLED(c)")))
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "red" :weight bold))
-          ("NEXT" . (:foreground "light slate blue" :weight bold))
           ("IN PROGRESS" . (:foreground "yellow" :weight bold))
           ("ON HOLD" . (:foreground "orange" :weight bold))
           ("DONE" . (:foreground "green" :weight bold))
           ("CANCELLED" . (:foreground "dim gray" :weight bold))
           ))
 
-  ;; Custom font colors and sizes
-  (let* (
-         (base-font-color     (face-foreground 'default nil 'default))
-         (headline-base      `(:inherit default :weight bold :foreground ,base-font-color))
-         (headline           `(:inherit default :weight bold :foreground "SlateGray1"))
-         )
-    (custom-theme-set-faces
-     'user
-     `(org-level-8 ((t (,@headline))))
-     `(org-level-7 ((t (,@headline))))
-     `(org-level-6 ((t (,@headline))))
-     `(org-level-5 ((t (,@headline))))
-     `(org-level-4 ((t (,@headline))))
-     `(org-level-3 ((t (,@headline :height 1.2))))
-     `(org-level-2 ((t (,@headline :height 1.3))))
-     `(org-level-1 ((t (,@headline :height 1.4))))
-     `(org-date ((t (:foreground "SteelBlue1"))))
-     `(org-special-keyword ((t (:foreground "DodgerBlue1"))))
-     `(org-priority ((t (:foreground "orchid"))))
-     `(org-tag ((t (:foreground "DeepSkyBlue"))))
-     ))
-
-  ;; Capture templates (S23)
+  ;; Capture templates (F23)
   (setq org-capture-templates
         '(
-          ("t" "TODO"
-           entry (file+headline "todo.org" "Inbox")
-           "* TODO %?\n  %t\n" :empty-lines 1)
-          ("q" "Quick TODO"
-           entry (file+headline "todo.org" "Quick")
-           "*** NEXT %?\n :quick: %u\n" :empty-lines 1)
-          ("m" "Meeting Entries")
-          ("mm" "Meeting Notes"
-           entry (file+datetree "meetings.org")
-           "* %? \n** " :empty-lines 1
-           )
-          ("ms" "Standup Notes"
-           entry (file+datetree "meetings.org")
-           "* Standup \n** Pre-meeting \n%? \n** Meeting \n" :empty-lines 1
-           )
-          ("n" "Quick Note"
-           entry (file "notes.org")
-           "* %?\n  %U\n  %a\n" :empty-lines 1)
+          ("T" "TODO")
+          ("tq" "Career"
+           entry (file+headline "school.org" "Career")
+           "* TODO %? :career:\n CREATED: %u\n")
+          ("tw" "EECS 485"
+           entry (file+headline "school.org" "EECS 485")
+           "* TODO %? :eecs485: CREATED: %u\n")
+          ("te" "TMD Web Team"
+           entry (file+headline "school.org" "TMD Web Team")
+           "* TODO %? :tmd: CREATED: %u\n")
+          ("tr" "EECS 574"
+           entry (file+headline "school.org" "EECS 574")
+           "* TODO %? :eecs574: CREATED: %u\n")
+          ("tt" "EECS 593"
+           entry (file+headline "school.org" "EECS 593")
+           "* TODO %? :eecs593: CREATED: %u\n")
           )
         )
 
   ;; Custom agenda views
   (setq org-agenda-custom-commands
-        '(
-          ("d" "Dashboard"
-           ((agenda "" ((org-deadline-warning-days 14)))
-            (todo "NEXT" ((org-agenda-overriding-header "Next Tasks"))))
-           )
-
-          ("n" "Next Tasks"
-           ((todo "NEXT" ((org-agenda-overriding-header "Next Tasks"))))
-           )
-
-          ("q" "Quick Tasks" tags-todo "+quick")
+        '(("d" "Dashboard"
+           ;; Show weekly agenda
+           ((agenda "" ((org-agenda-span 'week)))
+            ;; Show TODO items scheduled for today
+            (todo "" ((org-agenda-overriding-header "")
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                                :scheduled today
+                                )
+                         ;; Hide "other items" that don't match this grouping
+                         ;; https://github.com/alphapapa/org-super-agenda/issues/145
+                         (:discard (:anything)))
+                       )
+                      ))
+            ;; Show all TODO items grouped by tag
+            (todo "" ((org-agenda-overriding-header "")
+                   (org-super-agenda-groups
+                    '(
+                      (:name "eecs574"
+                             :tag "eecs574"
+                             )
+                      (:name "eecs593"
+                             :tag "eecs593"
+                             )
+                      (:name "eecs485"
+                             :tag "eecs485"
+                                  )
+                      (:name "career"
+                             :tag "career"
+                             )
+                      (:name "TMD"
+                             :tag "tmd"
+                             )
+                      (:discard (:anything))
+                      )
+                    )
+                   ))
+            ))
           )
         )
 
+  ;; Archive all tasks in this file marked DONE
+  (defun org-archive-done-tasks-file ()
+    (interactive)
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+     "/DONE" 'file))
+  
   ;; Wrap lines and use nicer indentation
   :hook ((org-mode . visual-line-mode)
          (org-mode . org-indent-mode))
   )
+
+;; Enable super agenda mode to use fancy agenda views
+(org-super-agenda-mode)
+
