@@ -171,7 +171,10 @@ C-c C-p                         # Copy file
 
 # Org mode
 C-c a                           # Open org agenda
+r                               # Refresh agenda
 C-c c                           # Open capture buffer
+C-c C-x C-w                     # Delete subtree
+
 
 ## TODO items
 C-c C-t                         # Change TODO/DONE state
