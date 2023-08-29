@@ -600,6 +600,7 @@
         )
 
   ;; Archive all tasks in this file marked DONE
+  ;; (Stolen from awdeorio)
   (defun org-archive-done-tasks-file ()
     (interactive)
     (org-map-entries
@@ -609,6 +610,7 @@
      "/DONE" 'file))
   
   ;; Wrap lines and use nicer indentation
+  ;; Enable super agenda mode for nicer org agenda views
   :hook ((org-mode . visual-line-mode)
          (org-mode . org-indent-mode)
          (org-mode . org-super-agenda-mode))
