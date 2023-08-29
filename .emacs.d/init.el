@@ -537,22 +537,22 @@
   ;; Capture templates (F23)
   (setq org-capture-templates
         '(
-          ("T" "TODO")
+          ("t" "TODO")
           ("tq" "Career"
            entry (file+headline "school.org" "Career")
-           "* TODO %? :career:\n CREATED: %u\n")
+           "* TODO %? :career:\nCREATED: %u\n" :empty-lines-after 1)
           ("tw" "EECS 485"
            entry (file+headline "school.org" "EECS 485")
-           "* TODO %? :eecs485: CREATED: %u\n")
+           "* TODO %? :eecs485:\nCREATED: %u\n" :empty-lines-after 1)
           ("te" "TMD Web Team"
            entry (file+headline "school.org" "TMD Web Team")
-           "* TODO %? :tmd: CREATED: %u\n")
+           "* TODO %? :tmd:\nCREATED: %u\n" :empty-lines-after 1)
           ("tr" "EECS 574"
            entry (file+headline "school.org" "EECS 574")
-           "* TODO %? :eecs574: CREATED: %u\n")
+           "* TODO %? :eecs574:\nCREATED: %u\n" :empty-lines-after 1)
           ("tt" "EECS 593"
            entry (file+headline "school.org" "EECS 593")
-           "* TODO %? :eecs593: CREATED: %u\n")
+           "* TODO %? :eecs593:\nCREATED: %u\n" :empty-lines-after 1)
           )
         )
 
@@ -610,9 +610,7 @@
   
   ;; Wrap lines and use nicer indentation
   :hook ((org-mode . visual-line-mode)
-         (org-mode . org-indent-mode))
+         (org-mode . org-indent-mode)
+         (org-mode . org-super-agenda-mode))
   )
-
-;; Enable super agenda mode to use fancy agenda views
-(org-super-agenda-mode)
 
