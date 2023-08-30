@@ -516,6 +516,11 @@
   ;; when you move something to them
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+  ;; Refresh files regularly to check for updates from mobile
+  ;; https://stackoverflow.com/questions/1480572/how-to-have-emacs-auto-refresh-all-buffers-when-files-have-changed-on-disk
+  (global-auto-revert-mode t)
+  (setq auto-revert-use-notify nil)
+
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
@@ -565,6 +570,7 @@
             
             ;; Show TODO items scheduled for today
             (todo "" ((org-agenda-overriding-header "Do Today")
+                      
                       (org-super-agenda-groups
                        '((:name "" :scheduled today)
                          (:name "" :scheduled past)
