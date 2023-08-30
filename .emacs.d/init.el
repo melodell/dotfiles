@@ -519,7 +519,7 @@
   ;; Refresh files regularly to check for updates from mobile
   ;; https://stackoverflow.com/questions/1480572/how-to-have-emacs-auto-refresh-all-buffers-when-files-have-changed-on-disk
   (global-auto-revert-mode t)
-  (setq auto-revert-use-notify nil)
+  (setq auto-revert-verbose nil)
 
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
@@ -566,11 +566,11 @@
         '(("d" "Dashboard"
            
            ;; Show weekly agenda
-           ((agenda "" ((org-agenda-span 'week)))
+           ((agenda "" ((org-agenda-span 'week)
+                        (org-agenda-sorting-strategy '(todo-state-down priority-down deadline-up))))
             
             ;; Show TODO items scheduled for today
             (todo "" ((org-agenda-overriding-header "Do Today")
-                      
                       (org-super-agenda-groups
                        '((:name "" :scheduled today)
                          (:name "" :scheduled past)
