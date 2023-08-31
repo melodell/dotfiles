@@ -21,6 +21,7 @@
 (global-set-key "\C-x\C-b" 'electric-buffer-list)  ; easier buffer switching
 (global-set-key "\M-o" 'other-window)  ; easier window switching
 (global-set-key "\C-x\." 'xref-find-definitions-other-window)  ; find definition and open in new window
+(global-set-key (kbd "s-r") 'revert-buffer)  ; revert buffer to pull new changes
 
 ;; Don't show a startup message
 (setq inhibit-startup-message t)
@@ -515,11 +516,6 @@
   ;; We need this because default behavior doesn't save buffers in the background
   ;; when you move something to them
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-  ;; Refresh files regularly to check for updates from mobile
-  ;; https://stackoverflow.com/questions/1480572/how-to-have-emacs-auto-refresh-all-buffers-when-files-have-changed-on-disk
-  (global-auto-revert-mode t)
-  (setq auto-revert-verbose nil)
 
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
