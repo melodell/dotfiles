@@ -520,6 +520,10 @@
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
+  ;; Hide DONE deadline entries
+  ;; org-agenda-skip-scheduled-if-done also exists
+  (setq org-agenda-skip-deadline-if-done t)
+
   ;; Always show group headers
   (setq org-super-agenda-hide-empty-groups nil)
 
@@ -568,8 +572,8 @@
             ;; Show TODO items scheduled for today
             (todo "" ((org-agenda-overriding-header "Do Today")
                       (org-super-agenda-groups
-                       '((:name "" :scheduled today)
-                         (:name "" :scheduled past)
+                       '((:name "" :scheduled past)
+                         (:name "" :scheduled today)
                          ;; Hide "other items" that don't match this grouping
                          ;; https://github.com/alphapapa/org-super-agenda/issues/145
                          (:discard (:anything))
@@ -580,8 +584,8 @@
             ;; Show TODO items with deadlines today
             (todo "" ((org-agenda-overriding-header "Due Today")
                       (org-super-agenda-groups
-                       '((:name "" :deadline today)
-                         (:name "" :deadline past)
+                       '((:name "" :deadline past)
+                         (:name "" :deadline today)
                          ;; Hide "other items" that don't match this grouping
                          ;; https://github.com/alphapapa/org-super-agenda/issues/145
                          (:discard (:anything))
