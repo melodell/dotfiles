@@ -509,6 +509,7 @@
   ;; Set refile targets
   (setq org-refile-targets
         '(("archive.org" :maxlevel . 3)
+          ("school.org" :maxlevel . 2)
           )
         )
 
