@@ -228,6 +228,7 @@ cp -r DIR NEW_DIR               # Copy directory DIR to NEW_DIR
 file FILE                       # Print type of FILE
 diff FILE1 FILE2                # Find differences between FILE1 and FILE2
 diff FILE1 FILE2 | colordiff    # diff but colorful
+<(CMD)                          # Put output of CMD in pseudofile
 
 # Scripting
 chmod +x SCRIPT                 # Give SCRIPT executable permissions
