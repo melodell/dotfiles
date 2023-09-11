@@ -63,6 +63,7 @@ function dotsync()
 
 ### Emacs
 function e { emacs "$@" & }
+function ediff { emacs --eval "(ediff-files \"$1\" \"$2\")" & }
 
 ### Python
 # Start live HTTP server on port 8000
