@@ -253,7 +253,9 @@ source env/bin/activate                 # Activate virtual environment
 deactivate                              # Deactivate virtual environment
 pip install <package>                   # Install Python package
 pip install -r requirements.txt         # Install packages from requirements file
-pip install --upgrade pip setuptools wheel  # Upgrade setuptools
+pip install --upgrade pip setuptools wheel                 # Upgrade setuptools
+pip install 'git+https://github.com/USER/REPO.git@BRANCH   # Install package from git
+pytest --collect-only -q                # List all test cases
 
 # Processes
 pgrep <pattern>                 # List all (matching) running processes
