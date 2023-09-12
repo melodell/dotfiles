@@ -339,21 +339,14 @@
 
 ;; Build AST with tree-sitter
 ;; https://emacs-tree-sitter.github.io/
-;; Emacs < 29
-(use-package tree-sitter
-  :ensure t
-  :config
-  ;; Enable for all (supported) modes
-  (global-tree-sitter-mode)
-  )
-
+;;
 ;; Language bundle for tree-sitter (required)
 ;; https://github.com/emacs-tree-sitter/tree-sitter-langs
-(use-package tree-sitter-langs
-  :ensure t
-  :defer t
-  :after tree-sitter
-  )
+;; (use-package tree-sitter-langs
+;;   :ensure t
+;;   :defer t
+;;   :after tree-sitter
+;;   )
 
 ;; Markdown
 (use-package markdown-mode
