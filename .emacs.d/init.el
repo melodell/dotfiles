@@ -328,6 +328,12 @@
   :defer t
   )
 
+;; rjsx for JSX files
+(use-package rjsx-mode
+  :ensure t
+  :defer t
+  )
+
 ;; TIDE for TypeScript autocomplete/backend
 ;; https://github.com/ananthakumaran/tide
 (use-package tide
