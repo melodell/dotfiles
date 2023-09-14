@@ -631,7 +631,9 @@
      (lambda ()
        (org-archive-subtree)
        (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
-     "/DONE" 'file))
+     "/DONE" 'file)
+    (org-save-all-org-buffers)
+    )
 
   ;; Wrap lines and use nicer indentation
   ;; Enable super agenda mode for nicer org agenda views
