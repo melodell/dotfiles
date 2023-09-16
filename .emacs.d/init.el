@@ -558,6 +558,9 @@
           ("tt" "EECS 593"
            entry (file+headline "school.org" "EECS 593")
            "* TODO %? :eecs593:\nCREATED: %u\n" :empty-lines-after 1)
+          ("ta" "Research"
+           entry (file+headline "school.org" "LIT Research")
+           "* TODO %? :lit:\nCREATED: %u\n" :empty-lines-after 1)
           )
         )
 
@@ -608,7 +611,10 @@
                              )
                       (:name "eecs485"
                              :tag "eecs485"
-                                  )
+                             )
+                      (:name "Research"
+                             :tag "lit"
+                             )
                       (:name "career"
                              :tag "career"
                              )
