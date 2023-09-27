@@ -109,6 +109,7 @@ C-x x g                         # Revert all unsaved changes (read from previous
 C-u NUM CHAR                    # Insert NUM CHARs at point
 C-u NUM ...                     # Repeat command NUM times
 C-x h                           # Select all text
+C-x i                           # Insert content of another file
 
 M-x delete-trailing-whitespace  # Remove all trailing whitespace from buffer
 M-x untabify                    # Replace all spaces with tabs (select content first)
