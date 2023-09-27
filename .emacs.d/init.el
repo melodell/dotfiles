@@ -50,6 +50,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 
+;; Require final newline
+(setq require-final-newline t)
+
 ;; Remove scrollbars, menu bars, and toolbars
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -372,9 +375,15 @@
 			  ("g" . grip-mode))
   )
 
-;; Dockerfile syntax highlighting
+;; Dockerfile editing
 (use-package dockerfile-mode
   :mode "Dockerfile\\'"
+  :ensure t
+  )
+
+;; YAML editing
+(use-package yaml-mode
+  :mode "\\.yml\\'"
   :ensure t
   )
 
