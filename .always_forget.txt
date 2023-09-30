@@ -124,6 +124,7 @@ C-x 2                           # Split into two windows (VERTICALLY)
 C-x 3                           # Split into two windows (HORIZONTALLY)
 C-x o                           # Switch to other window
 C-x k                           # Kill current buffer
+C-u C-x =                       # View settings about thing at point
 
 # Values
 C-h m                           # Show active modes
@@ -158,7 +159,6 @@ M-x pyvenv-activate             # Activate virtual environment within Emacs
 # Tramp mode
 /sshx:user@host:                # ssh remote file access, DO NOT use /ssh: (crashes)
                                 # https://github.com/syl20bnr/spacemacs/issues/10918
-
 # Neotree
 n/p                             # Next/prev line
 SPC                             # Open file or unfold directory
