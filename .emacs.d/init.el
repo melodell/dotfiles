@@ -142,10 +142,24 @@
   )
 
 ;; Spacemacs dark mode
-(use-package spacemacs-theme
+;; (use-package spacemacs-theme
+;;   :ensure t
+;;   :defer t
+;;   :init (load-theme 'spacemacs-dark t)
+;;   )
+
+;; Doom Themes
+;; https://github.com/doomemacs/themes/tree/master
+(use-package doom-themes
   :ensure t
-  :defer t
-  :init (load-theme 'spacemacs-dark t)
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-vibrant t)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  ;; (doom-themes-org-config)
   )
 
 ;; Autocomplete for code
@@ -547,6 +561,13 @@
           ("DONE" . (:foreground "green" :weight bold))
           ("CANCELLED" . (:foreground "dim gray" :weight bold))
           ))
+
+  ;; Org header size
+  (custom-set-faces
+   '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+   '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+   )
 
   ;; Capture templates (F23)
   (setq org-capture-templates
