@@ -310,22 +310,29 @@
   ;; Autocomplete for CSS
   (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-css)))
 
-  ;; Use TIDE for TSX files
-  ;; Use Prettier for JSX and TSX files
-  (defun setup-tide-prettier ()
+  ;; Use TIDE and Prettier for TSX files
+  (defun setup-tsx ()
 	(when (string-equal "tsx" (file-name-extension buffer-file-name))
 	  (add-node-modules-path)
 	  (tide-setup)
 	  (tide-hl-identifier-mode)
 	  (prettier-js-mode)
 	  )
-	(when (string-equal "jsx" (file-name-extension buffer-file-name))
-	  (add-node-modules-path)
-	  (prettier-js-mode)
-	  )
 	)
-  (add-hook 'web-mode-hook 'setup-tide-prettier)
-  )
+  ;; Use Prettier for JSX files too
+  (defun setup-jsx ()
+    (when (string-equal "jsx" (file-name-extension buffer-file-name))
+	    (add-node-modules-path)
+	    (prettier-js-mode)
+
+      ;; Disable auto quotes when writing JSX (gets in the way of writing component props)
+      (setq web-mode-enable-auto-quoting nil)
+	    )
+    )
+
+  (add-hook 'web-mode-hook 'setup-tsx)
+  (add-hook 'web-mode-hook 'setup-jsx)
+)
 
 ;; Add node_modules to PATH
 ;; https://github.com/codesuki/add-node-modules-path
@@ -563,11 +570,14 @@
           ))
 
   ;; Org header size and agenda colors
+  ;; These are manually customized to adjust the 'doom-vibrant' theme
   (custom-set-faces
    '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
    '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
    '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
    '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
+   '(org-scheduled-today ((t (:foreground "#bbc2cf"))))
+   '(org-scheduled ((t (:foreground "#9ca0a4"))))
    )
 
   ;; Capture templates (F23)
@@ -598,11 +608,11 @@
   ;; Custom agenda views
   (setq org-agenda-custom-commands
         '(("d" "Dashboard"
-           
+
            ;; Show weekly agenda
            ((agenda "" ((org-agenda-span 'week)
                         (org-agenda-sorting-strategy '(todo-state-down priority-down deadline-up))))
-            
+
             ;; Show TODO items scheduled for today
             (todo "" ((org-agenda-overriding-header "Do Today")
                       (org-super-agenda-groups
@@ -614,7 +624,7 @@
                          )
                        )
                       ))
-            
+
             ;; Show TODO items with deadlines today
             (todo "" ((org-agenda-overriding-header "Due Today")
                       (org-super-agenda-groups
@@ -626,10 +636,10 @@
                          )
                        )
                       ))
-            
+
             ;; Show TODO items marked as done
             (todo "DONE" ((org-agenda-overriding-header "Completed")))
-            
+
             ;; Show all TODO items grouped by tag
             (todo "" ((org-agenda-overriding-header "All Tasks")
                    (org-super-agenda-groups
