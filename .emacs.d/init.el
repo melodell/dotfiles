@@ -87,12 +87,12 @@
 (defun remove-trailing-whitespace ()
   (when (derived-mode-p 'prog-mode)
     (delete-trailing-whitespace)))
-(define-minor-mode remove-ws-on-save-mode
+(define-minor-mode rm-ws-on-save-mode
   "Remove trailing whitespace on save."
   :lighter "RWS"
   (add-hook 'before-save-hook 'remove-trailing-whitespace)
 
-    (if remove-ws-on-save-mode
+    (if rm-ws-on-save-mode
       (message "Removing whitespace on save enabled")
     (message "Removing whitespace on save disabled"))
   )
@@ -198,9 +198,12 @@
 
   ;; disable jshint since we prefer eslint checking
   ;; http://codewinds.com/blog/2015-04-02-emacs-flycheck-eslint-jsx.html
+  ;;
+  ;; disable mypy because it's annoying
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint)))
+                        '(javascript-jshint
+                          python-mypy)))
 
   ;; use eslint with web-mode (for jsx and tsx files)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
@@ -234,6 +237,13 @@
               (reusable-frames . visible)
               (window-height   . 0.25)))
 
+;; Python autoformatting with black
+(use-package blacken
+  :ensure t
+  :defer t
+  :hook (python-mode . blacken-mode)
+  )
+
 ;; Remote file editing with TRAMP.  Configure TRAMP to use the same SSH
 ;; multiplexing as in ~/.ssh/config.  By default, TRAMP ignores
 ;; SSH config's multiplexing configuration, so configure the same settings here.
@@ -256,6 +266,8 @@
 ;; (use-package elpy
 ;;   :ensure t
 ;;   :defer t
+;;   :custom
+;;   (elpy-rpc-virtualenv-path 'current)
 ;;   :init
 ;;   (advice-add 'python-mode :before 'elpy-enable)
 ;;   )
