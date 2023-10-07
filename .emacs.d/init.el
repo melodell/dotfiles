@@ -310,23 +310,28 @@
   ;; Autocomplete for CSS
   (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-css)))
 
-  ;; Use TIDE and Prettier for TSX files
+  ;; Setup for TSX files
   (defun setup-tsx ()
-	(when (string-equal "tsx" (file-name-extension buffer-file-name))
-	  (add-node-modules-path)
-	  (tide-setup)
-	  (tide-hl-identifier-mode)
-	  (prettier-js-mode)
+	  (when (string-equal "tsx" (file-name-extension buffer-file-name))
+      ;; Use TIDE and Prettier for TSX files
+	    (add-node-modules-path)
+	    (tide-setup)
+	    (tide-hl-identifier-mode)
+	    (prettier-js-mode)
+	    )
 	  )
-	)
-  ;; Use Prettier for JSX files too
+  ;; Setup for JSX files
   (defun setup-jsx ()
     (when (string-equal "jsx" (file-name-extension buffer-file-name))
+      ;; Use Prettier for JSX files too
 	    (add-node-modules-path)
 	    (prettier-js-mode)
 
       ;; Disable auto quotes when writing JSX (gets in the way of writing component props)
       (setq web-mode-enable-auto-quoting nil)
+
+      ;; Emmet JSX support
+      (add-to-list 'emmet-jsx-major-modes 'rjsx-mode)
 	    )
     )
 
@@ -384,6 +389,21 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1)))  ;; Always check spelling
+  )
+
+;; Emmet for HTML snippets
+;; https://github.com/smihica/emmet-mode
+;; C-j to expand snippet
+(use-package emmet-mode
+  :ensure t
+  :defer t
+
+  :config
+  ;; Self-closing tags should be <Foo /> instead of <Foo/>
+  (setq emmet-self-closing-tag-style " /")
+
+  :bind ("C-j" . emmet-expand-line)
+  :hook ((sgml-mode css-mode) . emmet-mode)
   )
 
 ;; Preview Markdown
