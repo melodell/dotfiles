@@ -620,8 +620,11 @@
            entry (file+headline "school.org" "EECS 593")
            "* TODO %? :eecs593:\nCREATED: %u\n" :empty-lines-after 1)
           ("ta" "Research"
-           entry (file+headline "school.org" "LIT Research")
-           "* TODO %? :lit:\nCREATED: %u\n" :empty-lines-after 1)
+           entry (file+headline "school.org" "Research")
+           "* TODO %? :research:\nCREATED: %u\n" :empty-lines-after 1)
+          ("ts" "Misc"
+           entry (file+headline "school.org" "Misc")
+           "* TODO %? :misc:\nCREATED: %u\n" :empty-lines-after 1)
           )
         )
 
