@@ -704,7 +704,9 @@
 
   ;; Wrap lines and use nicer indentation
   ;; Enable super agenda mode for nicer org agenda views
+  ;; Auto-revert files when they change on disk (i.e. sync from mobile)
   :hook ((org-mode . visual-line-mode)
          (org-mode . org-indent-mode)
-         (org-mode . org-super-agenda-mode))
+         (org-mode . org-super-agenda-mode)
+         (org-mode . auto-revert-mode))
   )
