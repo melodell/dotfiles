@@ -477,6 +477,22 @@
   :defer t
   )
 
+;; GH Copilot
+;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
+;; M-x copilot-mode
+;; Depends on dash, s, editorconfig
+(use-package dash :ensure t :defer t)
+(use-package s :ensure t :defer t)
+(use-package editorconfig :ensure t :defer t)
+(use-package copilot
+  :load-path (lambda () (expand-file-name "copilot.el" user-emacs-directory))
+  :config
+  ;; TAB to accept completions
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  )
+
+
 ;; Use ag for finding references. It's faster than the built-in xref-find-references.
 ;; Pitfall: Does straight-up string comparision, ignoring actual usages
 ;; https://agel.readthedocs.io/en/latest/configuration.html
