@@ -38,6 +38,7 @@ FN + F                          # Make current window fullscreen (creates new de
 CMD + CTRL + Q                  # Lock screen
 CMD + SHIFT + 3                 # Take screenshot of entire screen
 CMD + SHIFT + 4                 # Take screenshot of selected portion
+CMD + CTRL + SPACE              # Open emoji menu
 
 # Browser
 CMD + T                         # New tab
