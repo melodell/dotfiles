@@ -579,6 +579,9 @@
   ;; when you move something to them
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+  ;; Save Org buffers after changing a TODO keyword
+  (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
+
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
