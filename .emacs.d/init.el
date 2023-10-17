@@ -580,7 +580,9 @@
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   ;; Save Org buffers after changing a TODO keyword
-  (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
+  ;; https://emacs.stackexchange.com/questions/21754/how-to-automatically-save-all-org-files-after-marking-a-repeating-item-as-done-i
+  (advice-add 'org-todo :after 'org-save-all-org-buffers)
+  (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
 
   ;; Hide double entires for prewarning if entry is scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
