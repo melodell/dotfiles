@@ -207,6 +207,7 @@
 
   ;; use eslint with web-mode (for jsx and tsx files)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
 
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
@@ -296,7 +297,7 @@
 ;; Web Development
 (use-package web-mode
   :ensure t
-  :mode "\\.jsx?\\'"
+  ;; :mode "\\.jsx?\\'"
   :mode "\\.html?\\'"
   :mode "\\.phtml\\'"
   :mode "\\.tpl\\.php\\'"
@@ -305,7 +306,7 @@
   :mode "\\.erb\\'"
   :mode "\\.mustache\\'"
   :mode "\\.djhtml\\'"
-  :mode "\\.tsx?\\'"
+  ;; :mode "\\.tsx?\\'"
   :mode "\\.ts?\\'"
   :mode "\\.css?\\'"
   :config
