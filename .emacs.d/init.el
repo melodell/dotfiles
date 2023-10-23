@@ -682,7 +682,7 @@
                       ))
 
             ;; Show TODO items marked as done
-            (todo "DONE" ((org-agenda-overriding-header "Completed")))
+            (todo "DONE|CANCELLED" ((org-agenda-overriding-header "Completed")))
 
             ;; Show all TODO items grouped by tag
             (todo "" ((org-agenda-overriding-header "All Tasks")
