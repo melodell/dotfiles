@@ -92,7 +92,7 @@
   :lighter "RWS"
   (add-hook 'before-save-hook 'remove-trailing-whitespace)
 
-    (if rm-ws-on-save-mode
+  (if rm-ws-on-save-mode
       (message "Removing whitespace on save enabled")
     (message "Removing whitespace on save disabled"))
   )
@@ -180,13 +180,13 @@
 ;; $ pip install virtualenv
 ;; Only works on Emacs 24.4 +
 (unless (version< emacs-version "24.4")
-(use-package company-jedi
-  :after company                        ; lazy loading
-  :init
-  (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
-  :ensure t
+  (use-package company-jedi
+    :after company                        ; lazy loading
+    :init
+    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+    :ensure t
+    )
   )
-)
 
 ;; Intellisense syntax checking
 ;; http://www.flycheck.org/en/latest/
@@ -232,11 +232,11 @@
 ;; Always display flycheck error list (C-c ! l) at bottom of frame, taking up 1/4 of the height
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*Flycheck errors*" eos)
-              (display-buffer-reuse-window
-               display-buffer-in-side-window)
-              (side            . bottom)
-              (reusable-frames . visible)
-              (window-height   . 0.25)))
+               (display-buffer-reuse-window
+                display-buffer-in-side-window)
+               (side            . bottom)
+               (reusable-frames . visible)
+               (window-height   . 0.25)))
 
 ;; Python autoformatting with black
 (use-package blacken
@@ -294,6 +294,31 @@
   :ensure t
   )
 
+;; Setup for TSX files
+(defun setup-tsx ()
+	(when (string-equal "tsx" (file-name-extension buffer-file-name))
+    ;; Use TIDE and Prettier for TSX files
+	  (add-node-modules-path)
+	  (tide-setup)
+	  (tide-hl-identifier-mode)
+	  (prettier-js-mode)
+	  )
+	)
+;; Setup for JSX files
+(defun setup-jsx ()
+  (when (string-equal "jsx" (file-name-extension buffer-file-name))
+    ;; Use Prettier for JSX files too
+	  (add-node-modules-path)
+	  (prettier-js-mode)
+
+    ;; Disable auto quotes when writing JSX (gets in the way of writing component props)
+    (setq web-mode-enable-auto-quoting nil)
+
+    ;; Emmet JSX support
+    (add-to-list 'emmet-jsx-major-modes 'rjsx-mode)
+	  )
+  )
+
 ;; Web Development
 (use-package web-mode
   :ensure t
@@ -323,34 +348,9 @@
   ;; Autocomplete for CSS
   (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-css)))
 
-  ;; Setup for TSX files
-  (defun setup-tsx ()
-	  (when (string-equal "tsx" (file-name-extension buffer-file-name))
-      ;; Use TIDE and Prettier for TSX files
-	    (add-node-modules-path)
-	    (tide-setup)
-	    (tide-hl-identifier-mode)
-	    (prettier-js-mode)
-	    )
-	  )
-  ;; Setup for JSX files
-  (defun setup-jsx ()
-    (when (string-equal "jsx" (file-name-extension buffer-file-name))
-      ;; Use Prettier for JSX files too
-	    (add-node-modules-path)
-	    (prettier-js-mode)
-
-      ;; Disable auto quotes when writing JSX (gets in the way of writing component props)
-      (setq web-mode-enable-auto-quoting nil)
-
-      ;; Emmet JSX support
-      (add-to-list 'emmet-jsx-major-modes 'rjsx-mode)
-	    )
-    )
-
   (add-hook 'web-mode-hook 'setup-tsx)
   (add-hook 'web-mode-hook 'setup-jsx)
-)
+  )
 
 ;; Add node_modules to PATH
 ;; https://github.com/codesuki/add-node-modules-path
@@ -374,6 +374,9 @@
 (use-package rjsx-mode
   :ensure t
   :defer t
+  :config
+  (setq js2-basic-offset 2)
+  (add-hook 'rjsx-mode-hook 'setup-jsx)
   )
 
 ;; TIDE for TypeScript autocomplete/backend
@@ -426,7 +429,7 @@
 (use-package grip-mode
   :ensure t
   :bind (:map markdown-mode-command-map
-			  ("g" . grip-mode))
+			        ("g" . grip-mode))
   )
 
 ;; Dockerfile editing
@@ -468,7 +471,7 @@
   ;; s-p to use projectile search
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map)
-			  ))
+			        ))
 
 ;; Integrate Projectile with Helm for improved navigation
 ;; https://github.com/bbatsov/helm-projectile
@@ -494,20 +497,20 @@
 ;; Always display ag search results at bottom of frame, taking up 1/4 of the height
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*ag search*" eos)
-              (display-buffer-reuse-window
-               display-buffer-in-side-window)
-              (side            . bottom)
-              (reusable-frames . visible)
-              (window-height   . 0.25)))
+               (display-buffer-reuse-window
+                display-buffer-in-side-window)
+               (side            . bottom)
+               (reusable-frames . visible)
+               (window-height   . 0.25)))
 
 ;; Always display xref search results at bottom of frame, taking up 1/4 of the height
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*xref*" eos)
-              (display-buffer-reuse-window
-               display-buffer-in-side-window)
-              (side            . bottom)
-              (reusable-frames . visible)
-              (window-height   . 0.25)))
+               (display-buffer-reuse-window
+                display-buffer-in-side-window)
+               (side            . bottom)
+               (reusable-frames . visible)
+               (window-height   . 0.25)))
 
 ;; Neotree for viewing project structure
 (use-package neotree
@@ -683,30 +686,30 @@
 
             ;; Show all TODO items grouped by tag
             (todo "" ((org-agenda-overriding-header "All Tasks")
-                   (org-super-agenda-groups
-                    '(
-                      (:name "eecs574"
-                             :tag "eecs574"
-                             )
-                      (:name "eecs593"
-                             :tag "eecs593"
-                             )
-                      (:name "eecs485"
-                             :tag "eecs485"
-                             )
-                      (:name "Research"
-                             :tag "lit"
-                             )
-                      (:name "career"
-                             :tag "career"
-                             )
-                      (:name "TMD"
-                             :tag "tmd"
-                             )
-                      (:discard (:anything))
-                      )
-                    )
-                   ))
+                      (org-super-agenda-groups
+                       '(
+                         (:name "eecs574"
+                                :tag "eecs574"
+                                )
+                         (:name "eecs593"
+                                :tag "eecs593"
+                                )
+                         (:name "eecs485"
+                                :tag "eecs485"
+                                )
+                         (:name "Research"
+                                :tag "lit"
+                                )
+                         (:name "career"
+                                :tag "career"
+                                )
+                         (:name "TMD"
+                                :tag "tmd"
+                                )
+                         (:discard (:anything))
+                         )
+                       )
+                      ))
             ))
           )
         )
