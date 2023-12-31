@@ -637,31 +637,31 @@
           ("CANCELLED" . (:foreground "dim gray" :weight bold))
           ))
 
-  ;; Capture templates (F23)
+  ;; Capture templates (W23)
   (setq org-capture-templates
         '(
           ("t" "TODO")
           ("tq" "Career"
            entry (file+headline "school.org" "Career")
-           "* TODO %? :career:\nCREATED: %u\n" :empty-lines-after 1)
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tw" "EECS 485"
            entry (file+headline "school.org" "EECS 485")
-           "* TODO %? :eecs485:\nCREATED: %u\n" :empty-lines-after 1)
-          ("te" "TMD Web Team"
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
+          ("te" "Emacs"
+           entry (file+headline "school.org" "Emacs")
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
+          ("tt" "TMD Web Team"
            entry (file+headline "school.org" "TMD Web Team")
-           "* TODO %? :tmd:\nCREATED: %u\n" :empty-lines-after 1)
-          ("tr" "EECS 574"
-           entry (file+headline "school.org" "EECS 574")
-           "* TODO %? :eecs574:\nCREATED: %u\n" :empty-lines-after 1)
-          ("tt" "EECS 593"
-           entry (file+headline "school.org" "EECS 593")
-           "* TODO %? :eecs593:\nCREATED: %u\n" :empty-lines-after 1)
-          ("ta" "Research"
-           entry (file+headline "school.org" "Research")
-           "* TODO %? :research:\nCREATED: %u\n" :empty-lines-after 1)
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
+          ("tr" "EECS 592"
+           entry (file+headline "school.org" "EECS 592")
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
+          ("tg" "GAI"
+           entry (file+headline "school.org" "GAI")
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("ts" "Misc"
            entry (file+headline "school.org" "Misc")
-           "* TODO %? :misc:\nCREATED: %u\n" :empty-lines-after 1)
+           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           )
         )
 
@@ -701,26 +701,28 @@
             (todo "DONE|CANCELLED" ((org-agenda-overriding-header "Completed")))
 
             ;; Show all TODO items grouped by tag
+            ;; This needs to be manually updated to change the categories
+            ;; (W23)
             (todo "" ((org-agenda-overriding-header "All Tasks")
                       (org-super-agenda-groups
                        '(
-                         (:name "eecs574"
-                                :tag "eecs574"
+                         (:name "eecs588"
+                                :tag "eecs588"
                                 )
-                         (:name "eecs593"
-                                :tag "eecs593"
+                         (:name "eecs592"
+                                :tag "eecs592"
                                 )
                          (:name "eecs485"
                                 :tag "eecs485"
                                 )
-                         (:name "Research"
-                                :tag "lit"
+                         (:name "GAI"
+                                :tag "gai"
                                 )
                          (:name "career"
                                 :tag "career"
                                 )
-                         (:name "TMD"
-                                :tag "tmd"
+                         (:name "misc"
+                                :tag "misc"
                                 )
                          (:discard (:anything))
                          )
@@ -742,7 +744,7 @@
     (org-save-all-org-buffers)
     )
 
-  ;; Wrap lines and use nicer indentation
+  ;; Wrap lines, use nicer indentation (hide asterisks)
   ;; Enable super agenda mode for nicer org agenda views
   ;; Auto-revert files when they change on disk (i.e. sync from mobile)
   :hook ((org-mode . visual-line-mode)
