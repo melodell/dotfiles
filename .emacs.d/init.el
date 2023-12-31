@@ -2,7 +2,7 @@
 ;;;
 ;;; Commentary:
 ;;; Built on beginner init.el from the Emacs tutorial
-;;; https://eecs280staff.github.io/tutorials/setup_emacs.html#configure
+;;; https://eecs280staff.github.io/tutorials/setup_emacs.html#customize
 ;;;
 ;;; Melina O'Dell <melodell@umich.edu>
 
@@ -156,22 +156,23 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-vibrant t)
+  ;; (load-theme 'doom-vibrant t)
+  (load-theme 'doom-city-lights t)
 
   ;; Corrects (and improves) org-mode's native fontification.
-  ;; (doom-themes-org-config)
+  (doom-themes-org-config)
 
-  ;; Customizations
-  ;;
-  ;; Org header size and agenda colors
-  ;; These are manually customized to adjust the 'doom-vibrant' theme
+  ;; ;; Customizations
+  ;; ;;
+  ;; ;; Org header size and agenda colors
+  ;; ;; These are manually customized to adjust the 'doom-vibrant' theme
   (custom-set-faces
    '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
    '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
    '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-   '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
-   '(org-scheduled-today ((t (:foreground "#bbc2cf"))))
-   '(org-scheduled ((t (:foreground "#9ca0a4"))))
+   ;; '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
+   ;; '(org-scheduled-today ((t (:foreground "#bbc2cf"))))
+   ;; '(org-scheduled ((t (:foreground "#9ca0a4"))))
    )
 
   ;; ediff
