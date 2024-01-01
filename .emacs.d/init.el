@@ -591,13 +591,6 @@
   ;; Look for agenda files in TODO directory
   (setq org-agenda-files (list "~/org/todo"))
 
-  ;; Set refile targets
-  (setq org-refile-targets
-        '(("archive.org" :maxlevel . 3)
-          ("school.org" :maxlevel . 2)
-          )
-        )
-
   ;; Save Org buffers after refiling
   ;; We need this because default behavior doesn't save buffers in the background
   ;; when you move something to them
@@ -605,7 +598,6 @@
 
   ;; Save Org buffers after changing a TODO keyword
   ;; https://emacs.stackexchange.com/questions/21754/how-to-automatically-save-all-org-files-after-marking-a-repeating-item-as-done-i
-
   (defmacro mu (fnc)
   "Return function that ignores its arguments and invokes FNC."
   `(lambda (&rest _rest)
@@ -641,25 +633,25 @@
         '(
           ("t" "TODO")
           ("tq" "Career"
-           entry (file+headline "school.org" "Career")
+           entry (file+headline "todo.org" "Career")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tw" "EECS 485"
-           entry (file+headline "school.org" "EECS 485")
+           entry (file+headline "todo.org" "EECS 485")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("te" "Emacs"
-           entry (file+headline "school.org" "Emacs")
+           entry (file+headline "todo.org" "Emacs")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tt" "TMD Web Team"
-           entry (file+headline "school.org" "TMD Web Team")
+           entry (file+headline "todo.org" "TMD Web Team")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tr" "EECS 592"
-           entry (file+headline "school.org" "EECS 592")
+           entry (file+headline "todo.org" "EECS 592")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tg" "GAI"
-           entry (file+headline "school.org" "GAI")
+           entry (file+headline "todo.org" "GAI")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("ts" "Misc"
-           entry (file+headline "school.org" "Misc")
+           entry (file+headline "todo.org" "Misc")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           )
         )
