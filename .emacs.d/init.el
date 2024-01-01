@@ -733,15 +733,15 @@
           )
         )
 
-  ;; Archive all tasks in this file marked DONE
-  ;; (Stolen from awdeorio)
-  (defun org-archive-done-tasks-file ()
+  ;; Archive all tasks in this file marked DONE or CANCELLED
+  (defun org-archive-all ()
     (interactive)
-    (org-map-entries
-     (lambda ()
-       (org-archive-subtree)
-       (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
-     "/DONE" 'file)
+    (dolist (keyword '("DONE" "CANCELLED"))
+      (org-map-entries
+       (lambda ()
+         (org-archive-subtree)
+         (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+       (format "/%s" keyword) 'file))
     (org-save-all-org-buffers)
     )
 
