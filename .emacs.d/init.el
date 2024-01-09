@@ -705,9 +705,6 @@
             (todo "" ((org-agenda-overriding-header "All Tasks")
                       (org-super-agenda-groups
                        '(
-                         (:name "eecs588"
-                                :tag "eecs588"
-                                )
                          (:name "eecs592"
                                 :tag "eecs592"
                                 )
