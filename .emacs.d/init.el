@@ -258,6 +258,14 @@
                (reusable-frames . visible)
                (window-height   . 0.25)))
 
+;; Eglot
+;; Using Pyright for Python
+;; pip install pyright
+(use-package eglot
+  :ensure t
+  :defer t
+  :hook (python-mode . eglot-ensure))
+
 ;; Python autoformatting with black
 (use-package blacken
   :ensure t
