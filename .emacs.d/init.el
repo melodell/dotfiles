@@ -447,7 +447,7 @@
   (setq emmet-self-closing-tag-style " /")
 
   :bind ("C-j" . emmet-expand-line)
-  :hook ((sgml-mode css-mode) . emmet-mode)
+  :hook ((web-mode sgml-mode css-mode) . emmet-mode)
   )
 
 ;; Preview Markdown
