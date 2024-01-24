@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Upgrade utilities
+#
+# Melina O'Dell
+
+# Stop on errors, print commands
+set -Eeuo pipefail
+set +x
+
+# Make sure we're in home directory
+cd
+
+### Homebrew
+brew update
+brew upgrade
+
+### Python
+# Upgrade Python tools
+pip install --upgrade pip setuptools wheel
+
+# Reinstall packages
+cat .python.txt | xargs pip install --upgrade

@@ -14,22 +14,27 @@ rm -rf dotfiles/
 git add -f <filename>
 ```
 
-## Homebrew package management
-Update package list.
+## Package management
+Manually-maintained lists of Homebrew and Python packages are in `.homebrew.txt` and `.python.txt`.
+
+Update package lists.
 
 ```
 brew list > .homebrew.txt
+pip freeze > .python.txt
 ```
 
 NOTE: GUI applications (like Emacs and Docker) are installed with `brew install --cask`.
-`~/bin/brewinstall` keeps a list of cask applications.
+`~/bin/install` keeps a list of cask applications.
 
 Install.
 
 ```console
-$ ./bin/brewinstall
+$ ./bin/install
 + brew install --cask emacs
 ...
 + cat .homebrew.txt | xargs brew install
+...
++ cat .python.txt | xargs pip install
 ```
 

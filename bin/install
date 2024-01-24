@@ -1,12 +1,17 @@
 #!/bin/bash
 #
-# Install brew utilities
+# Install utilities
 #
 # Melina O'Dell
 
 # Stop on errors, print commands
 set -Eeuo pipefail
+set +x
 
+# Make sure we're in home directory
+cd
+
+### Homebrew
 # Install cask applications
 CASKAPPS=(
     "emacs"
@@ -15,13 +20,15 @@ CASKAPPS=(
 
 for i in "${CASKAPPS[@]}"
 do
-    echo "+ brew install --cask $i"
     brew install --cask $i
 done
 
-# Make sure we're in home directory
-cd
-
 # Install other utilities from package list
-echo "+ cat .homebrew.txt | xargs brew install"
 cat .homebrew.txt | xargs brew install
+
+### Python
+# Upgrade Python tools
+pip install --upgrade pip setuptools wheel
+
+# Reinstall packages
+cat .python.txt | xargs pip install
