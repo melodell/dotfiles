@@ -38,3 +38,11 @@ $ ./bin/install
 + cat .python.txt | xargs pip install
 ```
 
+Upgrade.
+```console
+$ ./bin/upgrade
++ brew update
++ brew upgrade
+...
++ cat .python.txt | xargs pip install --upgrade
+```
