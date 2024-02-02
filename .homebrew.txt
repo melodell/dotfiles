@@ -23,6 +23,7 @@ giflib
 git
 glib
 gmp
+gnu-sed
 graphite2
 harfbuzz
 highway
