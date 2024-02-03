@@ -191,7 +191,7 @@ function set_prompt() {
 	# If terminal supports colors
 	case "$TERM" in
 		xterm*|rxvt*|Eterm*|eterm*|screen*)
-			PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\$ \[${txtrst}\]'
+			PS1='$VENV_PROMPT$GIT_PROMPT\[${bldcyn}\]\u@\h \[${bldblu}\]\W\n\[${bldblu}\]\$ \[${txtrst}\]'
 			;;
 		*)
 			PS1="$ "
