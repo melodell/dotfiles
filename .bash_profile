@@ -45,6 +45,11 @@ alias sl=ls  # I will not be getting steam-locomotive'd
 ### grep (colors)
 alias grep='grep --color=auto'
 
+### less
+### Stolen from awdeorio
+export PAGER="less --shift 5 --ignore-case --chop-long-lines --RAW-CONTROL-CHARS --LONG-PROMPT"
+alias less="${PAGER}"
+
 ### tar
 # Extract
 function tarx { echo "+ tar -xzvf $1"; tar -xzvf $1; }
