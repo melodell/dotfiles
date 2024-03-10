@@ -87,6 +87,11 @@ function a { source "$@"/bin/activate; }
 alias brave='open -a "Brave Browser.app" -n --args --new-window'
 alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
+### PostgreSQL ($ brew install postgresql)
+# Start and stop default database cluster directory
+alias pgstart='pg_ctl -D /opt/homebrew/var/postgresql@14/ start'
+alias pgstop='pg_ctl -D /opt/homebrew/var/postgresql@14/ stop'
+
 ### Navigation
 
 # TODO org directory

@@ -295,6 +295,9 @@ ________________________________________
 # Oracle/SQL*Plus (EECS 484)
 rlwrap sqlplus                         # Launch SQL*Plus
 
+# PostgreSQL
+psql postgres                          # Launch PostgreSQL console as user "postgres"
+
 
 ########################################
 #
