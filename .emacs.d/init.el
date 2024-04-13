@@ -73,7 +73,7 @@
 (setq mac-option-modifier 'super) ; Option == Super
 
 ;; Disable backup files
-(setq make-backup-files nil)
+;; (setq make-backup-files nil)
 
 ;; Keep auto-save files in separate directory
 (setq backup-directory-alist
