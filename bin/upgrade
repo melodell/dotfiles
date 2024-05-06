@@ -20,4 +20,4 @@ brew upgrade
 pip install --upgrade pip setuptools wheel
 
 # Reinstall packages
-cat .python.txt | xargs pip install --upgrade
+cat .pip.txt | xargs pip install --upgrade

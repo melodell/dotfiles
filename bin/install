@@ -24,11 +24,11 @@ do
 done
 
 # Install other utilities from package list
-cat .homebrew.txt | xargs brew install
+cat .brew.txt | xargs brew install
 
 ### Python
 # Upgrade Python tools
 pip install --upgrade pip setuptools wheel
 
 # Reinstall packages
-cat .python.txt | xargs pip install
+cat .pip.txt | xargs pip install
