@@ -3,15 +3,15 @@
 ## Install
 
 ```console
-git clone git@github.com:melodell/dotfiles.git
-rsync -av dotfiles/ ~/
-rm -rf dotfiles/
+$ git clone git@github.com:melodell/dotfiles.git
+$ rsync -av dotfiles/ ~/
+$ rm -rf dotfiles/
 ```
 
 ## Add new files
 
 ```console
-git add -f <filename>
+$ git add -f <filename>
 ```
 
 ## Package management
@@ -21,8 +21,8 @@ Manually-maintained lists of Homebrew and Python packages are in `.brew.txt` and
 Update package lists.
 
 ```console
-brew list > .brew.txt
-pip freeze > .pip.txt
+$ brew list > .brew.txt
+$ pip freeze > .pip.txt
 ```
 
 NOTE: GUI applications (like Emacs and Docker) are installed with `brew install --cask`.
