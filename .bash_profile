@@ -60,7 +60,12 @@ alias gd='git diff'
 alias gr='git rebase'
 alias gf='git fetch -p'
 alias gb='git branch'
+alias gc='git commit -m $1'
 alias gco='git checkout'
+# Create and push to new remote tracking branch
+function gpo {
+    git push -u origin $(git branch | grep '^\*' | cut -b3-)
+}
 
 ### ssh
 # CAEN Linux
