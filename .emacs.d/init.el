@@ -156,8 +156,9 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-vibrant t)
-  ;; (load-theme 'doom-city-lights t)
+  ;; (load-theme 'doom-vibrant t)
+  (load-theme 'doom-city-lights t)
+  
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
@@ -178,9 +179,8 @@
    '(ediff-even-diff-A ((t (:background "#0a0814"))))
    '(ediff-odd-diff-A ((t (:background "#0a0814"))))
    )
-
-
   )
+
 
 ;; Autocomplete for code
 ;; Company docs: https://company-mode.github.io/
