@@ -649,8 +649,8 @@
           ("te" "Emacs"
            entry (file+headline "todo.org" "Emacs")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tt" "TMD Web Team"
-           entry (file+headline "todo.org" "TMD Web Team")
+          ("tt" "ETC"
+           entry (file+headline "todo.org" "ETC")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tr" "EECS 592"
            entry (file+headline "todo.org" "EECS 592")
