@@ -157,7 +157,9 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; (load-theme 'doom-vibrant t)
-  (load-theme 'doom-city-lights t)
+  ;; (load-theme 'doom-city-lights t)
+  (load-theme 'doom-moonlight t)
+  ;; (load-theme 'doom-acario-dark t)
   
 
   ;; Corrects (and improves) org-mode's native fontification.
@@ -597,7 +599,8 @@
   (setq org-directory "~/org/todo")
 
   ;; Look for agenda files in TODO directory
-  (setq org-agenda-files (list "~/org/todo"))
+  ;; (setq org-agenda-files (list "~/org/todo"))
+  (setq org-agenda-files (list "~/org/todo/todo.org"))
 
   ;; Save Org buffers after refiling
   ;; We need this because default behavior doesn't save buffers in the background
@@ -636,7 +639,7 @@
           ("CANCELLED" . (:foreground "dim gray" :weight bold))
           ))
 
-  ;; Capture templates (W23)
+  ;; Capture templates (F24)
   (setq org-capture-templates
         '(
           ("t" "TODO")
@@ -652,13 +655,13 @@
           ("tt" "ETC"
            entry (file+headline "todo.org" "ETC")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tr" "EECS 592"
-           entry (file+headline "todo.org" "EECS 592")
+          ("tr" "EECS 585"
+           entry (file+headline "todo.org" "EECS 585")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tg" "GAI"
            entry (file+headline "todo.org" "GAI")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("ts" "Misc"
+          ("tc" "Misc"
            entry (file+headline "todo.org" "Misc")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           )
