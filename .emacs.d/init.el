@@ -664,6 +664,9 @@
           ("tc" "Misc"
            entry (file+headline "todo.org" "Misc")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
+          ("p" "Project Release"
+           entry (file+headline "todo.org" "EECS 485")
+           "* TODO %? \nCREATED: %u\n** TODO Release PR\n** TODO eecs485.org PR\n** TODO Setup AG\n** TODO FAQ post + merge eecs485.org\n" :empty-lines-after 1)
           )
         )
 
