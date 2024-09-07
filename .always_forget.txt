@@ -201,15 +201,16 @@ C-c C-x C-a                     # Archive task to FILENAME.org_archive
 #
 
 # Git
-git restore .                   # Discard all unstaged changes
-git restore --staged FILE       # Unstage FILE
-git fetch --prune               # Fetch all changes + clean up deleted remote tracking branches
-git reset --hard <commit>       # Move HEAD to <commit> and discard all local changes (including commits)
-git reset --soft <commit>       # Move HEAD to <commit> without discarding unstaged changes
-git reset HEAD^                 # Revert last commit and keep changes (move them back to unstaged)
-git checkout -b <branch_name>   # Create and checkout new branch
-git branch -d                   # Delete branch
-git branch -D                   # Delete branch (even if remote hasn't cleaned it up yet)
+git restore .                             # Discard all unstaged changes
+git restore --staged FILE                 # Unstage FILE
+git fetch --prune                         # Fetch all changes + clean up deleted remote tracking branches
+git reset --hard <commit>                 # Move HEAD to <commit> and discard all local changes (including commits)
+git reset --soft <commit>                 # Move HEAD to <commit> without discarding unstaged changes
+git reset HEAD^                           # Revert last commit and keep changes (move them back to unstaged)
+git checkout -b <branch_name>             # Create and checkout new branch
+git branch -d                             # Delete branch
+git branch -D                             # Delete branch (even if remote hasn't cleaned it up yet)
+git commit --allow-empty -m "<msg>"       # Create an empty commit
 
 # Unix
 pwd                             # Print working directory
