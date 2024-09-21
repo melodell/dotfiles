@@ -707,29 +707,19 @@
 
             ;; Show all TODO items grouped by tag
             ;; This needs to be manually updated to change the categories
-            ;; (W23)
-            (todo "" ((org-agenda-overriding-header "All Tasks")
-                      (org-super-agenda-groups
-                       '(
-                         (:name "eecs592"
-                                :tag "eecs592"
-                                )
-                         (:name "eecs485"
-                                :tag "eecs485"
-                                )
-                         (:name "GAI"
-                                :tag "gai"
-                                )
-                         (:name "career"
-                                :tag "career"
-                                )
-                         (:name "misc"
-                                :tag "misc"
-                                )
-                         (:discard (:anything))
-                         )
-                       )
-                      ))
+            ;; (todo "" ((org-agenda-overriding-header "All Tasks")
+            ;;           (org-super-agenda-groups
+            ;;            '(
+            ;;              (:name "FIXME SECTION NAME"
+            ;;                     :tag "FIXME TAG TO GROUP BY"
+            ;;                     )
+            ;;              (:name "FIXME SECTION NAME"
+            ;;                     :tag "FIXME TAG TO GROUP BY"
+            ;;                     )
+            ;;              (:discard (:anything))
+            ;;              )
+            ;;            )
+            ;;           ))
             ))
           )
         )
