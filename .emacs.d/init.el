@@ -630,13 +630,14 @@
   ;; TODO keywords and custom colors
   ;; M-x list-colors-display
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS(i)" "ON HOLD(h)" "|" "DONE(d)" "CANCELLED(c)")))
+        '((sequence "TODO(t)" "IN PROGRESS(i)" "ON HOLD(h)" "|" "DONE(d)" "CANCELLED(c)" "COMPLETE(s)")))
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "red" :weight bold))
           ("IN PROGRESS" . (:foreground "yellow" :weight bold))
           ("ON HOLD" . (:foreground "orange" :weight bold))
           ("DONE" . (:foreground "green" :weight bold))
           ("CANCELLED" . (:foreground "dim gray" :weight bold))
+          ("COMPLETE" . (:foreground "sea green" :weight bold))
           ))
 
   ;; Capture templates (F24)
@@ -727,7 +728,7 @@
   ;; Archive all tasks in this file marked DONE or CANCELLED
   (defun org-archive-all ()
     (interactive)
-    (dolist (keyword '("DONE" "CANCELLED"))
+    (dolist (keyword '("DONE" "CANCELLED"))  ;; don't archive complete tasks; keep them around as notes
       (org-map-entries
        (lambda ()
          (org-archive-subtree)
