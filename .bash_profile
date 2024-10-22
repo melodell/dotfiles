@@ -164,6 +164,7 @@ function set_git_context() {
   fi
 
   # '*' and red for dirty; yellow for behind; green for clean
+  # Note: This fails when a branch name has capital letters that match git's dirty letters
   local GIT_DIRTY
   local COLOR=${txtgrn}
   local STATUS=$(git status -sb 2> /dev/null);
