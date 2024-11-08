@@ -26,7 +26,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 # gnu-sed
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-
+# pipx
+export PATH="$PATH:$HOME/.local/bin"
 
 
 ### ALIASES ###
@@ -47,7 +48,7 @@ alias grep='grep --color=auto'
 
 ### less
 ### Stolen from awdeorio
-export PAGER="less --shift 5 --ignore-case --chop-long-lines --RAW-CONTROL-CHARS --LONG-PROMPT"
+export PAGER="less --chop-long-lines"
 alias less="${PAGER}"
 
 ### tar
