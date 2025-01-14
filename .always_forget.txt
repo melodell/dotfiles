@@ -268,6 +268,10 @@ pkill <pattern>                 # Kill all (matching) running processes
 # Curl
 TODO
 
+# ImageMagick
+mogrify -strip IMAGE.png              # Strip EXIF data from IMAGE
+mogrify -resize 360x360 IMAGE.png     # Resize IMAGE to 360x360
+
 # SSH
 ssh melodell@login.engin.umich.edu                                       # SSH into CAEN Linux
 ssh -i <Path to Auth Key File> ubuntu@<Public DNS from Connect Page>     # SSH to AWS EC2 instance
