@@ -6,7 +6,7 @@
 
 # Stop on errors, print commands
 set -Eeuo pipefail
-set +x
+set -x
 
 # Make sure we're in home directory
 cd
@@ -16,8 +16,9 @@ brew update
 brew upgrade
 
 ### Python
-# Upgrade Python tools
-pip install --upgrade pip setuptools wheel
+# Update packages
+pipx upgrade-all
 
-# Reinstall packages
-cat .pip.txt | xargs pip install --upgrade
+# Finished
+set +x
+echo "Upgraded packages"
