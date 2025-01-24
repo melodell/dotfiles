@@ -100,7 +100,6 @@ alias pgstart='pg_ctl -D /opt/homebrew/var/postgresql@14/ start'
 alias pgstop='pg_ctl -D /opt/homebrew/var/postgresql@14/ stop'
 
 ### Navigation
-
 # TODO org directory
 function cdtodo { cd "${HOME}/org/todo/"; }
 
