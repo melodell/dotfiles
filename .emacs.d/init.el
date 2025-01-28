@@ -17,11 +17,11 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file) (write-region "" nil custom-file))
 
+;;; QOL ;;;
+
 ;; Modified keyboard shortcuts
 (global-set-key "\C-x\C-b" 'electric-buffer-list)  ; easier buffer switching
 (global-set-key "\M-o" 'other-window)  ; easier window switching
-(global-set-key "\C-x\." 'xref-find-definitions-other-window)  ; find definition and open in new window
-(global-set-key (kbd "s-r") 'revert-buffer)  ; revert buffer to pull new changes
 
 ;; Don't show a startup message
 (setq inhibit-startup-message t)
@@ -83,7 +83,7 @@
 
 ;; Delete trailing whitespace on save
 ;; Make a minor mode to enable/disable so you have control over
-;; accidentally reformatting the entire file :')
+;; accidentally reformatting the entire file
 (defun remove-trailing-whitespace ()
   (when (derived-mode-p 'prog-mode)
     (delete-trailing-whitespace)))
@@ -132,7 +132,7 @@
   :defer t
   )
 
-;; More intuitive undo/redo.  C-_ undo, C-M-_ redo
+;; More intuitive undo/redo. C-_ undo, C-M-_ redo
 ;; https://www.emacswiki.org/emacs/UndoTree
 (use-package undo-tree
   :config
@@ -140,6 +140,8 @@
   :ensure t
   :defer t
   )
+
+;;; Themes ;;;
 
 ;; Spacemacs dark mode
 ;; (use-package spacemacs-theme
