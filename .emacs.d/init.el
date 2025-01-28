@@ -17,6 +17,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file) (write-region "" nil custom-file))
 
+
 ;;; QOL ;;;
 
 ;; Modified keyboard shortcuts
@@ -141,52 +142,25 @@
   :defer t
   )
 
-;;; Themes ;;;
+;; Always wrap text and check spelling in text mode
+(add-hook 'text-mode-hook 'visual-line-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 
-;; Spacemacs dark mode
-;; (use-package spacemacs-theme
-;;   :ensure t
-;;   :defer t
-;;   :init (load-theme 'spacemacs-dark t)
-;;   )
+;; ediff
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 
-;; Doom Themes
-;; https://github.com/doomemacs/themes/tree/master
-(use-package doom-themes
+;; Neotree for viewing project structure
+(use-package neotree
   :ensure t
   :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (load-theme 'doom-vibrant t)
-  ;; (load-theme 'doom-city-lights t)
-  (load-theme 'doom-moonlight t)
-  ;; (load-theme 'doom-acario-dark t)
-  
-
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config)
-
-  ;; Customizations
-  ;;
-  ;; Org header size and agenda colors
-  ;; These are manually customized to adjust the 'doom-vibrant' theme
-  (custom-set-faces
-   '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
-   '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
-   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-   '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
-   )
-
-  ;; ediff
-  (custom-set-faces
-   '(ediff-even-diff-A ((t (:background "#0a0814"))))
-   '(ediff-odd-diff-A ((t (:background "#0a0814"))))
-   )
-  )
+  (setq neo-smart-open t)        ;; Jump to current file in tree view
+  :bind ("M-n" . neotree-show))  ;; M-n toggle file tree view, q to close
 
 
-;; Autocomplete for code
+;;; Development ;;;
+
+;; Autocomplete popups for code
 ;; Company docs: https://company-mode.github.io/
 ;; Company TNG: https://github.com/company-mode/company-mode/issues/526
 (use-package company
@@ -198,7 +172,7 @@
   :defer t                              ; lazy loading
   )
 
-;; Python backend for autocomplete
+;; Python backend for Company
 ;; https://github.com/syohex/emacs-company-jedi
 ;; You may need to:
 ;; $ pip install virtualenv
@@ -262,19 +236,17 @@
                (reusable-frames . visible)
                (window-height   . 0.25)))
 
-;; Eglot
-;; Using Pyright for Python
-;; pip install pyright
-;; (use-package eglot
-;;   :ensure t
-;;   :defer t
-;;   :hook (python-mode . eglot-ensure))
-
-;; Python autoformatting with black
-(use-package blacken
+;; Highlight symbols at point
+;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
+(use-package idle-highlight-mode
   :ensure t
   :defer t
-  :hook (python-mode . blacken-mode)
+  :config
+  (setq idle-highlight-idle-time 0.4)
+
+  ;; Enable for languages without other support
+  :hook
+  (python-mode . idle-highlight-mode)
   )
 
 ;; Remote file editing with TRAMP.  Configure TRAMP to use the same SSH
@@ -295,45 +267,10 @@
   :defer 1  ; lazy loading
   )
 
-;; Python
-;; (use-package elpy
-;;   :ensure t
-;;   :defer t
-;;   :custom
-;;   (elpy-rpc-virtualenv-path 'current)
-;;   :init
-;;   (advice-add 'python-mode :before 'elpy-enable)
-;;   )
-
-;; Setup for TSX files
-(defun setup-tsx ()
-	(when (string-equal "tsx" (file-name-extension buffer-file-name))
-    ;; Use TIDE and Prettier for TSX files
-	  (add-node-modules-path)
-	  (tide-setup)
-	  (tide-hl-identifier-mode)
-	  (prettier-js-mode)
-	  )
-	)
-;; Setup for JSX files
-(defun setup-jsx ()
-  (when (string-equal "jsx" (file-name-extension buffer-file-name))
-    ;; Use Prettier for JSX files too
-	  (add-node-modules-path)
-	  (prettier-js-mode)
-
-    ;; Disable auto quotes when writing JSX (gets in the way of writing component props)
-    (setq web-mode-enable-auto-quoting nil)
-
-    ;; Emmet JSX support
-    (add-to-list 'emmet-jsx-major-modes 'rjsx-mode)
-	  )
-  )
-
 ;; Web Development
 (use-package web-mode
   :ensure t
-  ;; :mode "\\.jsx?\\'"
+  :mode "\\.jsx?\\'"
   :mode "\\.html?\\'"
   :mode "\\.phtml\\'"
   :mode "\\.tpl\\.php\\'"
@@ -342,9 +279,10 @@
   :mode "\\.erb\\'"
   :mode "\\.mustache\\'"
   :mode "\\.djhtml\\'"
-  ;; :mode "\\.tsx?\\'"
+  :mode "\\.tsx?\\'"
   :mode "\\.ts?\\'"
   :mode "\\.css?\\'"
+  :mode "\\.scss?\\'"
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -358,79 +296,15 @@
 
   ;; Autocomplete for CSS
   (add-hook 'web-mode-hook (lambda () (add-to-list 'company-backends 'company-css)))
-
-  (add-hook 'web-mode-hook 'setup-tsx)
-  (add-hook 'web-mode-hook 'setup-jsx)
   )
-
-;; Add node_modules to PATH
-;; https://github.com/codesuki/add-node-modules-path
-(use-package add-node-modules-path
-  :ensure t
-  :defer t
-  ;; We need to define a custom command to get the path to local executables
-  ;; because "npm bin" (used by this package) is deprecated with npm > 8
-  ;; https://github.com/codesuki/add-node-modules-path/issues/23
-  :custom
-  (add-node-modules-path-command '("echo $(npm root)/.bin"))
-  )
-
-;; Prettier autoformatting for JS/TS
-(use-package prettier-js
-  :ensure t
-  :defer t
-  )
-
-;; rjsx for JSX files
-(use-package rjsx-mode
-  :ensure t
-  :defer t
-  :config
-  (setq js2-basic-offset 2)
-  (add-hook 'rjsx-mode-hook 'setup-jsx)
-  )
-
-;; TIDE for TypeScript autocomplete/backend
-;; https://github.com/ananthakumaran/tide
-(use-package tide
-  :ensure t
-  :config
-  (flycheck-add-next-checker 'typescript-tide 'javascript-eslint)  ; Use eslint
-  (setq tide-sync-request-timeout 10)  ; Increase request timeout from default 2
-  )
-
-;; Build AST with tree-sitter
-;; https://emacs-tree-sitter.github.io/
-;;
-;; Language bundle for tree-sitter (required)
-;; https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; (use-package tree-sitter-langs
-;;   :ensure t
-;;   :defer t
-;;   :after tree-sitter
-;;   )
 
 ;; Markdown
 (use-package markdown-mode
   :ensure t
+  :mode "\\.md\\'"
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1)))  ;; Always check spelling
-  )
-
-;; Emmet for HTML snippets
-;; https://github.com/smihica/emmet-mode
-;; C-j to expand snippet
-(use-package emmet-mode
-  :ensure t
-  :defer t
-
-  :config
-  ;; Self-closing tags should be <Foo /> instead of <Foo/>
-  (setq emmet-self-closing-tag-style " /")
-
-  :bind ("C-j" . emmet-expand-line)
-  :hook ((web-mode sgml-mode css-mode) . emmet-mode)
   )
 
 ;; Preview Markdown
@@ -455,13 +329,8 @@
   :ensure t
   )
 
-;; Always wrap text and check spelling in text mode
-(add-hook 'text-mode-hook 'visual-line-mode)
-(add-hook 'text-mode-hook 'flyspell-mode)
 
-;; ediff
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-horizontally)
+;;; Navigation and Search ;;;
 
 ;; Projectile for project navigation
 ;; https://github.com/bbatsov/projectile
@@ -523,22 +392,49 @@
                (reusable-frames . visible)
                (window-height   . 0.25)))
 
-;; Neotree for viewing project structure
-(use-package neotree
-  :ensure t
-  :config
-  (setq neo-smart-open t)        ;; Jump to current file in tree view
-  :bind ("M-n" . neotree-show))  ;; M-n toggle file tree view, q to close
 
-;; Highlight symbols at point
-;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
-(use-package idle-highlight-mode
+;;; Themes ;;;
+
+;; Spacemacs dark mode
+;; (use-package spacemacs-theme
+;;   :ensure t
+;;   :defer t
+;;   :init (load-theme 'spacemacs-dark t)
+;;   )
+
+;; Doom Themes
+;; https://github.com/doomemacs/themes/tree/master
+(use-package doom-themes
   :ensure t
-  :defer t
   :config
-  (setq idle-highlight-idle-time 0.4)
-  :hook
-  (python-mode . idle-highlight-mode)
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; (load-theme 'doom-vibrant t)
+  ;; (load-theme 'doom-city-lights t)
+  (load-theme 'doom-moonlight t)
+  ;; (load-theme 'doom-acario-dark t)
+
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+
+  ;; Customizations
+  ;;
+  ;; Org header size and agenda colors
+  ;; These are manually customized to adjust the 'doom-vibrant' theme
+  (custom-set-faces
+   '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+   '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+   '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
+   )
+
+  ;; ediff
+  (custom-set-faces
+   '(ediff-even-diff-A ((t (:background "#0a0814"))))
+   '(ediff-odd-diff-A ((t (:background "#0a0814"))))
+   )
   )
 
 
