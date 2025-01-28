@@ -208,7 +208,6 @@
 
   ;; use eslint with web-mode (for jsx and tsx files)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
 
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
@@ -222,9 +221,6 @@
       (when (and eslint (file-executable-p eslint))
         (setq-local flycheck-javascript-eslint-executable eslint))))
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-
-  ;; C++11
-  (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
   :ensure t
   :defer 1  ; lazy loading
