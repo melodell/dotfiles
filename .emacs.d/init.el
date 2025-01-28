@@ -305,27 +305,6 @@
 ;;   (advice-add 'python-mode :before 'elpy-enable)
 ;;   )
 
-;; C and C++ programming.  Build with C-c m.  Rebuild with C-c c.  Put
-;; this in c-mode-base-map because c-mode-map, c++-mode-map, and so
-;; on, inherit from it.
-(add-hook 'c-initialization-hook
-          (lambda () (define-key c-mode-base-map (kbd "C-c m") 'compile)))
-(add-hook 'c-initialization-hook
-          (lambda () (define-key c-mode-base-map (kbd "C-c c") 'recompile)))
-
-;; C++ Indentation
-(setq-default c-basic-offset tab-width)
-
-(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))  ; assume C++ for .h files
-
-;; LLDB support
-(use-package realgud
-  :ensure t
-  )
-(use-package realgud-lldb
-  :ensure t
-  )
-
 ;; Setup for TSX files
 (defun setup-tsx ()
 	(when (string-equal "tsx" (file-name-extension buffer-file-name))
