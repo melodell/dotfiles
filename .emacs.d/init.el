@@ -541,6 +541,10 @@
   (python-mode . idle-highlight-mode)
   )
 
+
+
+;;; Org ;;;
+
 ;; Better org agenda views
 ;; https://github.com/alphapapa/org-super-agenda/
 (use-package org-super-agenda
