@@ -27,6 +27,9 @@
 ;; Don't show a startup message
 (setq inhibit-startup-message t)
 
+;; Open Emacs with window focus (front of stack)
+(select-frame-set-input-focus (selected-frame))
+
 ;; Show line and column numbers
 (setq line-number-mode t)
 (setq column-number-mode t)
