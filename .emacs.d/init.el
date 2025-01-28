@@ -542,7 +542,6 @@
   )
 
 
-
 ;;; Org ;;;
 
 ;; Better org agenda views
@@ -625,7 +624,7 @@
           ("COMPLETE" . (:foreground "sea green" :weight bold))
           ))
 
-  ;; Capture templates (F24)
+  ;; Capture templates (As of 01/2025)
   (setq org-capture-templates
         '(
           ("t" "TODO")
@@ -638,21 +637,12 @@
           ("te" "Emacs"
            entry (file+headline "todo.org" "Emacs")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tt" "ETC"
-           entry (file+headline "todo.org" "ETC")
-           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tr" "EECS 585"
-           entry (file+headline "todo.org" "EECS 585")
-           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tg" "GAI"
            entry (file+headline "todo.org" "GAI")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           ("tc" "Misc"
            entry (file+headline "todo.org" "Misc")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("p" "Project Release"
-           entry (file+headline "todo.org" "EECS 485")
-           "* TODO %? \nCREATED: %u\n** TODO Release PR\n** TODO eecs485.org PR\n** TODO Setup AG\n** TODO FAQ post + merge eecs485.org\n" :empty-lines-after 1)
           )
         )
 
