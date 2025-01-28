@@ -414,7 +414,6 @@
   (load-theme 'doom-moonlight t)
   ;; (load-theme 'doom-acario-dark t)
 
-
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
 
