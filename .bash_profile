@@ -62,11 +62,28 @@ alias gr='git rebase'
 alias gf='git fetch -p'
 alias gfp='git fetch && git pull'
 alias gb='git branch'
-alias gc='git commit -m $1'
 alias gco='git checkout'
-# Create and push to new remote tracking branch
+
+# V: Prepend ticket/branch number to commit message
+function gc {
+    NAME=$(git branch | grep '^\*' | cut -b3- | cut -d "-" -f1 -f2)
+    git commit -m "$NAME: $1"
+}
+
+# V: Create and push to new remote tracking branch
 function gpo {
     git push -u origin $(git branch | grep '^\*' | cut -b3-)
+}
+
+# V: Refresh master
+function grf {
+    BRANCH=$(git branch | grep '^\*' | cut -b3-)
+    git stash
+    git switch master
+    gf
+    git pull
+    git switch "$BRANCH"
+    git stash pop
 }
 
 ### ssh
@@ -170,7 +187,7 @@ function set_git_context() {
   local GIT_DIRTY
   local COLOR=${txtgrn}
   local STATUS=$(git status -sb 2> /dev/null);
-  if [[ $(echo "$STATUS" | grep M) != "" || $(echo "$STATUS" | grep ?) != "" || $(echo "$STATUS" | grep D) != "" || $(echo "$STATUS" | grep A) != "" ]]; then
+  if [[ $(echo "$STATUS" | grep "M ") != "" || $(echo "$STATUS" | grep "? ") != "" || $(echo "$STATUS" | grep "D ") != "" || $(echo "$STATUS" | grep "A ") != "" ]]; then
       GIT_DIRTY='*'
       COLOR=${txtred}
   else
@@ -232,3 +249,6 @@ PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
 # Git autocompletion
 [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ] \
     && . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+
+# Beta yarn start
+alias ys="yarn start-dev-beta"
