@@ -1,7 +1,6 @@
 [user]
 	name = Melina O'Dell
 	email = melinaodell48@gmail.com
-	signingkey = /Users/melinaodell/.ssh/id_rsa.pub
 [color]
 	diff = auto
 	status = auto
@@ -17,8 +16,4 @@
 	rebase = false
 [core]
 	editor = emacs -Q -nw
-	excludesfile = /Users/melinaodell/.gitignore_global
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
+	excludesfile = /Users/melina.odell/.gitignore_global
