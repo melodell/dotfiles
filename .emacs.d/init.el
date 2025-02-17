@@ -522,19 +522,7 @@
   (setq org-capture-templates
         '(
           ("t" "TODO")
-          ("tq" "Career"
-           entry (file+headline "todo.org" "Career")
-           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tw" "EECS 485"
-           entry (file+headline "todo.org" "EECS 485")
-           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("te" "Emacs"
-           entry (file+headline "todo.org" "Emacs")
-           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tg" "GAI"
-           entry (file+headline "todo.org" "GAI")
-           "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
-          ("tc" "Misc"
+          ("tm" "Misc"
            entry (file+headline "todo.org" "Misc")
            "* TODO %? \nCREATED: %u\n" :empty-lines-after 1)
           )
