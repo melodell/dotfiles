@@ -82,6 +82,7 @@ function dotsync()
 
 ### Emacs
 function e { emacs "$@" & }
+function enw { emacs -nw -Q "$@"; }
 function ediff { emacs --eval "(ediff-files \"$1\" \"$2\")" & }
 
 ### Python
