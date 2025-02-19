@@ -28,6 +28,8 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 # pipx
 export PATH="$PATH:$HOME/.local/bin"
+# inv
+export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 
 
 ### ALIASES ###
