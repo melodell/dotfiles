@@ -28,6 +28,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 # pipx
 export PATH="$PATH:$HOME/.local/bin"
+# proto
+export PROTO_HOME="$HOME/.proto";
+export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH";
 # inv
 export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 
