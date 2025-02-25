@@ -65,7 +65,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gr='git rebase'
 alias gf='git fetch -p'
-alias gfp='git fetch && git pull'
+alias gfp='git fetch -p && git pull'
 alias gb='git branch'
 alias gco='git checkout'
 
