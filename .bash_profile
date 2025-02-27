@@ -257,3 +257,6 @@ PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
 
 # Beta yarn start
 alias ys="yarn start-dev-beta"
+
+# Added by `rbenv init` on Thu Feb 27 11:35:55 PST 2025
+eval "$(rbenv init - --no-rehash bash)"
