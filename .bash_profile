@@ -256,7 +256,7 @@ PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
     && . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 
 # Beta yarn start
-alias ys="yarn start-dev-beta"
+alias ys="yarn start"
 
 # Added by `rbenv init` on Thu Feb 27 11:35:55 PST 2025
 eval "$(rbenv init - --no-rehash bash)"
