@@ -88,7 +88,6 @@ function grf {
     gf
     git pull
     git switch "$BRANCH"
-    git stash pop
 }
 
 ### ssh
@@ -255,8 +254,12 @@ PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
 [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ] \
     && . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 
-# Beta yarn start
+# yarn start
 alias ys="yarn start"
+
+# site planner storybook
+alias spsb="yarn vka site-planner:start.storybook"
+alias spsbt="yarn vka site-planner:test.storybook"
 
 # Added by `rbenv init` on Thu Feb 27 11:35:55 PST 2025
 eval "$(rbenv init - --no-rehash bash)"
