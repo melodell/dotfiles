@@ -1,14 +1,22 @@
-[user]
-	name = Melina O'Dell
-	email = melinaodell48@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-[init]
-	defaultBranch = main
-[pull]
-	rebase = false
+diff = auto
+status = auto
+branch = auto
+
 [core]
-	editor = emacs -Q -nw
-	excludesfile = /Users/melina.odell/.gitignore_global
+editor = emacs -Q -nw
+excludesfile = /Users/melina.odell/.gitignore_global
+
+[init]
+defaultBranch = main
+
+[pull]
+rebase = true
+
+[url "git@github.com:"]
+insteadOf = https://github.com/
+
+[user]
+name = Melina O'Dell
+email = melinaodell48@gmail.com
+

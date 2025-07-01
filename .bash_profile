@@ -90,17 +90,6 @@ function grf {
     git switch "$BRANCH"
 }
 
-### ssh
-# CAEN Linux
-alias caen='ssh melodell@login.engin.umich.edu'
-
-# Sync dotfiles to CAEN
-function dotsync()
-{
-    rsync -rtv .bash_profile .bash_colors melodell@login.engin.umich.edu:
-    rsync -rtv .emacs.d/init.el melodell@login.engin.umich.edu:.emacs.d
-}
-
 ### Emacs
 function e { emacs "$@" & }
 function enw { emacs -nw -Q "$@"; }
@@ -116,51 +105,9 @@ function a { source "$@"/bin/activate; }
 alias brave='open -a "Brave Browser.app" -n --args --new-window'
 alias brave-private='open -a "Brave Browser.app" -n --args --incognito'
 
-### PostgreSQL ($ brew install postgresql)
-# Start and stop default database cluster directory
-alias pgstart='pg_ctl -D /opt/homebrew/var/postgresql@14/ start'
-alias pgstop='pg_ctl -D /opt/homebrew/var/postgresql@14/ stop'
-
 ### Navigation
 # TODO org directory
 function cdtodo { cd "${HOME}/org/todo/"; }
-
-# Shortcut to eecs485staff projects
-function cd485()
-{
-    PROJECT_NUM="$1"
-    case $PROJECT_NUM in
-        p1|1)
-            PROJECT='p1-insta485-static'
-            ;;
-        p2|2)
-            PROJECT='p2-insta485-serverside'
-            ;;
-        p3|3)
-            PROJECT='p3-insta485-clientside'
-            ;;
-        p4|4)
-            PROJECT='p4-mapreduce'
-            ;;
-        p5|5)
-            PROJECT='p5-search-engine'
-            ;;
-        madoop)
-            PROJECT='madoop'
-            ;;
-        ag)
-            PROJECT='ag-docker-images'
-            ;;
-        site)
-            PROJECT='eecs485.org'
-            ;;
-        *)
-            PROJECT=''
-            ;;
-    esac
-    cd ${HOME}/src/eecs485staff/$PROJECT
-}
-
 
 ### PROMPT ###
 set -o emacs                              # Emacs CL mode
@@ -168,6 +115,7 @@ export HISTCONTROL="ignoredups"           # Ignore dup cmds
 export BASH_SILENCE_DEPRECATION_WARNING=1 # Suppress default shell warning
 export SUDO_EDITOR="emacs -Q -nw"         # Editor used by sudoedit and sudo -e
 export GIT_EDITOR="emacs -Q -nw"          # Editor used by git commit
+export KUBE_EDITOR="emacs -Q nw"          # Editor used by kubectl
 shopt -s checkwinsize                     # keep LINES and COLUMNS up to date
 
 # Git context
@@ -260,6 +208,12 @@ alias ys="yarn start"
 # site planner storybook
 alias spsb="yarn vka site-planner:start.storybook"
 alias spsbt="yarn vka site-planner:test.storybook"
+
+# start verkada backend
+alias bes="cs vscode -W melinaodell/app"
+
+# bazel invoke
+alias bazel_inv='bazel.run //tasks:inv_cli'
 
 # Added by `rbenv init` on Thu Feb 27 11:35:55 PST 2025
 eval "$(rbenv init - --no-rehash bash)"
