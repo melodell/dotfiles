@@ -115,7 +115,7 @@ export HISTCONTROL="ignoredups"           # Ignore dup cmds
 export BASH_SILENCE_DEPRECATION_WARNING=1 # Suppress default shell warning
 export SUDO_EDITOR="emacs -Q -nw"         # Editor used by sudoedit and sudo -e
 export GIT_EDITOR="emacs -Q -nw"          # Editor used by git commit
-export KUBE_EDITOR="emacs -Q nw"          # Editor used by kubectl
+export KUBE_EDITOR="emacs -Q -nw"          # Editor used by kubectl
 shopt -s checkwinsize                     # keep LINES and COLUMNS up to date
 
 # Git context
