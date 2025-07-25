@@ -69,6 +69,9 @@ alias gfp='git fetch -p && git pull'
 alias gb='git branch'
 alias gco='git checkout'
 
+# Custom script to clean up squash-merged branches
+alias git-cleanup='sh ~/bin/git-branch-cleanup.sh'
+
 # V: Prepend ticket/branch number to commit message
 function gc {
     NAME=$(git branch | grep '^\*' | cut -b3- | cut -d "-" -f1 -f2)
