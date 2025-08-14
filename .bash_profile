@@ -208,6 +208,10 @@ PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
 # yarn start
 alias ys="yarn start"
 
+# verity storybook
+alias vsg="yarn storybook:styleguide"
+alias vleg="yarn storybook:legacy"
+
 # site planner storybook
 alias spsb="yarn vka site-planner:start.storybook"
 alias spsbt="yarn vka site-planner:test.storybook"
