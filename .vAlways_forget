@@ -1,0 +1,25 @@
+# .vAlways_forget.txt
+#
+# A file for work commands I always forget
+#
+# Melina O'Dell
+
+
+# Verity
+
+## Unit Tests
+
+yarn vka verity:test.jest                      # Run unit tests for verity package
+yarn vka verity:test.jest -- --coverageReporters=lcov    # Run unit tests for verity package and generate lcov coverage report
+
+## Screenshot Tests
+
+# Run these to regenerate screenshots
+yarn storycap:verity:capture:local
+yarn storycap:verity:compare
+yarn storycap:verity:report
+yarn storycap:verity:update
+
+# For legacy, do the same but with "legacy"
+yarn storycap:legacy:capture:local 
+
