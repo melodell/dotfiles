@@ -401,38 +401,46 @@
 ;;   :init (load-theme 'spacemacs-dark t)
 ;;   )
 
+;; Afternoon theme
+;; https://github.com/ozanmakes/emacs-afternoon-theme
+(use-package afternoon-theme
+  :ensure t
+  :config
+  (load-theme 'afternoon t)
+  )
+
 ;; Doom Themes
 ;; https://github.com/doomemacs/themes/tree/master
 (use-package doom-themes
   :ensure t
   :config
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (load-theme 'doom-vibrant t)
-  ;; (load-theme 'doom-city-lights t)
-  (load-theme 'doom-moonlight t)
-  ;; (load-theme 'doom-acario-dark t)
+  ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+  ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; ;; (load-theme 'doom-vibrant t)
+  ;; ;; (load-theme 'doom-city-lights t)
+  ;; (load-theme 'doom-moonlight t)
+  ;; ;; (load-theme 'doom-acario-dark t)
 
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config)
+  ;; ;; Corrects (and improves) org-mode's native fontification.
+  ;; (doom-themes-org-config)
 
-  ;; Customizations
-  ;;
-  ;; Org header size and agenda colors
-  ;; These are manually customized to adjust the 'doom-vibrant' theme
-  (custom-set-faces
-   '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
-   '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
-   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-   '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
-   )
+  ;; ;; Customizations
+  ;; ;;
+  ;; ;; Org header size and agenda colors
+  ;; ;; These are manually customized to adjust the 'doom-vibrant' theme
+  ;; (custom-set-faces
+  ;;  '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+  ;;  '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+  ;;  '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+  ;;  '(org-agenda-structure ((t (:inherit bold :foreground "#7590db"))))
+  ;;  )
 
-  ;; ediff
-  (custom-set-faces
-   '(ediff-even-diff-A ((t (:background "#0a0814"))))
-   '(ediff-odd-diff-A ((t (:background "#0a0814"))))
-   )
+  ;; ;; ediff
+  ;; (custom-set-faces
+  ;;  '(ediff-even-diff-A ((t (:background "#0a0814"))))
+  ;;  '(ediff-odd-diff-A ((t (:background "#0a0814"))))
+  ;;  )
   )
 
 
