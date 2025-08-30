@@ -17,8 +17,10 @@ yarn vka verity:test.jest -- --coverageReporters=lcov    # Run unit tests for ve
 # Run these to regenerate screenshots
 yarn storycap:verity:capture:local
 yarn storycap:verity:compare
-yarn storycap:verity:report
 yarn storycap:verity:update
+
+yarn storycap:verity:report
+
 
 # For legacy, do the same but with "legacy"
 yarn storycap:legacy:capture:local 
