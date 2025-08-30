@@ -108,6 +108,9 @@ OLD_VERITY_ICON_COUNT=$(search_and_display "Old Verity Icon Imports" "$YELLOW" \
     "import.*from.*['\"].*verity/molecules/icons" \
     "import.*from.*['\"].*verity/consumables/Icon['\"]")
 
+OLD_VERITY_CHECKBOX_COUNT=$(search_and_display "Old Verity Checkbox Imports" "$GREEN" \
+    "import[[:space:]]+Checkbox.*from.*['\"].*verity/consumables/Checkbox['\"]")
+
 COMMON_TYPOGRAPHY_COUNT=$(search_and_display "Common Typography Imports" "$PURPLE" \
     "import.*from.*['\"].*common/components.*localizedtext")
 
@@ -128,6 +131,7 @@ echo -e "${DIM}$(printf '═%.0s' {1..50})${NC}"
 echo -e "${PURPLE}Old Verity Typography:${NC} $OLD_VERITY_TYPOGRAPHY_COUNT"
 echo -e "${RED}Old Verity Button:${NC} $OLD_VERITY_BUTTON_COUNT"
 echo -e "${CYAN}Old Verity Link:${NC} $OLD_VERITY_LINK_COUNT"
+echo -e "${GREEN}Old Verity Checkbox:${NC} $OLD_VERITY_CHECKBOX_COUNT"
 echo -e "${YELLOW}Old Verity Icon:${NC} $OLD_VERITY_ICON_COUNT"
 echo -e "${PURPLE}Common Typography:${NC} $COMMON_TYPOGRAPHY_COUNT"
 echo -e "${RED}Common Button:${NC} $COMMON_BUTTON_COUNT"
