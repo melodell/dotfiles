@@ -79,49 +79,54 @@ search_and_display() {
     done
     
     if [[ $count -gt 0 ]]; then
-        echo -e "${BOLD}${color}$title ($count matches)${NC}" >&2
-        echo -e "${DIM}$(printf '─%.0s' {1..50})${NC}" >&2
-        echo -e "$results" >&2
+        echo -e "${BOLD}${color}$title ($count matches)${NC}"
+        echo -e "${DIM}$(printf '─%.0s' {1..50})${NC}"
+        echo -e "$results"
     fi
     
-    echo $count
+    # Return count via stderr so it doesn't interfere with stdout output
+    echo $count >&2
 }
 
 echo -e "${YELLOW}Searching for legacy imports...${NC}"
 echo ""
 
 # Search for each category and capture counts
+# Using exec to capture stderr to a variable while preserving stdout
+exec 3>&1
 OLD_VERITY_TYPOGRAPHY_COUNT=$(search_and_display "Old Verity Typography Imports" "$PURPLE" \
     "import.*from.*['\"].*components-legacy/verity.*Typography" \
     "import.*from.*['\"].*verity/molecules.*Typography" \
     "import.*from.*['\"].*verity/atoms.*Typography" \
-    "import.*from.*['\"].*verity/organisms.*Typography")
+    "import.*from.*['\"].*verity/organisms.*Typography" 2>&1 1>&3 | tail -1)
 
 OLD_VERITY_BUTTON_COUNT=$(search_and_display "Old Verity Button Imports" "$RED" \
     "import.*from.*['\"].*verity/molecules/buttons" \
-    "import[[:space:]]+Button.*from.*['\"].*verity/consumables/Button['\"]")
+    "import[[:space:]]+Button.*from.*['\"].*verity/consumables/Button['\"]" 2>&1 1>&3 | tail -1)
 
 OLD_VERITY_LINK_COUNT=$(search_and_display "Old Verity Link Imports" "$CYAN" \
-    "import[[:space:]]+Link.*from.*['\"].*verity/consumables/Link['\"]")
+    "import[[:space:]]+Link.*from.*['\"].*verity/consumables/Link['\"]" 2>&1 1>&3 | tail -1)
 
 OLD_VERITY_ICON_COUNT=$(search_and_display "Old Verity Icon Imports" "$YELLOW" \
     "import.*from.*['\"].*verity/molecules/icons" \
-    "import.*from.*['\"].*verity/consumables/Icon['\"]")
+    "import.*from.*['\"].*verity/consumables/Icon['\"]" 2>&1 1>&3 | tail -1)
 
 OLD_VERITY_CHECKBOX_COUNT=$(search_and_display "Old Verity Checkbox Imports" "$GREEN" \
-    "import[[:space:]]+Checkbox.*from.*['\"].*verity/consumables/Checkbox['\"]")
+    "import[[:space:]]+Checkbox.*from.*['\"].*verity/consumables/Checkbox['\"]" 2>&1 1>&3 | tail -1)
 
 COMMON_TYPOGRAPHY_COUNT=$(search_and_display "Common Typography Imports" "$PURPLE" \
-    "import.*from.*['\"].*common/components.*localizedtext")
+    "import.*from.*['\"].*common/components.*localizedtext" 2>&1 1>&3 | tail -1)
 
 COMMON_BUTTON_COUNT=$(search_and_display "Common Button Imports" "$RED" \
     "import.*from.*['\"].*common/components.*button" \
-    "import.*Button.*from.*['\"].*common/components")
+    "import.*Button.*from.*['\"].*common/components" 2>&1 1>&3 | tail -1)
 
 COMMAND_BUTTON_COUNT=$(search_and_display "Command Button Imports" "$RED" \
     "import.*Button.*from.*['\"].*command/components" \
     "import.*Pill.*from.*['\"].*command/components" \
-    "import.*chip.*from.*['\"].*command/components")
+    "import.*chip.*from.*['\"].*command/components" 2>&1 1>&3 | tail -1)
+
+exec 3>&-
 
 # Calculate grand total
 GRAND_TOTAL=$((OLD_VERITY_TYPOGRAPHY_COUNT + OLD_VERITY_BUTTON_COUNT + OLD_VERITY_LINK_COUNT + OLD_VERITY_ICON_COUNT + COMMON_TYPOGRAPHY_COUNT + COMMON_BUTTON_COUNT + COMMAND_BUTTON_COUNT))
