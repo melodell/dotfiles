@@ -16,3 +16,9 @@ node_modules/
 
 # VSCode Local History
 .history/
+
+# Claude
+CLAUDE.md
+
+# Cursor
+.cursor/

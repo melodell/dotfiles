@@ -7,6 +7,8 @@
 
 # Verity
 
+yarn vka verity:start.storybook
+
 ## Unit Tests
 
 yarn vka verity:test.jest                      # Run unit tests for verity package
@@ -23,5 +25,8 @@ yarn storycap:verity:report
 
 
 # For legacy, do the same but with "legacy"
-yarn storycap:legacy:capture:local 
+yarn storycap:legacy:capture:local
+
+# Login V2
+yarn vka command:start.dev login:start.rspack.dev
 

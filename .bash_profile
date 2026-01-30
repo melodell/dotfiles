@@ -93,6 +93,9 @@ function grf {
     git switch "$BRANCH"
 }
 
+# V: Switch to master
+alias master='git switch master'
+
 ### Emacs
 function e { emacs "$@" & }
 function enw { emacs -nw -Q "$@"; }
@@ -210,11 +213,8 @@ alias ys="yarn start"
 
 # verity storybook
 alias vsg="yarn storybook:styleguide"
+alias vsgnew="moon verity:start.storybook"
 alias vleg="yarn storybook:legacy"
-
-# site planner storybook
-alias spsb="yarn vka site-planner:start.storybook"
-alias spsbt="yarn vka site-planner:test.storybook"
 
 # start verkada backend
 alias bes="cs vscode -W melinaodell/app"
@@ -224,3 +224,6 @@ alias bazel_inv='bazel.run //tasks:inv_cli'
 
 # Added by `rbenv init` on Thu Feb 27 11:35:55 PST 2025
 eval "$(rbenv init - --no-rehash bash)"
+
+# proto
+eval "$(proto activate bash)"
