@@ -75,7 +75,7 @@ search_and_display() {
                 continue
             fi
         done < <(grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
-                -E "$pattern" "$SEARCH_DIR" 2>/dev/null)
+                --exclude-dir=dist -E "$pattern" "$SEARCH_DIR" 2>/dev/null)
     done
     
     if [[ $count -gt 0 ]]; then
@@ -109,7 +109,9 @@ OLD_VERITY_LINK_COUNT=$(search_and_display "Old Verity Link Imports" "$CYAN" \
 
 OLD_VERITY_ICON_COUNT=$(search_and_display "Old Verity Icon Imports" "$YELLOW" \
     "import.*from.*['\"].*verity/molecules/icons" \
-    "import.*from.*['\"].*verity/consumables/Icon['\"]" 2>&1 1>&3 | tail -1)
+    "import.*from.*['\"].*verity/consumables/Icon['\"]" \
+    "import.*Icon.*from.*['\"].*verity/molecules['\"]" \
+    "import.*from.*['\"].*@verkada/components-legacy/verity-legacy/molecules/icons/[^'\"/]+['\"]" 2>&1 1>&3 | tail -1)
 
 OLD_VERITY_CHECKBOX_COUNT=$(search_and_display "Old Verity Checkbox Imports" "$GREEN" \
     "import[[:space:]]+Checkbox.*from.*['\"].*verity/consumables/Checkbox['\"]" 2>&1 1>&3 | tail -1)

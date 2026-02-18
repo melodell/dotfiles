@@ -13,6 +13,7 @@ yarn vka verity:start.storybook
 
 yarn vka verity:test.jest                      # Run unit tests for verity package
 yarn vka verity:test.jest -- --coverageReporters=lcov    # Run unit tests for verity package and generate lcov coverage report
+JEST_ENABLE_CONSOLE=true yarn test:unit                  # Run all unit tests and suppress weird console errors
 
 ## Screenshot Tests
 
