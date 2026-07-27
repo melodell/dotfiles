@@ -68,6 +68,8 @@ alias gf='git fetch -p'
 alias gfp='git fetch -p && git pull'
 alias gb='git branch'
 alias gco='git checkout'
+alias gts='gt submit'
+alias gtss='gt ss'
 
 # Custom script to clean up squash-merged branches
 alias git-cleanup='sh ~/bin/git-branch-cleanup.sh'
@@ -212,8 +214,7 @@ PROMPT_COMMAND="set_prompt; $PROMPT_COMMAND"
 alias ys="yarn start"
 
 # verity storybook
-alias vsg="yarn storybook:styleguide"
-alias vsgnew="moon verity:start.storybook"
+alias vsg="moon run verity:start.storybook"
 alias vleg="yarn storybook:legacy"
 
 # start verkada backend
